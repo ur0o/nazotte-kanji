@@ -10,6 +10,7 @@ Node.js 22 以上と pnpm を使います。
 pnpm install
 pnpm dev         # 開発サーバー
 pnpm build       # 型チェックと本番用ビルド(dist/)
+pnpm build:preview  # claude.ai のテスト用ページ向けビルド(dist-preview/)
 pnpm test        # 単体テスト
 pnpm lint        # ESLint と Prettier のチェック
 pnpm typecheck   # 型チェック
