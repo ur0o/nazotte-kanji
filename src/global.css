@@ -1,0 +1,10 @@
+:root {
+  --kanji-font-family:
+    "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
+    "Noto Serif CJK JP", serif;
+}
+
+body {
+  background: var(--mantine-color-body);
+  color: var(--mantine-color-text);
+}

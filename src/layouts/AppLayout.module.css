@@ -1,0 +1,21 @@
+.root {
+  min-height: 100dvh;
+  padding-bottom: var(--mantine-spacing-xl);
+}
+
+.header {
+  position: relative;
+  height: 52px;
+  border-bottom: 1px solid var(--mantine-color-default-border);
+  margin-bottom: var(--mantine-spacing-sm);
+}
+
+.back {
+  position: absolute;
+  left: 0;
+}
+
+.title {
+  font-size: var(--mantine-font-size-lg);
+  font-weight: 700;
+}

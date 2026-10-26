@@ -1,0 +1,18 @@
+.root {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--mantine-color-text);
+  overflow: visible;
+}
+
+.label {
+  font-size: 4.6px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--mantine-color-blue-filled);
+  paint-order: stroke;
+  stroke: var(--mantine-color-body);
+  stroke-width: 1.2px;
+}

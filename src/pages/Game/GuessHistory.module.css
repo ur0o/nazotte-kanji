@@ -1,0 +1,31 @@
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-sm);
+  font-family: var(--kanji-font-family);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.cell[data-state="wrong"] {
+  color: var(--mantine-color-dimmed);
+}
+
+.cell[data-state="correct"] {
+  border-color: var(--mantine-color-text);
+  border-width: 2px;
+  font-weight: 700;
+}
+
+.mark {
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  font-family: var(--mantine-font-family);
+  font-size: 12px;
+  color: var(--mantine-color-red-text);
+}
