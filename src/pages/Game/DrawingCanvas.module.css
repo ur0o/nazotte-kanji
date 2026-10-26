@@ -1,0 +1,9 @@
+.root {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* 書いている間に画面がスクロールしないようにする */
+  touch-action: none;
+  cursor: crosshair;
+  color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
+}

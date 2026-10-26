@@ -1,0 +1,13 @@
+.animation {
+  flex: none;
+  width: 140px;
+  height: 140px;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.kanji {
+  font-family: var(--kanji-font-family);
+  font-size: 40px;
+  line-height: 1.2;
+}

@@ -8,6 +8,8 @@ Node.js 22 以上と pnpm を使います。
 
 ```sh
 pnpm install
+pnpm dev         # 開発サーバー
+pnpm build       # 型チェックと本番用ビルド(dist/)
 pnpm test        # 単体テスト
 pnpm lint        # ESLint と Prettier のチェック
 pnpm typecheck   # 型チェック

@@ -1,0 +1,42 @@
+.root {
+  position: relative;
+  /* 画面の高さに収まるよう、ヘッダーや入力フォームの分を除いた高さを上限にする */
+  width: min(100%, calc(100dvh - 330px));
+  min-width: 240px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-sm);
+  background: var(--mantine-color-body);
+  overflow: hidden;
+}
+
+.layer,
+.canvas,
+.hints,
+.loading {
+  position: absolute;
+  inset: 0;
+}
+
+.layer {
+  width: 100%;
+  height: 100%;
+}
+
+.guide {
+  stroke: var(--mantine-color-default-border);
+  stroke-width: 0.4;
+  stroke-dasharray: 2 2;
+}
+
+/* ヒントは手書きの線の上に重ねるが、書き込みの邪魔をしない */
+.hints,
+.loading {
+  pointer-events: none;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+}

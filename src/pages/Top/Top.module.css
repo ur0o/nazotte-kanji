@@ -1,0 +1,5 @@
+.result {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 400;
+  opacity: 0.8;
+}
