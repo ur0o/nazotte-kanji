@@ -64,12 +64,15 @@ function insideViewBox(point: Vector): boolean {
 /**
  * 書き順の番号ラベルを置く位置を決める。
  * 番号を表示しない画は undefined。記号・矢印・ほかのラベルとなるべく重ならない位置を選ぶ。
+ * 矢印を表示するときは、矢印の反対側を優先する。
  */
 export function layoutStrokeLabels(
   strokes: readonly Pick<Stroke, "end" | "direction">[],
   showNumber: (index: number) => boolean,
+  showArrows: boolean,
 ): (Vector | undefined)[] {
   const obstacles: Vector[] = strokes.flatMap(({ end: [x, y], direction }) => {
+    if (!showArrows) return [{ x, y }];
     const arrow = DIRECTION_VECTORS[direction];
     return [
       { x, y },

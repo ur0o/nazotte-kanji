@@ -11,24 +11,22 @@ export const DIFFICULTY_LABELS: Readonly<Record<Difficulty, string>> = {
   hard: "難",
 };
 
-export const DIFFICULTY_DESCRIPTIONS: Readonly<Record<Difficulty, string>> = {
-  easy: "全ての画に書き順の番号が付きます",
-  normal: "1画目と最後の画にだけ書き順の番号が付きます",
-  hard: "書き順の番号は付きません",
+export interface DifficultyHints {
+  /** 書き順の番号を表示するか */
+  strokeNumbers: boolean;
+  /** 終わるときの向き(矢印)を表示するか */
+  arrows: boolean;
+}
+
+/** 難易度ごとに表示するヒント。終点の位置と終わり方はどの難易度でも表示する */
+export const DIFFICULTY_HINTS: Readonly<Record<Difficulty, DifficultyHints>> = {
+  easy: { strokeNumbers: true, arrows: true },
+  normal: { strokeNumbers: true, arrows: false },
+  hard: { strokeNumbers: false, arrows: false },
 };
 
-/** index 画目(0始まり)の終点に書き順の番号を表示するか */
-export function showsStrokeNumber(
-  difficulty: Difficulty,
-  index: number,
-  strokeCount: number,
-): boolean {
-  switch (difficulty) {
-    case "easy":
-      return true;
-    case "normal":
-      return index === 0 || index === strokeCount - 1;
-    case "hard":
-      return false;
-  }
-}
+export const DIFFICULTY_DESCRIPTIONS: Readonly<Record<Difficulty, string>> = {
+  easy: "書き順の番号と、終わるときの向き(矢印)が表示されます",
+  normal: "書き順の番号だけが表示されます",
+  hard: "書き順の番号も向きも表示されません",
+};

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { difficultySchema, type Difficulty } from "./difficulty.ts";
 
 const STORAGE_KEY = "kanji-kaki-quiz";
-/** エンドレスと難易度選択で、出題を避ける直近の漢字の数 */
+/** エンドレスで出題を避ける直近の漢字の数 */
 export const RECENT_LIMIT = 200;
 
 const roundSchema = z.object({
@@ -11,28 +11,33 @@ const roundSchema = z.object({
   guesses: z.array(z.string()),
 });
 
+/** 難易度ごとの値 */
+function byDifficulty<T extends z.ZodType>(schema: T) {
+  return z.object({ easy: schema, normal: schema, hard: schema });
+}
+
 const savedDataSchema = z.object({
-  version: z.literal(1),
-  /** 今日の1字の記録。キーは問題番号 */
-  daily: z.record(z.string(), roundSchema),
-  endlessBest: z.number().int().nonnegative(),
-  levelBest: z.record(difficultySchema, z.number().int().nonnegative()),
-  /** エンドレスと難易度選択で最近出した漢字(新しい順) */
+  version: z.literal(2),
+  /** 今日の1字の記録。難易度ごとに、問題番号をキーにする */
+  daily: byDifficulty(z.record(z.string(), roundSchema)),
+  /** エンドレスの自己ベスト(連続正解数) */
+  endlessBest: byDifficulty(z.number().int().nonnegative()),
+  /** エンドレスで最近出した漢字(新しい順) */
   recent: z.array(z.string()),
 });
 export type SavedData = z.infer<typeof savedDataSchema>;
+export type SavedRound = z.infer<typeof roundSchema>;
 
 export function initialSavedData(): SavedData {
   return {
-    version: 1,
-    daily: {},
-    endlessBest: 0,
-    levelBest: { easy: 0, normal: 0, hard: 0 },
+    version: 2,
+    daily: { easy: {}, normal: {}, hard: {} },
+    endlessBest: { easy: 0, normal: 0, hard: 0 },
     recent: [],
   };
 }
 
-/** 保存した文字列を読む。壊れていたら初期値にする */
+/** 保存した文字列を読む。壊れていたり形式が古かったりしたら初期値にする */
 export function parseSavedData(raw: string | null): SavedData {
   if (raw === null) return initialSavedData();
   try {
@@ -73,20 +78,32 @@ export function addRecent(data: SavedData, kanji: string): SavedData {
   };
 }
 
-/** 自己ベストを更新する。difficulty が null ならエンドレス */
-export function recordBest(
+export function saveDailyRound(
   data: SavedData,
-  difficulty: Difficulty | null,
-  streak: number,
+  number: number,
+  round: SavedRound,
 ): SavedData {
-  if (difficulty === null) {
-    return { ...data, endlessBest: Math.max(data.endlessBest, streak) };
-  }
+  const difficulty = round.difficulty;
   return {
     ...data,
-    levelBest: {
-      ...data.levelBest,
-      [difficulty]: Math.max(data.levelBest[difficulty], streak),
+    daily: {
+      ...data.daily,
+      [difficulty]: { ...data.daily[difficulty], [String(number)]: round },
+    },
+  };
+}
+
+/** エンドレスの自己ベストを、より大きいときだけ更新する */
+export function recordEndlessBest(
+  data: SavedData,
+  difficulty: Difficulty,
+  streak: number,
+): SavedData {
+  return {
+    ...data,
+    endlessBest: {
+      ...data.endlessBest,
+      [difficulty]: Math.max(data.endlessBest[difficulty], streak),
     },
   };
 }

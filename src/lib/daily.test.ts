@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { dailyNumber, dailyPuzzle, msUntilNextDaily } from "./daily.ts";
+import { dailyKanji, dailyNumber, msUntilNextDaily } from "./daily.ts";
+import { DIFFICULTIES } from "./difficulty.ts";
 
 describe("dailyNumber", () => {
   it("第1回の日を 1 とし、日本時間の 0 時に切り替わる", () => {
@@ -24,26 +25,26 @@ describe("msUntilNextDaily", () => {
   });
 });
 
-describe("dailyPuzzle", () => {
-  const kanjiList = [..."一二三四五六七八九十"];
+describe("dailyKanji", () => {
+  const kanjiList = [..."一二三四五六七八九十百千"];
 
-  it("同じ問題番号なら同じ問題になる", () => {
-    expect(dailyPuzzle(5, kanjiList)).toEqual(dailyPuzzle(5, kanjiList));
+  it("同じ問題番号と難易度なら同じ漢字になる", () => {
+    expect(dailyKanji(5, "normal", kanjiList)).toBe(
+      dailyKanji(5, "normal", kanjiList),
+    );
+  });
+
+  it("同じ日の3つの難易度で漢字が重ならない", () => {
+    const today = DIFFICULTIES.map((d) => dailyKanji(3, d, kanjiList));
+    expect(new Set(today).size).toBe(3);
   });
 
   it("一覧を使い切るまで同じ漢字を出さず、使い切ったら最初に戻る", () => {
-    const first = kanjiList.map((_, i) => dailyPuzzle(i + 1, kanjiList).kanji);
-    expect(new Set(first).size).toBe(kanjiList.length);
-    expect(dailyPuzzle(kanjiList.length + 1, kanjiList).kanji).toBe(first[0]);
-  });
-
-  it("難易度は問題番号によって変わる", () => {
-    const difficulties = new Set(
-      Array.from(
-        { length: 30 },
-        (_, i) => dailyPuzzle(i + 1, kanjiList).difficulty,
-      ),
-    );
-    expect(difficulties.size).toBe(3);
+    const days = kanjiList.length / DIFFICULTIES.length;
+    const all = Array.from({ length: days }, (_, i) =>
+      DIFFICULTIES.map((d) => dailyKanji(i + 1, d, kanjiList)),
+    ).flat();
+    expect(new Set(all).size).toBe(kanjiList.length);
+    expect(dailyKanji(days + 1, "easy", kanjiList)).toBe(all[0]);
   });
 });

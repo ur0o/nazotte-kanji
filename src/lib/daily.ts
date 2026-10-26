@@ -1,5 +1,5 @@
 import { DIFFICULTIES, type Difficulty } from "./difficulty.ts";
-import { createRandom, pickRandom, shuffle } from "./random.ts";
+import { createRandom, shuffle } from "./random.ts";
 
 /** 第1回の日付(日本時間)。この日を問題番号 1 とする */
 export const LAUNCH_DATE = "2026-10-26";
@@ -26,26 +26,19 @@ export function msUntilNextDaily(date: Date): number {
   return nextDay * DAY_MS - JST_OFFSET_MS - date.getTime();
 }
 
-export interface DailyPuzzle {
-  number: number;
-  kanji: string;
-  difficulty: Difficulty;
-}
-
 /**
- * 問題番号から今日の1字を決める。
- * 常用漢字を固定のシードで並べ替えた順に出題し、使い切ったら最初に戻る。
+ * 問題番号と難易度から今日の1字を決める。
+ * 常用漢字を固定のシードで並べ替え、先頭から3字ずつを1日分として易・普・難の順に割り当てる。
+ * 同じ日の3問で漢字は重ならない。一覧を使い切ったら最初に戻る。
  */
-export function dailyPuzzle(
+export function dailyKanji(
   number: number,
+  difficulty: Difficulty,
   kanjiList: readonly string[],
-): DailyPuzzle {
+): string {
   if (kanjiList.length === 0) throw new Error("Kanji list is empty");
   const order = shuffle(kanjiList, createRandom(ORDER_SEED));
-  const kanji = order[(number - 1) % order.length] as string;
-  const difficulty = pickRandom(
-    DIFFICULTIES,
-    createRandom(ORDER_SEED + number),
-  );
-  return { number, kanji, difficulty };
+  const position =
+    (number - 1) * DIFFICULTIES.length + DIFFICULTIES.indexOf(difficulty);
+  return order[position % order.length] as string;
 }

@@ -3,8 +3,10 @@ import {
   addRecent,
   initialSavedData,
   parseSavedData,
-  recordBest,
+  recordEndlessBest,
   RECENT_LIMIT,
+  saveDailyRound,
+  type SavedRound,
 } from "./storage.ts";
 
 describe("parseSavedData", () => {
@@ -12,13 +14,15 @@ describe("parseSavedData", () => {
     expect(parseSavedData(null)).toEqual(initialSavedData());
   });
 
-  it("壊れていたら初期値", () => {
+  it("壊れていたり形式が古かったりしたら初期値", () => {
     expect(parseSavedData("{")).toEqual(initialSavedData());
-    expect(parseSavedData('{"version":2}')).toEqual(initialSavedData());
+    expect(parseSavedData('{"version":1,"daily":{},"endlessBest":0}')).toEqual(
+      initialSavedData(),
+    );
   });
 
   it("正しい形式なら読み込む", () => {
-    const data = { ...initialSavedData(), endlessBest: 7 };
+    const data = recordEndlessBest(initialSavedData(), "hard", 7);
     expect(parseSavedData(JSON.stringify(data))).toEqual(data);
   });
 });
@@ -35,10 +39,27 @@ describe("addRecent", () => {
   });
 });
 
-describe("recordBest", () => {
-  it("自己ベストより大きいときだけ更新する", () => {
-    const data = recordBest(initialSavedData(), null, 5);
-    expect(recordBest(data, null, 3).endlessBest).toBe(5);
-    expect(recordBest(data, "hard", 2).levelBest.hard).toBe(2);
+describe("saveDailyRound", () => {
+  it("難易度ごとに、問題番号をキーにして保存する", () => {
+    const round: SavedRound = {
+      kanji: "森",
+      difficulty: "normal",
+      guesses: ["木"],
+    };
+    const data = saveDailyRound(initialSavedData(), 3, round);
+    expect(data.daily.normal["3"]).toEqual(round);
+    expect(data.daily.easy).toEqual({});
+  });
+});
+
+describe("recordEndlessBest", () => {
+  it("難易度ごとに、自己ベストより大きいときだけ更新する", () => {
+    const data = recordEndlessBest(initialSavedData(), "easy", 5);
+    expect(recordEndlessBest(data, "easy", 3).endlessBest.easy).toBe(5);
+    expect(recordEndlessBest(data, "hard", 2).endlessBest).toEqual({
+      easy: 5,
+      normal: 0,
+      hard: 2,
+    });
   });
 });

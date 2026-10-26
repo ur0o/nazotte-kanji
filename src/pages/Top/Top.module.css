@@ -1,5 +1,27 @@
+.difficulty {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
 .result {
-  font-size: var(--mantine-font-size-sm);
+  font-size: var(--mantine-font-size-xs);
   font-weight: 400;
   opacity: 0.8;
+}
+
+.sample {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.sampleNumber {
+  font-size: 5px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--mantine-color-blue-filled);
 }

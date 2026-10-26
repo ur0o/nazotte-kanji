@@ -11,6 +11,8 @@ export namespace HintMarker {
     y: number;
     ending: Ending;
     direction: Direction;
+    /** 終わるときの向きを示す矢印を表示するか */
+    showArrow: boolean;
   }
 }
 
@@ -36,24 +38,32 @@ function EndingSymbol({ ending }: { ending: Ending }) {
 }
 
 /** 1画分のヒント: 終点に置く終わり方の記号と、終わるときの向きを示す矢印 */
-export function HintMarker({ x, y, ending, direction }: HintMarker.Props) {
+export function HintMarker({
+  x,
+  y,
+  ending,
+  direction,
+  showArrow,
+}: HintMarker.Props) {
   const vector = DIRECTION_VECTORS[direction];
   const angle = (Math.atan2(vector.y, vector.x) * 180) / Math.PI;
   return (
     <g transform={`translate(${x} ${y})`}>
-      <g transform={`rotate(${angle})`}>
-        <line
-          x1={ARROW_START}
-          x2={ARROW_LENGTH - ARROW_HEAD}
-          stroke="currentColor"
-          strokeWidth={0.8}
-          strokeLinecap="round"
-        />
-        <path
-          d={`M${ARROW_LENGTH},0 L${ARROW_LENGTH - ARROW_HEAD},-1.3 L${ARROW_LENGTH - ARROW_HEAD},1.3 Z`}
-          fill="currentColor"
-        />
-      </g>
+      {showArrow && (
+        <g transform={`rotate(${angle})`}>
+          <line
+            x1={ARROW_START}
+            x2={ARROW_LENGTH - ARROW_HEAD}
+            stroke="currentColor"
+            strokeWidth={0.8}
+            strokeLinecap="round"
+          />
+          <path
+            d={`M${ARROW_LENGTH},0 L${ARROW_LENGTH - ARROW_HEAD},-1.3 L${ARROW_LENGTH - ARROW_HEAD},1.3 Z`}
+            fill="currentColor"
+          />
+        </g>
+      )}
       <EndingSymbol ending={ending} />
     </g>
   );
