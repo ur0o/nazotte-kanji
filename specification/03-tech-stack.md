@@ -1,0 +1,123 @@
+# 技術スタック
+
+## 全体構成
+
+- サーバーを持たない静的サイト。問題の選び方も成績の保存も、すべてブラウザ内で完結させる
+- 出題データは、あらかじめスクリプトで生成した JSON をサイトと一緒に配信する
+- PWA(オフライン対応・ホーム画面への追加)には対応しない
+- リポジトリの `.coding-rules/typescript.md` に従う
+
+## フロントエンド
+
+| 用途 | 採用技術 |
+|---|---|
+| 言語 | TypeScript(strict モード) |
+| UI ライブラリ | React |
+| バンドラ | Vite |
+| パッケージマネージャー | pnpm |
+| ルーティング | TanStack Router(ハッシュ形式の URL) |
+| UI コンポーネント | Mantine(モーダル、ボタン、タブ、入力欄など) |
+| 独自のスタイル | CSS Modules |
+| ダークモード | Mantine の配色切り替え(OS の設定に合わせる) |
+| 状態管理 | Context API |
+| データの検証 | Zod(出題 JSON と localStorage の読み込み時) |
+
+### ルート
+
+GitHub Pages ではページを再読み込みするとパスが見つからなくなるため、ハッシュ形式の URL にする。
+
+| URL | 画面 |
+|---|---|
+| `#/` | トップ |
+| `#/daily` | ゲーム(今日の1字) |
+| `#/endless` | ゲーム(エンドレス) |
+| `#/level/$difficulty` | ゲーム(難易度選択。`easy` / `normal` / `hard`) |
+
+モーダル(結果・成績・遊び方・難易度説明)には URL を割り当てない。
+
+### 正方形エリアの描画
+
+- 手書き: Canvas。Pointer Events を使い、マウスとタッチを同じ処理で扱う。描いている間は `touch-action: none` でスクロールを止める
+- ヒントと書き順アニメーション: Canvas の上に SVG を重ねる。座標系は KanjiVG と同じ 109×109 の viewBox を使う
+- 書き順アニメーション: KanjiVG の各画の path を `stroke-dasharray` / `stroke-dashoffset` で順に描く
+
+### 今日の1字の選び方
+
+- 常用漢字の一覧を、固定のシードで決まった順番に並べ替えておく
+- サービス開始日からの経過日数(日本時間で数える)を問題番号とし、その位置の漢字を出す。一覧を使い切ったら先頭に戻る
+- 難易度も、問題番号から決まる疑似乱数で選ぶ
+- これにより、サーバーがなくても全員に同じ問題と同じ難易度を出せる
+
+### 成績の保存
+
+- localStorage にキーを1つ置き、バージョン番号付きの JSON で保存する
+- 読み込み時は Zod で検証し、壊れていたら初期値で始める
+
+## 出題データの生成
+
+- TypeScript(Node.js)で書いたスクリプトで生成する
+- 元データ
+  - KanjiVG: 書き順と各画の線(SVG)。CC BY-SA 3.0
+  - KANJIDIC2: 読み(音・訓)と常用漢字かどうかの判定。CC BY-SA 4.0
+- 処理の流れ
+  1. KanjiVG の各画の path から終点の座標と、終わるときの向き(8方向)を求める
+  2. KanjiVG の画の種類と線の形から、終わり方(とめ・はね・はらい)を自動で推定する
+  3. 人が確認して作った修正ファイル(`data/overrides.json`)で、推定結果を上書きする
+  4. 常用漢字だけを取り出し、次の2種類の JSON を出力する
+     - `public/data/index.json`: 全字の一覧(漢字、読み)。入力チェックと読みの表示に使う
+     - `public/data/kanji/<コードポイント>.json`: 1字分のデータ(各画の path、終点、向き、終わり方)。出題時に読み込む
+- 生成した JSON はリポジトリにコミットする。ダウンロードした元データはコミットしない
+- 元データ2つは CC BY-SA なので、アプリ内(遊び方モーダル)と README に出典とライセンスを書く
+
+## 品質チェック
+
+- Vitest で単体テストを書く。主な対象:
+  - 正誤判定と入力チェック
+  - 日付から問題番号・漢字・難易度を決める処理(日本時間の0時の前後を含む)
+  - 終点の座標と向きの計算、終わり方の推定
+- 整形は Prettier、静的チェックは ESLint
+
+## デプロイ
+
+- GitHub Pages で公開する
+- `main` ブランチへのプッシュで GitHub Actions がビルドしてデプロイする
+
+## ディレクトリ構成
+
+```
+.
+├── scripts/            # 出題データ生成スクリプト
+├── data/
+│   └── overrides.json  # 終わり方の手動修正
+├── public/
+│   └── data/           # 生成した出題 JSON
+└── src/
+    ├── routes/         # TanStack Router のルート定義
+    ├── components/     # 画面の部品(正方形エリア、回答履歴、各モーダルなど)
+    ├── contexts/       # Context API による状態
+    ├── lib/            # 問題の選び方、正誤判定、成績の保存などのロジック
+    └── main.tsx
+```
+
+```mermaid
+flowchart LR
+    subgraph Build[データ生成 - Node.js]
+        KVG[KanjiVG] --> Script[scripts/ 生成スクリプト]
+        KD2[KANJIDIC2] --> Script
+        OV[data/overrides.json] --> Script
+        Script --> JSON[public/data/*.json]
+    end
+
+    subgraph Deploy[デプロイ]
+        JSON --> Vite[Vite ビルド]
+        Src[src/ React + TypeScript] --> Vite
+        Vite -->|GitHub Actions| Pages[GitHub Pages]
+    end
+
+    subgraph Browser[ブラウザ]
+        Pages --> App[React アプリ]
+        App --> Canvas[Canvas 手書き]
+        App --> SVG[SVG ヒント・書き順アニメーション]
+        App <--> LS[(localStorage 成績)]
+    end
+```
