@@ -99,12 +99,17 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 ├── public/
 │   └── data/           # 生成した出題 JSON
 └── src/
-    ├── routes/         # TanStack Router のルート定義
-    ├── components/     # 画面の部品(正方形エリア、回答履歴、各モーダルなど)
-    ├── contexts/       # Context API による状態
+    ├── layouts/        # ヘッダーなど全画面共通のレイアウト
+    ├── components/     # 複数の画面で使う部品(ヒントの記号など)
+    ├── pages/
+    │   ├── Top/        # トップ画面
+    │   └── Game/       # ゲーム画面と、そこでだけ使う部品(正方形エリア、回答履歴、結果モーダルなど)
     ├── lib/            # 問題の選び方、正誤判定、成績の保存などのロジック
+    ├── router.tsx      # TanStack Router のルート定義
     └── main.tsx
 ```
+
+`.coding-rules/typescript.md` のディレクトリ構成に従う。
 
 ```mermaid
 flowchart LR
