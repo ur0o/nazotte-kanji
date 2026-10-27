@@ -89,10 +89,11 @@ export function SymbolGuideModal({ opened, onClose }: SymbolGuideModal.Props) {
         <Stack gap={4} className={classes.notes}>
           <Text size="sm">
             <strong>矢印</strong>:
-            画が終わるときに進んでいた向きを表します(易で表示)。上の見本では、灰色の線が画で、記号の位置で終わっています。実際の問題では画の線は表示されません。
+            画が終わるときに進んでいた向きを表します(ふつうで表示)。上の見本では、灰色の線が画で、記号の位置で終わっています。実際の問題では画の線は表示されません。
           </Text>
           <Text size="sm">
-            <strong>数字</strong>: その画が何画目かを表します(易・普で表示)。
+            <strong>数字</strong>:
+            その画が何画目かを表します(ふつう・難しいで表示)。
           </Text>
         </Stack>
       </Stack>

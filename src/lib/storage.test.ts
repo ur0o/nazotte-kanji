@@ -46,20 +46,20 @@ describe("saveDailyRound", () => {
       difficulty: "normal",
       guesses: ["木"],
     };
-    const data = saveDailyRound(initialSavedData(), 3, round);
+    const data = saveDailyRound(initialSavedData(), 3, "normal", round);
     expect(data.daily.normal["3"]).toEqual(round);
-    expect(data.daily.easy).toEqual({});
+    expect(data.daily.hard).toEqual({});
   });
 });
 
 describe("recordEndlessBest", () => {
   it("難易度ごとに、自己ベストより大きいときだけ更新する", () => {
-    const data = recordEndlessBest(initialSavedData(), "easy", 5);
-    expect(recordEndlessBest(data, "easy", 3).endlessBest.easy).toBe(5);
-    expect(recordEndlessBest(data, "hard", 2).endlessBest).toEqual({
-      easy: 5,
-      normal: 0,
-      hard: 2,
+    const data = recordEndlessBest(initialSavedData(), "normal", 5);
+    expect(recordEndlessBest(data, "normal", 3).endlessBest.normal).toBe(5);
+    expect(recordEndlessBest(data, "oni", 2).endlessBest).toEqual({
+      normal: 5,
+      hard: 0,
+      oni: 2,
     });
   });
 });

@@ -5,8 +5,9 @@ import {
   createRouter,
   notFound,
 } from "@tanstack/react-router";
+import type { z } from "zod";
 import { AppLayout } from "./layouts/AppLayout.tsx";
-import { difficultySchema, type Difficulty } from "./lib/difficulty.ts";
+import { dailyDifficultySchema, difficultySchema } from "./lib/difficulty.ts";
 import { GamePage } from "./pages/Game/index.tsx";
 import { NotFoundPage } from "./pages/NotFound/index.tsx";
 import { TopPage } from "./pages/Top/index.tsx";
@@ -22,19 +23,22 @@ const topRoute = createRoute({
   component: TopPage,
 });
 
-const difficultyParams = {
-  parse: ({ difficulty }: { difficulty: string }) => {
-    const result = difficultySchema.safeParse(difficulty);
-    if (!result.success) throw notFound();
-    return { difficulty: result.data };
-  },
-  stringify: ({ difficulty }: { difficulty: Difficulty }) => ({ difficulty }),
-};
+/** URL の難易度を検証する。そのモードで選べない難易度は「ページが見つかりません」にする */
+function difficultyParams<T extends string>(schema: z.ZodType<T>) {
+  return {
+    parse: ({ difficulty }: { difficulty: string }) => {
+      const result = schema.safeParse(difficulty);
+      if (!result.success) throw notFound();
+      return { difficulty: result.data };
+    },
+    stringify: ({ difficulty }: { difficulty: T }) => ({ difficulty }),
+  };
+}
 
 const dailyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/daily/$difficulty",
-  params: difficultyParams,
+  params: difficultyParams(dailyDifficultySchema),
   component: function DailyGame() {
     const { difficulty } = dailyRoute.useParams();
     return <GamePage key={difficulty} mode={{ type: "daily", difficulty }} />;
@@ -44,7 +48,7 @@ const dailyRoute = createRoute({
 const endlessRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/endless/$difficulty",
-  params: difficultyParams,
+  params: difficultyParams(difficultySchema),
   component: function EndlessGame() {
     const { difficulty } = endlessRoute.useParams();
     return <GamePage key={difficulty} mode={{ type: "endless", difficulty }} />;

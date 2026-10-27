@@ -4,22 +4,26 @@ import { useState } from "react";
 import { HintMarker } from "../../components/HintMarker.tsx";
 import { dailyNumber } from "../../lib/daily.ts";
 import {
+  DAILY_DIFFICULTIES,
   DIFFICULTIES,
   DIFFICULTY_DESCRIPTIONS,
   DIFFICULTY_HINTS,
   DIFFICULTY_LABELS,
+  type DailyDifficulty,
   type Difficulty,
 } from "../../lib/difficulty.ts";
 import { roundStatus, scoreLabel } from "../../lib/game.ts";
 import { loadSavedData } from "../../lib/storage.ts";
-import { MODE_LABELS, type ModeType } from "../Game/GameContext.tsx";
+import { MODE_LABELS } from "../Game/GameContext.tsx";
 import classes from "./Top.module.css";
 
-/** 難易度ごとの、今日の1字の結果(例: 3/5)。未挑戦や回答中は undefined */
-function todayResults(number: number): Partial<Record<Difficulty, string>> {
+/** 難易度ごとの、今日の1字の結果(例: 3/5)。未挑戦や回答中は含めない */
+function todayResults(
+  number: number,
+): Partial<Record<DailyDifficulty, string>> {
   const { daily } = loadSavedData();
-  const results: Partial<Record<Difficulty, string>> = {};
-  for (const difficulty of DIFFICULTIES) {
+  const results: Partial<Record<DailyDifficulty, string>> = {};
+  for (const difficulty of DAILY_DIFFICULTIES) {
     const round = daily[difficulty][String(number)];
     if (round && roundStatus(round) !== "playing") {
       results[difficulty] = scoreLabel(round);
@@ -28,43 +32,62 @@ function todayResults(number: number): Partial<Record<Difficulty, string>> {
   return results;
 }
 
-function DifficultyButtons({
-  mode,
-  results = {},
+function ButtonLabel({
+  difficulty,
+  result,
 }: {
-  mode: ModeType;
-  results?: Partial<Record<Difficulty, string>>;
+  difficulty: Difficulty;
+  result?: string;
 }) {
+  return (
+    <span className={classes.difficulty}>
+      {DIFFICULTY_LABELS[difficulty]}
+      {result && <span className={classes.result}>{result}</span>}
+    </span>
+  );
+}
+
+function DailyButtons({
+  results,
+}: {
+  results: Partial<Record<DailyDifficulty, string>>;
+}) {
+  return (
+    <Group grow gap="xs">
+      {DAILY_DIFFICULTIES.map((difficulty) => (
+        <Button
+          key={difficulty}
+          size="lg"
+          aria-label={`${MODE_LABELS.daily} ${DIFFICULTY_LABELS[difficulty]}`}
+          renderRoot={(props) => (
+            <Link to="/daily/$difficulty" params={{ difficulty }} {...props} />
+          )}
+        >
+          <ButtonLabel difficulty={difficulty} result={results[difficulty]} />
+        </Button>
+      ))}
+    </Group>
+  );
+}
+
+function EndlessButtons() {
   return (
     <Group grow gap="xs">
       {DIFFICULTIES.map((difficulty) => (
         <Button
           key={difficulty}
           size="lg"
-          variant={mode === "daily" ? "filled" : "default"}
-          aria-label={`${MODE_LABELS[mode]} ${DIFFICULTY_LABELS[difficulty]}`}
-          renderRoot={(props) =>
-            mode === "daily" ? (
-              <Link
-                to="/daily/$difficulty"
-                params={{ difficulty }}
-                {...props}
-              />
-            ) : (
-              <Link
-                to="/endless/$difficulty"
-                params={{ difficulty }}
-                {...props}
-              />
-            )
-          }
+          variant="default"
+          aria-label={`${MODE_LABELS.endless} ${DIFFICULTY_LABELS[difficulty]}`}
+          renderRoot={(props) => (
+            <Link
+              to="/endless/$difficulty"
+              params={{ difficulty }}
+              {...props}
+            />
+          )}
         >
-          <span className={classes.difficulty}>
-            {DIFFICULTY_LABELS[difficulty]}
-            {results[difficulty] && (
-              <span className={classes.result}>{results[difficulty]}</span>
-            )}
-          </span>
+          <ButtonLabel difficulty={difficulty} />
         </Button>
       ))}
     </Group>
@@ -111,13 +134,13 @@ export function TopPage() {
             #{number}
           </Text>
         </Group>
-        <DifficultyButtons mode="daily" results={results} />
+        <DailyButtons results={results} />
       </Stack>
       <Stack gap="xs">
         <Title order={2} size="h4">
           {MODE_LABELS.endless}
         </Title>
-        <DifficultyButtons mode="endless" />
+        <EndlessButtons />
       </Stack>
       <Button
         variant="subtle"
@@ -138,7 +161,7 @@ export function TopPage() {
           </Text>
           {DIFFICULTIES.map((difficulty) => (
             <Group key={difficulty} gap="sm" wrap="nowrap">
-              <Text fw={700} w={24} ta="center" style={{ flex: "none" }}>
+              <Text fw={700} w={56} ta="center" style={{ flex: "none" }}>
                 {DIFFICULTY_LABELS[difficulty]}
               </Text>
               <DifficultySample difficulty={difficulty} />
