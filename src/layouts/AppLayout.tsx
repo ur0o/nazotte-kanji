@@ -1,10 +1,13 @@
-import { ActionIcon, Container, Group, Title } from "@mantine/core";
+import { ActionIcon, Button, Container, Group, Title } from "@mantine/core";
 import { Link, Outlet, useLocation } from "@tanstack/react-router";
+import { useState } from "react";
+import { SymbolGuideModal } from "../components/SymbolGuideModal.tsx";
 import classes from "./AppLayout.module.css";
 
 export function AppLayout() {
   const { pathname } = useLocation();
   const isTop = pathname === "/";
+  const [symbolGuideOpened, setSymbolGuideOpened] = useState(false);
 
   return (
     <Container size={480} px="md" className={classes.root}>
@@ -32,7 +35,20 @@ export function AppLayout() {
         <Title order={1} className={classes.title}>
           漢字書き順クイズ
         </Title>
+        <Button
+          variant="subtle"
+          size="compact-sm"
+          className={classes.actions}
+          onClick={() => setSymbolGuideOpened(true)}
+          aria-label="記号の見方"
+        >
+          記号
+        </Button>
       </Group>
+      <SymbolGuideModal
+        opened={symbolGuideOpened}
+        onClose={() => setSymbolGuideOpened(false)}
+      />
       <main>
         <Outlet />
       </main>
