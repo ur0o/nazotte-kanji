@@ -1,7 +1,7 @@
 .page {
   /* 縦のスクロールはそのままに、横のスワイプでページを送る */
   touch-action: pan-y;
-  min-height: 360px;
+  min-height: 320px;
   overflow: hidden;
 }
 
@@ -35,28 +35,10 @@
   }
 }
 
-.pageNumber {
-  margin-right: 8px;
-  font-size: var(--mantine-font-size-sm);
-  font-weight: 400;
-  color: var(--mantine-color-dimmed);
-  font-variant-numeric: tabular-nums;
-}
-
 .diagram {
   display: block;
   width: min(100%, 240px);
   margin-inline: auto;
-  color: var(--mantine-color-text);
-}
-
-.square {
-  display: block;
-  width: min(100%, 200px);
-  aspect-ratio: 1;
-  margin-inline: auto;
-  border: 1px solid var(--mantine-color-default-border);
-  border-radius: var(--mantine-radius-sm);
   color: var(--mantine-color-text);
 }
 
@@ -66,38 +48,19 @@
   stroke-width: 0.8;
 }
 
-.fill {
-  fill: var(--mantine-color-default-border);
+.answerButton {
+  fill: var(--mantine-primary-color-filled);
 }
 
-.guide {
-  stroke: var(--mantine-color-default-border);
-  stroke-width: 0.4;
-  stroke-dasharray: 2 2;
+.placeholder {
+  font-size: 6px;
+  fill: var(--mantine-color-placeholder);
 }
 
-.diagramText {
-  font-size: 7px;
-  font-weight: 700;
-  fill: currentColor;
-}
-
-.diagramSmall {
-  font-size: 5px;
-  fill: currentColor;
-}
-
-.badge {
-  fill: var(--mantine-color-blue-filled);
-}
-
-.badgeText {
+.buttonText {
   font-size: 6px;
   font-weight: 700;
-  /* 明るい青になるダークモードでも読めるよう、背景色で抜く */
-  fill: var(--mantine-color-body);
-  text-anchor: middle;
-  dominant-baseline: central;
+  fill: var(--mantine-primary-color-contrast);
 }
 
 .memo {
@@ -105,28 +68,6 @@
   stroke: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
   stroke-width: 3;
   stroke-linecap: round;
-}
-
-.cell {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--mantine-color-default-border);
-  border-radius: var(--mantine-radius-sm);
-  font-family: var(--kanji-font-family);
-  font-size: 20px;
-  color: var(--mantine-color-dimmed);
-}
-
-.cross {
-  position: absolute;
-  top: 0;
-  right: 2px;
-  font-family: var(--mantine-font-family);
-  font-size: 10px;
-  color: var(--mantine-color-red-text);
 }
 
 .dot {

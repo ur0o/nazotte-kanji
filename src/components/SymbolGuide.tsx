@@ -80,12 +80,13 @@ export function SymbolGuide() {
       </Stack>
       <Stack gap={4} className={classes.notes}>
         <Text size="sm">
-          <strong>矢印</strong>:
-          画が終わるときに進んでいた向きを表します(ふつうで表示)。上の見本では、灰色の線が画で、記号の位置で終わっています。実際の問題では画の線は表示されません。
+          <strong>矢印</strong>: 画が終わるときに進んでいた向き
         </Text>
         <Text size="sm">
-          <strong>数字</strong>:
-          その画が何画目かを表します(ふつう・難しいで表示)。
+          <strong>数字</strong>: その画が何画目か
+        </Text>
+        <Text size="xs" c="dimmed">
+          見本の灰色の線は説明用です。問題では画の線は表示されません。
         </Text>
       </Stack>
     </Stack>
