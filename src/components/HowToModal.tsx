@@ -1,8 +1,9 @@
 import { Button, Group, Modal, Stack, Text } from "@mantine/core";
 import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { MAX_GUESSES } from "../lib/answer.ts";
-import { HintMarker } from "./HintMarker.tsx";
+import type { Stroke } from "../lib/kanji-data.ts";
 import classes from "./HowToModal.module.css";
+import { StrokeHints } from "./StrokeHints.tsx";
 import { SymbolGuide } from "./SymbolGuide.tsx";
 
 export namespace HowToModal {
@@ -15,18 +16,42 @@ export namespace HowToModal {
 /** スワイプとみなす横方向の移動量(px) */
 const SWIPE_THRESHOLD = 50;
 
-/** 手書きのメモの線(正方形の座標 109×109) */
-const MEMO_PATH =
-  "M28,32 C40,30 60,29 80,28 M52,14 C53,40 52,70 50,94 M24,60 C40,58 64,57 86,56";
+/** 例に使う「手」の各画(public/data/kanji/0624b.json と同じ内容) */
+const EXAMPLE_STROKES: readonly Stroke[] = [
+  {
+    path: "M61.48,11.5c0.02,1-0.61,1.88-1.67,2.9c-3.27,3.15-13.69,8.23-28.57,11.85",
+    end: [31.2, 26.3],
+    direction: "W",
+    ending: "harai",
+  },
+  {
+    path: "M26.38,42.92c1.8,0.46,3.61,0.67,5.68,0.38C46,41.38,58.4,39,71.37,37.75c1.92-0.19,4.62-0.38,7.25,0.04",
+    end: [78.6, 37.8],
+    direction: "E",
+    ending: "tome",
+  },
+  {
+    path: "M13.27,62.87c2.71,0.63,4.86,0.6,7.22,0.38c22.63-2.12,46.13-5.62,67.7-7c2.01-0.13,4.83,0,7.46,0.37",
+    end: [95.6, 56.6],
+    direction: "E",
+    ending: "tome",
+  },
+  {
+    path: "M48.88,23.55C60.38,31,62.73,63.66,57.83,89.87c-2.08,11.13-8.64,2.34-9.89,1.17",
+    end: [47.9, 91],
+    direction: "NW",
+    ending: "hane",
+  },
+];
 
-/** 正方形のヒント(手書きのメモの上に重なる) */
+/** 正方形の例。手書きのメモ(灰色の線)の上に、ふつうの難易度のヒントが重なる */
 function SquareHints() {
   return (
     <>
-      <path d={MEMO_PATH} className={classes.memo} />
-      <HintMarker x={80} y={28} ending="tome" direction="E" showArrow />
-      <HintMarker x={50} y={94} ending="hane" direction="NW" showArrow />
-      <HintMarker x={86} y={56} ending="tome" direction="E" showArrow />
+      {EXAMPLE_STROKES.map((stroke) => (
+        <path key={stroke.path} d={stroke.path} className={classes.memo} />
+      ))}
+      <StrokeHints strokes={EXAMPLE_STROKES} difficulty="normal" />
     </>
   );
 }
