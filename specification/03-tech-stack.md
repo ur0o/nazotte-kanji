@@ -94,10 +94,10 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 
 - GitHub Pages で公開する(`https://ur0o.github.io/kanji-kaki-quiz/`)
 - ワークフローは `.github/workflows/deploy.yml`
-  - `main` ブランチへのプッシュ(と手動実行)で、`pnpm lint`・`pnpm test`・`pnpm build` を通してから `dist/` をデプロイする。どれかが失敗したらデプロイしない
-  - プルリクエストでは同じチェックとビルドだけを行い、デプロイはしない
+  - `main` ブランチへのプッシュとプルリクエストでは、`pnpm lint`・`pnpm test`・`pnpm build` だけを行う
+  - デプロイは、Actions の画面から `main` を手動で実行したときだけ行う(リリースまでは自動でデプロイしない)。チェックのどれかが失敗したらデプロイしない
 - Node.js 22 と、`package.json` の `packageManager` で指定した pnpm を使う
-- リポジトリの Settings → Pages で、Source を「GitHub Actions」にしておく
+- 公開するときは、リポジトリを公開にしてから Settings → Pages で Source を「GitHub Actions」にし、ワークフローを手動で実行する(無料プランでは非公開リポジトリで Pages を使えない)
 - ビルドは相対パス(Vite の `base: "./"`)で、URL はハッシュ形式なので、サブパスで公開しても追加の設定はいらない
 
 ## ディレクトリ構成
