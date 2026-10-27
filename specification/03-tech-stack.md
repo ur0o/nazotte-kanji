@@ -31,6 +31,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 | `#/` | トップ |
 | `#/daily/$difficulty` | ゲーム(今日の1字。`normal`(ふつう) / `hard`(難しい)) |
 | `#/endless/$difficulty` | ゲーム(エンドレス。`normal` / `hard` / `oni`(鬼)) |
+| `#/faq` | FAQ |
 | `#/credits` | クレジット |
 
 モーダル(結果・成績・遊び方・難易度説明)には URL を割り当てない。

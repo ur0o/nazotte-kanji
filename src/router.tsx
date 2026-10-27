@@ -10,6 +10,7 @@ import { AppLayout } from "./layouts/AppLayout.tsx";
 import { dailyDifficultySchema, difficultySchema } from "./lib/difficulty.ts";
 import { GamePage } from "./pages/Game/index.tsx";
 import { CreditsPage } from "./pages/Credits/index.tsx";
+import { FaqPage } from "./pages/Faq/index.tsx";
 import { NotFoundPage } from "./pages/NotFound/index.tsx";
 import { TopPage } from "./pages/Top/index.tsx";
 
@@ -56,6 +57,12 @@ const endlessRoute = createRoute({
   },
 });
 
+const faqRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/faq",
+  component: FaqPage,
+});
+
 const creditsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/credits",
@@ -66,6 +73,7 @@ const routeTree = rootRoute.addChildren([
   topRoute,
   dailyRoute,
   endlessRoute,
+  faqRoute,
   creditsRoute,
 ]);
 
