@@ -30,6 +30,7 @@ pnpm data:build  # public/data/ に出題データを生成
   ```
 
 - 自動推定に自信がない画は、生成時に `data/review-candidates.json` に書き出されます。確認して `data/overrides.json` に追加すると一覧から消えます。
+- 確認・修正用のページは `pnpm build:review` で `dist-review/` に出力します。ページで入力した修正は、`{ "corrections": [{ "kanji": "漢", "strokes": { "3": { "ending": "hane" } } }] }` の形の JSON にして `pnpm review:apply <JSON のパス>` で `data/overrides.json` に取り込み、`pnpm data:build` で出題データを作り直します。
 
 ## ライセンス
 

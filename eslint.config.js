@@ -5,7 +5,14 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["node_modules", "dist", "dist-preview", ".cache", "public/data"],
+    ignores: [
+      "node_modules",
+      "dist",
+      "dist-preview",
+      "dist-review",
+      ".cache",
+      "public/data",
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

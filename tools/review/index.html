@@ -1,0 +1,952 @@
+<meta charset="utf-8" />
+<title>書き順データ確認</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<style>
+  /* 一覧と詳細の2面構成。狭い画面では縦に積み、広い画面では左に一覧・右に詳細 */
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --fg: #1d2129;
+    --muted: #697180;
+    --line: #dde1e7;
+    --accent: #3b4fd8;
+    --accent-soft: #e6e9fb;
+    --warn: #b26a00;
+    --warn-soft: #fbefd9;
+    --ok: #2f7d4f;
+    --ok-soft: #dff0e5;
+    --stroke-faint: #c9ced6;
+    --font-ui:
+      system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", Meiryo,
+      sans-serif;
+    --font-kanji:
+      "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Noto Serif CJK JP",
+      serif;
+    --radius: 6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171c;
+      --surface: #1d2027;
+      --fg: #e7e9ee;
+      --muted: #9aa1ad;
+      --line: #333844;
+      --accent: #8e9cff;
+      --accent-soft: #2a2f52;
+      --warn: #f0b04a;
+      --warn-soft: #3d2f17;
+      --ok: #6cc290;
+      --ok-soft: #1d3527;
+      --stroke-faint: #4a505d;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171c;
+    --surface: #1d2027;
+    --fg: #e7e9ee;
+    --muted: #9aa1ad;
+    --line: #333844;
+    --accent: #8e9cff;
+    --accent-soft: #2a2f52;
+    --warn: #f0b04a;
+    --warn-soft: #3d2f17;
+    --ok: #6cc290;
+    --ok-soft: #1d3527;
+    --stroke-faint: #4a505d;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-block: 16px 32px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 16px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    text-wrap: balance;
+  }
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .summary strong {
+    color: var(--fg);
+  }
+  .notice {
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    background: var(--warn-soft);
+    color: var(--fg);
+  }
+  .layout {
+    display: grid;
+    gap: 16px;
+  }
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      align-items: start;
+    }
+    .detail {
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0px) + 12px);
+    }
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 12px;
+    min-width: 0;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .segmented {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .segmented button {
+    border: 0;
+    border-right: 1px solid var(--line);
+    background: transparent;
+    color: var(--fg);
+    padding: 6px 10px;
+    font: inherit;
+    cursor: pointer;
+  }
+  .segmented button:last-child {
+    border-right: 0;
+  }
+  .segmented button[aria-pressed="true"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+  }
+  input[type="search"] {
+    flex: 1 1 120px;
+    min-width: 0;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--fg);
+    font: inherit;
+  }
+  .count {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .kanji-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    gap: 4px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .kanji-chip {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--fg);
+    font-family: var(--font-kanji);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+  }
+  .kanji-chip[data-state="review"] {
+    background: var(--warn-soft);
+  }
+  .kanji-chip[data-state="checked"] {
+    color: var(--muted);
+  }
+  .kanji-chip[aria-current="true"] {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+  }
+  .kanji-chip .dot {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .kanji-chip .check {
+    position: absolute;
+    bottom: 1px;
+    right: 3px;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    color: var(--ok);
+  }
+  .empty {
+    color: var(--muted);
+    padding: 24px 0;
+    text-align: center;
+  }
+  .detail-head {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .big-kanji {
+    font-family: var(--font-kanji);
+    font-size: 48px;
+    line-height: 1;
+  }
+  .readings {
+    color: var(--muted);
+    min-width: 0;
+  }
+  .badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    background: var(--ok-soft);
+    color: var(--ok);
+  }
+  .board {
+    width: min(100%, 360px);
+    aspect-ratio: 1;
+    max-width: 100%;
+    margin: 0 auto 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg);
+    display: block;
+    color: var(--fg);
+  }
+  .board .stroke {
+    fill: none;
+    stroke: var(--stroke-faint);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .board .stroke.selected {
+    stroke: var(--accent);
+    stroke-width: 3.6;
+  }
+  .board .marker {
+    cursor: pointer;
+  }
+  .board .marker.selected {
+    color: var(--accent);
+  }
+  .board .number {
+    font-size: 4.4px;
+    font-weight: 700;
+    fill: var(--muted);
+    text-anchor: middle;
+    dominant-baseline: central;
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 1.2px;
+  }
+  .strokes {
+    display: grid;
+    gap: 6px;
+  }
+  .stroke-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 6px 10px;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .stroke-row[aria-current="true"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .stroke-row[data-review="true"] .stroke-no::after {
+    content: "要確認";
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: var(--warn-soft);
+    color: var(--warn);
+  }
+  .stroke-no {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .stroke-meta {
+    color: var(--muted);
+    font-size: 12px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .stroke-meta .changed {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .controls {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .endings button,
+  .dir-grid button,
+  .actions button {
+    font: inherit;
+    cursor: pointer;
+  }
+  .dir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 28px);
+    gap: 2px;
+  }
+  .dir-grid button {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--fg);
+    line-height: 1;
+  }
+  .dir-grid button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--surface);
+  }
+  .dir-grid .center {
+    visibility: hidden;
+  }
+  .actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .actions button {
+    min-width: 0;
+    padding: 10px 6px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--fg);
+  }
+  .actions .primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--surface);
+    font-weight: 700;
+  }
+  .actions .primary[aria-pressed="true"] {
+    background: var(--ok-soft);
+    border-color: var(--ok);
+    color: var(--ok);
+  }
+  .save-state {
+    min-height: 1.5em;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 6px;
+    text-align: right;
+  }
+  .save-state.error {
+    color: var(--warn);
+  }
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+
+<div class="page">
+  <header>
+    <h1>書き順データ確認</h1>
+    <div class="summary" id="summary">読み込み中…</div>
+  </header>
+  <div class="notice" id="notice" hidden></div>
+  <div class="layout">
+    <section class="panel" aria-label="漢字の一覧">
+      <div class="toolbar">
+        <div class="segmented" role="group" aria-label="絞り込み" id="filters">
+          <button type="button" data-filter="review" aria-pressed="true">
+            要確認
+          </button>
+          <button type="button" data-filter="unchecked" aria-pressed="false">
+            未確認
+          </button>
+          <button type="button" data-filter="changed" aria-pressed="false">
+            修正あり
+          </button>
+          <button type="button" data-filter="all" aria-pressed="false">
+            すべて
+          </button>
+        </div>
+        <input
+          type="search"
+          id="search"
+          placeholder="漢字で探す"
+          aria-label="漢字で探す"
+          autocomplete="off"
+        />
+      </div>
+      <div class="count" id="count"></div>
+      <div class="kanji-grid" id="grid"></div>
+    </section>
+    <section class="panel detail" aria-label="選んだ漢字の確認" id="detail">
+      <p class="empty">一覧から漢字を選んでください</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  "use strict";
+
+  const ENDINGS = [
+    ["tome", "とめ"],
+    ["hane", "はね"],
+    ["harai", "はらい"],
+  ];
+  const ENDING_LABELS = Object.fromEntries(ENDINGS);
+  // 3×3 の方向ボタンの並び(中央は空き)
+  const DIRECTION_GRID = ["NW", "N", "NE", "W", null, "E", "SW", "S", "SE"];
+  const DIRECTION_ARROWS = {
+    N: "↑",
+    NE: "↗",
+    E: "→",
+    SE: "↘",
+    S: "↓",
+    SW: "↙",
+    W: "←",
+    NW: "↖",
+  };
+  const DIRECTION_ANGLES = {
+    E: 0,
+    SE: 45,
+    S: 90,
+    SW: 135,
+    W: 180,
+    NW: 225,
+    N: 270,
+    NE: 315,
+  };
+
+  const state = {
+    kanji: [],
+    byFile: new Map(),
+    /** file → { strokes: { "3": { ending?, direction? } }, checked } */
+    corrections: new Map(),
+    filter: "review",
+    query: "",
+    selected: null,
+    selectedStroke: 0,
+    db: null,
+    readOnly: false,
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const escapeHtml = (text) =>
+    String(text).replace(
+      /[&<>"']/g,
+      (c) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[c],
+    );
+
+  function correctionOf(file) {
+    return state.corrections.get(file) ?? { strokes: {}, checked: false };
+  }
+
+  /** 修正を当てた後の、その画の終わり方と向き */
+  function effectiveStroke(entry, index) {
+    const stroke = entry.strokes[index];
+    const correction =
+      correctionOf(entry.file).strokes[String(index + 1)] ?? {};
+    const current = stroke.override?.ending ?? stroke.auto;
+    const ending = correction.ending ?? current;
+    const baseDirection =
+      stroke.override?.direction ?? stroke.directions[ending];
+    const direction = correction.direction ?? baseDirection;
+    return { ending, direction, current, baseDirection, correction };
+  }
+
+  function hasCorrections(file) {
+    return Object.keys(correctionOf(file).strokes).length > 0;
+  }
+
+  /** 自動推定に自信がなく、まだ手で決めていない画があるか */
+  function needsReview(entry) {
+    return entry.strokes.some(
+      (stroke, index) =>
+        stroke.reason &&
+        !stroke.override?.ending &&
+        !correctionOf(entry.file).strokes[String(index + 1)]?.ending,
+    );
+  }
+
+  function chipState(entry) {
+    if (correctionOf(entry.file).checked) return "checked";
+    if (needsReview(entry)) return "review";
+    return "plain";
+  }
+
+  function filteredKanji() {
+    const query = state.query.trim();
+    return state.kanji.filter((entry) => {
+      if (query && !query.includes(entry.kanji)) return false;
+      const checked = correctionOf(entry.file).checked;
+      switch (state.filter) {
+        case "review":
+          return !checked && needsReview(entry);
+        case "unchecked":
+          return !checked;
+        case "changed":
+          return hasCorrections(entry.file);
+        default:
+          return true;
+      }
+    });
+  }
+
+  function renderSummary() {
+    let checked = 0;
+    let review = 0;
+    let changed = 0;
+    for (const entry of state.kanji) {
+      if (correctionOf(entry.file).checked) checked += 1;
+      else if (needsReview(entry)) review += 1;
+      if (hasCorrections(entry.file)) changed += 1;
+    }
+    $("summary").innerHTML =
+      `<span>確認済み <strong>${checked}</strong> / ${state.kanji.length}字</span>` +
+      `<span>要確認の画が残る字 <strong>${review}</strong></span>` +
+      `<span>修正した字 <strong>${changed}</strong></span>`;
+  }
+
+  function renderGrid() {
+    const list = filteredKanji();
+    $("count").textContent = `${list.length}字`;
+    if (list.length === 0) {
+      $("grid").innerHTML = '<p class="empty">該当する漢字はありません</p>';
+      return;
+    }
+    $("grid").innerHTML = list
+      .map((entry) => {
+        const chip = chipState(entry);
+        const current = entry.file === state.selected ? "true" : "false";
+        return (
+          `<button type="button" class="kanji-chip" data-file="${entry.file}" data-state="${chip}" aria-current="${current}">` +
+          escapeHtml(entry.kanji) +
+          (hasCorrections(entry.file)
+            ? '<span class="dot" aria-label="修正あり"></span>'
+            : "") +
+          (chip === "checked"
+            ? '<span class="check" aria-label="確認済み">✓</span>'
+            : "") +
+          "</button>"
+        );
+      })
+      .join("");
+  }
+
+  function markerSvg(x, y, ending, direction, selected, index) {
+    const angle = DIRECTION_ANGLES[direction];
+    const symbol =
+      ending === "tome"
+        ? '<circle r="2" fill="currentColor" />'
+        : ending === "hane"
+          ? '<path d="M-2.6,1.4 Q0,-3 2.6,1.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />'
+          : '<path d="M-1.8,-2.3 L2.6,0 L-1.8,2.3 Z" fill="currentColor" />';
+    return (
+      `<g class="marker${selected ? " selected" : ""}" data-stroke="${index}" transform="translate(${x} ${y})">` +
+      '<circle r="5" fill="transparent" />' +
+      `<g transform="rotate(${angle})"><line x1="3" x2="7" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" />` +
+      '<path d="M9,0 L7,-1.3 L7,1.3 Z" fill="currentColor" /></g>' +
+      symbol +
+      "</g>"
+    );
+  }
+
+  function renderBoard(entry) {
+    const paths = entry.strokes
+      .map(
+        (stroke, index) =>
+          `<path class="stroke${index === state.selectedStroke ? " selected" : ""}" d="${stroke.path}" />`,
+      )
+      .join("");
+    const markers = entry.strokes
+      .map((stroke, index) => {
+        const { ending, direction } = effectiveStroke(entry, index);
+        return markerSvg(
+          stroke.end[0],
+          stroke.end[1],
+          ending,
+          direction,
+          index === state.selectedStroke,
+          index,
+        );
+      })
+      .join("");
+    // 番号は矢印の反対側に置く
+    const numbers = entry.strokes
+      .map((stroke, index) => {
+        const { direction } = effectiveStroke(entry, index);
+        const radians = ((DIRECTION_ANGLES[direction] + 180) * Math.PI) / 180;
+        const x = stroke.end[0] + Math.cos(radians) * 5.5;
+        const y = stroke.end[1] + Math.sin(radians) * 5.5;
+        return `<text class="number" x="${x.toFixed(1)}" y="${y.toFixed(1)}">${index + 1}</text>`;
+      })
+      .join("");
+    return `<svg class="board" viewBox="0 0 109 109" role="img" aria-label="${escapeHtml(entry.kanji)}の各画と終わりの記号">${paths}${markers}${numbers}</svg>`;
+  }
+
+  function strokeRow(entry, index) {
+    const stroke = entry.strokes[index];
+    const eff = effectiveStroke(entry, index);
+    const changedEnding = eff.correction.ending !== undefined;
+    const changedDirection = eff.correction.direction !== undefined;
+    const review = Boolean(
+      stroke.reason && !stroke.override?.ending && !changedEnding,
+    );
+    const meta = [
+      `画の種類 ${escapeHtml(stroke.type ?? "なし")}`,
+      `自動推定 ${ENDING_LABELS[stroke.auto]}`,
+      stroke.override ? "修正済み(反映済み)" : null,
+      stroke.reason ? escapeHtml(stroke.reason) : null,
+      changedEnding || changedDirection
+        ? '<span class="changed">このページで修正</span>'
+        : null,
+    ]
+      .filter(Boolean)
+      .join(" ・ ");
+    const endingButtons = ENDINGS.map(
+      ([value, label]) =>
+        `<button type="button" data-ending="${value}" aria-pressed="${eff.ending === value}">${label}</button>`,
+    ).join("");
+    const directionButtons = DIRECTION_GRID.map((value) =>
+      value
+        ? `<button type="button" data-direction="${value}" aria-pressed="${eff.direction === value}" aria-label="向き ${value}">${DIRECTION_ARROWS[value]}</button>`
+        : '<button type="button" class="center" tabindex="-1" aria-hidden="true"></button>',
+    ).join("");
+    const controls =
+      index === state.selectedStroke
+        ? `<div class="controls"><div class="segmented endings" role="group" aria-label="終わり方">${endingButtons}</div>` +
+          `<div class="dir-grid" role="group" aria-label="終わるときの向き">${directionButtons}</div></div>`
+        : "";
+    return (
+      `<div class="stroke-row" data-stroke="${index}" data-review="${review}" aria-current="${index === state.selectedStroke}">` +
+      `<span class="stroke-no">${index + 1}画目</span>` +
+      `<span class="stroke-meta">${meta}</span>` +
+      `<span>${ENDING_LABELS[eff.ending]} ${DIRECTION_ARROWS[eff.direction]}</span>` +
+      controls +
+      "</div>"
+    );
+  }
+
+  function formatKun(reading) {
+    const [stem, okurigana] = reading.split(".");
+    return okurigana === undefined ? reading : `${stem}(${okurigana})`;
+  }
+
+  function renderDetail() {
+    const entry = state.byFile.get(state.selected);
+    if (!entry) {
+      $("detail").innerHTML =
+        '<p class="empty">一覧から漢字を選んでください</p>';
+      return;
+    }
+    const checked = correctionOf(entry.file).checked;
+    const readings = [
+      entry.on.length ? `音 ${escapeHtml(entry.on.join("・"))}` : "",
+      entry.kun.length
+        ? `訓 ${escapeHtml(entry.kun.map(formatKun).join("・"))}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("<br />");
+    $("detail").innerHTML =
+      `<div class="detail-head"><div class="big-kanji">${escapeHtml(entry.kanji)}</div>` +
+      `<div class="readings">${readings}<br />${entry.strokes.length}画 ${checked ? '<span class="badge">確認済み</span>' : ""}</div></div>` +
+      renderBoard(entry) +
+      `<div class="strokes">${entry.strokes.map((_, index) => strokeRow(entry, index)).join("")}</div>` +
+      '<div class="actions">' +
+      '<button type="button" data-action="prev">前の字</button>' +
+      `<button type="button" class="primary" data-action="check" aria-pressed="${checked}"${state.readOnly ? " disabled" : ""}>${checked ? "確認済み(取り消す)" : "確認済みにして次へ"}</button>` +
+      '<button type="button" data-action="next">次の字</button>' +
+      "</div>" +
+      '<div class="save-state" id="save-state" aria-live="polite"></div>';
+  }
+
+  function render() {
+    renderSummary();
+    renderGrid();
+    renderDetail();
+  }
+
+  function select(file) {
+    state.selected = file;
+    state.selectedStroke = 0;
+    renderGrid();
+    renderDetail();
+  }
+
+  function move(step) {
+    const list = filteredKanji();
+    if (list.length === 0) return;
+    const index = list.findIndex((entry) => entry.file === state.selected);
+    const next = list[Math.min(list.length - 1, Math.max(0, index + step))];
+    if (next) select(next.file);
+  }
+
+  // --- 保存(ページの保存領域 corrections/<file>) ---
+  const pending = new Map();
+  const inflight = new Set();
+
+  function setSaveState(text, isError = false) {
+    const element = $("save-state");
+    if (!element) return;
+    element.textContent = text;
+    element.classList.toggle("error", isError);
+  }
+
+  function queueSave(file) {
+    if (!state.db || state.readOnly) return;
+    const entry = state.byFile.get(file);
+    const correction = correctionOf(file);
+    pending.set(file, {
+      kanji: entry.kanji,
+      strokes: correction.strokes,
+      checked: correction.checked,
+      updatedAt: Date.now(),
+    });
+    setSaveState("保存中…");
+    flush(file);
+  }
+
+  async function flush(file) {
+    if (inflight.has(file)) return;
+    const body = pending.get(file);
+    if (!body) return;
+    pending.delete(file);
+    inflight.add(file);
+    const ref = state.db.doc(`corrections/${file}`);
+    try {
+      if (Object.keys(body.strokes).length === 0 && !body.checked) {
+        await ref.delete();
+      } else {
+        await ref.set(body);
+      }
+      if (!pending.size && inflight.size === 1) setSaveState("保存しました");
+    } catch (error) {
+      if (error?.code === "invalid_argument") {
+        state.readOnly = true;
+        showNotice(
+          "このページへの書き込み権限がないため、修正は保存されません。",
+        );
+      }
+      setSaveState("保存できませんでした。もう一度操作してください。", true);
+    } finally {
+      inflight.delete(file);
+      if (pending.has(file)) flush(file);
+    }
+  }
+
+  function updateCorrection(file, update) {
+    const current = correctionOf(file);
+    const next = {
+      strokes: structuredClone(current.strokes),
+      checked: current.checked,
+    };
+    update(next);
+    state.corrections.set(file, next);
+    queueSave(file);
+    render();
+  }
+
+  function setStrokeValue(key, value) {
+    const entry = state.byFile.get(state.selected);
+    if (!entry || state.readOnly) return;
+    const index = state.selectedStroke;
+    const number = String(index + 1);
+    updateCorrection(entry.file, (next) => {
+      const stroke = { ...next.strokes[number] };
+      const eff = effectiveStroke(entry, index);
+      if (key === "ending") {
+        if (value === eff.current) delete stroke.ending;
+        else stroke.ending = value;
+      } else {
+        const ending = stroke.ending ?? eff.current;
+        const base =
+          entry.strokes[index].override?.direction ??
+          entry.strokes[index].directions[ending];
+        if (value === base) delete stroke.direction;
+        else stroke.direction = value;
+      }
+      if (Object.keys(stroke).length === 0) delete next.strokes[number];
+      else next.strokes[number] = stroke;
+    });
+  }
+
+  function showNotice(text) {
+    $("notice").textContent = text;
+    $("notice").hidden = false;
+  }
+
+  // --- 操作 ---
+  $("filters").addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-filter]");
+    if (!button) return;
+    state.filter = button.dataset.filter;
+    for (const other of $("filters").querySelectorAll("button")) {
+      other.setAttribute("aria-pressed", String(other === button));
+    }
+    renderGrid();
+  });
+
+  $("search").addEventListener("input", (event) => {
+    state.query = event.target.value;
+    renderGrid();
+  });
+
+  $("grid").addEventListener("click", (event) => {
+    const chip = event.target.closest(".kanji-chip");
+    if (!chip) return;
+    select(chip.dataset.file);
+    // 縦に積んだ配置では詳細が一覧の下にあるので、そこまで送る
+    if (matchMedia("(max-width: 899px)").matches) {
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      $("detail").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    }
+  });
+
+  $("detail").addEventListener("click", (event) => {
+    const ending = event.target.closest("button[data-ending]");
+    if (ending) return setStrokeValue("ending", ending.dataset.ending);
+    const direction = event.target.closest("button[data-direction]");
+    if (direction)
+      return setStrokeValue("direction", direction.dataset.direction);
+    const action = event.target.closest("button[data-action]");
+    if (action) {
+      if (action.dataset.action === "prev") return move(-1);
+      if (action.dataset.action === "next") return move(1);
+      if (action.dataset.action === "check") {
+        const file = state.selected;
+        const wasChecked = correctionOf(file).checked;
+        // 確認済みにした字は「要確認」「未確認」の一覧から外れるので、先に次の字を決めておく
+        const list = filteredKanji();
+        const index = list.findIndex((entry) => entry.file === file);
+        const nextEntry = list[index + 1] ?? list[index - 1];
+        updateCorrection(file, (next) => {
+          next.checked = !wasChecked;
+        });
+        if (!wasChecked && nextEntry) select(nextEntry.file);
+        return;
+      }
+    }
+    const target = event.target.closest("[data-stroke]");
+    if (target) {
+      state.selectedStroke = Number(target.dataset.stroke);
+      renderDetail();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.target instanceof HTMLInputElement) return;
+    if (event.key === "ArrowRight") move(1);
+    if (event.key === "ArrowLeft") move(-1);
+  });
+
+  // --- 起動 ---
+  async function connectDb() {
+    const db = await window.claude?.use?.("db");
+    if (!db) {
+      state.readOnly = true;
+      showNotice("このページでは修正を保存できません(閲覧のみ)。");
+      return;
+    }
+    state.db = db;
+    db.collection("corrections").onSnapshot(
+      (snapshot) => {
+        const corrections = new Map();
+        for (const doc of snapshot.docs) {
+          const data = doc.data();
+          corrections.set(doc.id, {
+            strokes: data?.strokes ?? {},
+            checked: Boolean(data?.checked),
+          });
+        }
+        // 自分の保存待ちの修正は、保存が終わるまで手元の内容を優先する
+        for (const file of [...pending.keys(), ...inflight]) {
+          const local = state.corrections.get(file);
+          if (local) corrections.set(file, local);
+        }
+        state.corrections = corrections;
+        render();
+      },
+      () => {
+        showNotice(
+          "保存した修正を読み込めなくなりました。ページを開き直してください。",
+        );
+      },
+    );
+  }
+
+  async function start() {
+    try {
+      const response = await fetch("./review-data.json");
+      if (!response.ok) throw new Error(String(response.status));
+      const data = await response.json();
+      state.kanji = data.kanji;
+      state.byFile = new Map(data.kanji.map((entry) => [entry.file, entry]));
+    } catch {
+      $("summary").textContent =
+        "データを読み込めませんでした。ページを開き直してください。";
+      return;
+    }
+    const first = filteredKanji()[0] ?? state.kanji[0];
+    state.selected = first?.file ?? null;
+    render();
+    connectDb();
+  }
+
+  start();
+</script>

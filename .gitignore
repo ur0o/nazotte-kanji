@@ -35,6 +35,7 @@ go.work.sum
 node_modules/
 dist/
 dist-preview/
+dist-review/
 
 # 出題データ生成用にダウンロードした元データ
 .cache/

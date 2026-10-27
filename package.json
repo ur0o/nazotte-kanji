@@ -13,7 +13,9 @@
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "build:preview": "tsx scripts/build-preview.ts"
+    "build:preview": "tsx scripts/build-preview.ts",
+    "build:review": "tsx scripts/build-review.ts",
+    "review:apply": "tsx scripts/apply-review.ts"
   },
   "dependencies": {
     "@mantine/core": "^9.7.4",
