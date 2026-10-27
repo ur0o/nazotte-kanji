@@ -21,6 +21,7 @@
 | ダークモード | Mantine の配色切り替え(OS の設定に合わせる) |
 | 状態管理 | Context API |
 | データの検証 | Zod(出題 JSON と localStorage の読み込み時) |
+| データの読み込み | TanStack Query。端末がオフラインと判断されていても、まず読み込みを試す(`networkMode: "offlineFirst"`) |
 
 ### ルート
 
