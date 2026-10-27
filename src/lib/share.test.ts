@@ -1,15 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { dailyShareText, xShareUrl } from "./share.ts";
+import { dailyShareText, endlessShareText, xShareUrl } from "./share.ts";
 
 describe("dailyShareText", () => {
-  it("答えを含めずに結果を書く", () => {
+  it("結果・ハッシュタグ・リンクの順に書き、答えと問題番号は含めない", () => {
     const text = dailyShareText(
-      123,
       { kanji: "森", difficulty: "hard", guesses: ["木", "林", "森"] },
       "https://example.com/",
     );
-    expect(text).toBe("今日の1文字 #123 難しい 3/5\nhttps://example.com/");
+    expect(text).toBe(
+      "今日の1文字 難しい 3/5\n#漢字謎り\nhttps://example.com/",
+    );
     expect(text).not.toContain("森");
+  });
+});
+
+describe("endlessShareText", () => {
+  it("難易度と連続正解数を書く", () => {
+    expect(endlessShareText("oni", 12, "https://example.com/")).toBe(
+      "エンドレス 鬼 連続正解 12\n#漢字謎り\nhttps://example.com/",
+    );
   });
 });
 

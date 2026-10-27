@@ -14,7 +14,11 @@ import { StrokeAnimation } from "../../components/StrokeAnimation.tsx";
 import type { KanjiEntry, Stroke } from "../../lib/kanji-data.ts";
 import { displayKunReadings, formatReadings } from "../../lib/readings.ts";
 import { scoreLabel } from "../../lib/game.ts";
-import { dailyShareText, xShareUrl } from "../../lib/share.ts";
+import {
+  dailyShareText,
+  endlessShareText,
+  xShareUrl,
+} from "../../lib/share.ts";
 import { Countdown } from "./Countdown.tsx";
 import { useGame } from "./GameContext.tsx";
 import classes from "./ResultModal.module.css";
@@ -32,29 +36,44 @@ function shareUrl(): string {
   return `${window.location.origin}${window.location.pathname}`;
 }
 
+/**
+ * 結果をクリップボードにコピーするボタンと、X に投稿するボタン。
+ * ほかに主な操作がある画面では emphasized を false にして、X のボタンを目立たせない
+ */
+function ShareButtons({
+  text,
+  emphasized = true,
+}: {
+  text: string;
+  emphasized?: boolean;
+}) {
+  return (
+    <Group grow>
+      <CopyButton value={text}>
+        {({ copied, copy }) => (
+          <Button variant="default" onClick={copy}>
+            {copied ? "コピーしました" : "結果をコピー"}
+          </Button>
+        )}
+      </CopyButton>
+      <Button
+        component="a"
+        variant={emphasized ? "filled" : "default"}
+        href={xShareUrl(text)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        X に投稿
+      </Button>
+    </Group>
+  );
+}
+
 function DailyActions() {
-  const { round, dailyNumber } = useGame();
-  if (dailyNumber === undefined) return null;
-  const text = dailyShareText(dailyNumber, round, shareUrl());
+  const { round } = useGame();
   return (
     <Stack gap="xs">
-      <Group grow>
-        <CopyButton value={text}>
-          {({ copied, copy }) => (
-            <Button variant="default" onClick={copy}>
-              {copied ? "コピーしました" : "結果をコピー"}
-            </Button>
-          )}
-        </CopyButton>
-        <Button
-          component="a"
-          href={xShareUrl(text)}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          X に投稿
-        </Button>
-      </Group>
+      <ShareButtons text={dailyShareText(round, shareUrl())} />
       <Text size="sm" c="dimmed" ta="center">
         次の問題まで <Countdown />
       </Text>
@@ -69,7 +88,7 @@ function DailyActions() {
 }
 
 function ContinuousActions({ onClose }: { onClose: () => void }) {
-  const { status, streak, previousBest, nextRound, restart } = useGame();
+  const { mode, status, streak, previousBest, nextRound, restart } = useGame();
   if (status === "won") {
     return (
       <Button
@@ -94,6 +113,10 @@ function ContinuousActions({ onClose }: { onClose: () => void }) {
         </Text>
         {isNewBest && <Badge color="yellow">新記録</Badge>}
       </Group>
+      <ShareButtons
+        text={endlessShareText(mode.difficulty, streak, shareUrl())}
+        emphasized={false}
+      />
       <Group grow>
         <Button
           variant="default"

@@ -33,8 +33,6 @@ interface GameContextValue {
   mode: GameMode;
   round: Round;
   status: GameStatus;
-  /** 今日の1文字の問題番号 */
-  dailyNumber: number | undefined;
   /** エンドレスの連続正解数 */
   streak: number;
   /** エンドレスの、今回の挑戦を始める前の自己ベスト */
@@ -151,23 +149,13 @@ export function GameProvider({
       mode,
       round,
       status: roundStatus(round),
-      dailyNumber: number,
       streak,
       previousBest,
       submitGuess,
       nextRound,
       restart,
     }),
-    [
-      mode,
-      round,
-      number,
-      streak,
-      previousBest,
-      submitGuess,
-      nextRound,
-      restart,
-    ],
+    [mode, round, streak, previousBest, submitGuess, nextRound, restart],
   );
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
