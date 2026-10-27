@@ -15,6 +15,7 @@ import {
 import { roundStatus, scoreLabel } from "../../lib/game.ts";
 import { loadSavedData } from "../../lib/storage.ts";
 import { MODE_LABELS } from "../../lib/modes.ts";
+import { Credits } from "./Credits.tsx";
 import classes from "./Top.module.css";
 
 /** 難易度ごとの、今日の1字の結果(例: 3/5)。未挑戦や回答中は含めない */
@@ -165,6 +166,7 @@ export function TopPage() {
           ))}
         </Stack>
       </Modal>
+      <Credits />
     </Stack>
   );
 }
