@@ -33,7 +33,7 @@ interface GameContextValue {
   mode: GameMode;
   round: Round;
   status: GameStatus;
-  /** 今日の1字の問題番号 */
+  /** 今日の1文字の問題番号 */
   dailyNumber: number | undefined;
   /** エンドレスの連続正解数 */
   streak: number;
@@ -68,7 +68,7 @@ function newEndlessRound(
   return { kanji, difficulty, guesses: [] };
 }
 
-/** 今日の1字。挑戦の途中や結果が保存されていればそれを使う */
+/** 今日の1文字。挑戦の途中や結果が保存されていればそれを使う */
 function dailyRound(
   number: number,
   difficulty: DailyDifficulty,

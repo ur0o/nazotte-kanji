@@ -11,7 +11,7 @@ function format(ms: number): string {
     .join(":");
 }
 
-/** 次の今日の1字までの残り時間 */
+/** 次の今日の1文字までの残り時間 */
 export function Countdown() {
   const [remaining, setRemaining] = useState(() =>
     msUntilNextDaily(new Date()),

@@ -6,7 +6,7 @@ export type Difficulty = z.infer<typeof difficultySchema>;
 /** エンドレスで選べる難易度(全て) */
 export const DIFFICULTIES: readonly Difficulty[] = difficultySchema.options;
 
-/** 今日の1字で選べる難易度。鬼はエンドレスだけ */
+/** 今日の1文字で選べる難易度。鬼はエンドレスだけ */
 export const dailyDifficultySchema = difficultySchema.exclude(["oni"]);
 export type DailyDifficulty = z.infer<typeof dailyDifficultySchema>;
 export const DAILY_DIFFICULTIES: readonly DailyDifficulty[] =

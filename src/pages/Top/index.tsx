@@ -18,7 +18,7 @@ import { MODE_LABELS } from "../../lib/modes.ts";
 import { Credits } from "./Credits.tsx";
 import classes from "./Top.module.css";
 
-/** 難易度ごとの、今日の1字の結果(例: 3/5)。未挑戦や回答中は含めない */
+/** 難易度ごとの、今日の1文字の結果(例: 3/5)。未挑戦や回答中は含めない */
 function todayResults(
   number: number,
 ): Partial<Record<DailyDifficulty, string>> {

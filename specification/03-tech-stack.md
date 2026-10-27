@@ -29,7 +29,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 | URL | 画面 |
 |---|---|
 | `#/` | トップ |
-| `#/daily/$difficulty` | ゲーム(今日の1字。`normal`(ふつう) / `hard`(難しい)) |
+| `#/daily/$difficulty` | ゲーム(今日の1文字。`normal`(ふつう) / `hard`(難しい)) |
 | `#/endless/$difficulty` | ゲーム(エンドレス。`normal` / `hard` / `oni`(鬼)) |
 | `#/faq` | FAQ |
 | `#/credits` | クレジット |
@@ -42,7 +42,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 - ヒントと書き順アニメーション: Canvas の上に SVG を重ねる。座標系は KanjiVG と同じ 109×109 の viewBox を使う
 - 書き順アニメーション: KanjiVG の各画の path を `stroke-dasharray` / `stroke-dashoffset` で順に描く
 
-### 今日の1字の選び方
+### 今日の1文字の選び方
 
 - 常用漢字の一覧を、固定のシードで決まった順番に並べ替えておく
 - サービス開始日からの経過日数(日本時間で数える)を問題番号とする

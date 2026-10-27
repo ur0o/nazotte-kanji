@@ -16,7 +16,7 @@ describe("DIFFICULTY_HINTS", () => {
 });
 
 describe("選べる難易度", () => {
-  it("今日の1字は ふつう・難しい、エンドレスは鬼も選べる", () => {
+  it("今日の1文字は ふつう・難しい、エンドレスは鬼も選べる", () => {
     expect(DAILY_DIFFICULTIES).toEqual(["normal", "hard"]);
     expect(DIFFICULTIES).toEqual(["normal", "hard", "oni"]);
   });
