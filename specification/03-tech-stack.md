@@ -78,7 +78,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
   - 保存された修正は Claude が読み取り、`pnpm review:apply <JSON>` で `data/overrides.json` に取り込んでから出題データを生成し直す。自動推定と同じ値は修正として残さない
 - 出題データの形式は Zod のスキーマ(`src/lib/kanji-data.ts`)で定義し、生成時とアプリでの読み込み時の両方で検証する
 - 生成した JSON はリポジトリにコミットする。ダウンロードした元データはコミットしない
-- 元データ2つは CC BY-SA なので、アプリ内(遊び方モーダル)と README に出典とライセンスを書く。生成した出題データも CC BY-SA で配布する
+- 元データ2つは CC BY-SA なので、アプリ内(トップ画面の下部)と README に出典とライセンスを書く。生成した出題データも CC BY-SA で配布する
 
 ## 品質チェック
 
@@ -90,8 +90,13 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 
 ## デプロイ
 
-- GitHub Pages で公開する
-- `main` ブランチへのプッシュで GitHub Actions がビルドしてデプロイする
+- GitHub Pages で公開する(`https://ur0o.github.io/kanji-kaki-quiz/`)
+- ワークフローは `.github/workflows/deploy.yml`
+  - `main` ブランチへのプッシュ(と手動実行)で、`pnpm lint`・`pnpm test`・`pnpm build` を通してから `dist/` をデプロイする。どれかが失敗したらデプロイしない
+  - プルリクエストでは同じチェックとビルドだけを行い、デプロイはしない
+- Node.js 22 と、`package.json` の `packageManager` で指定した pnpm を使う
+- リポジトリの Settings → Pages で、Source を「GitHub Actions」にしておく
+- ビルドは相対パス(Vite の `base: "./"`)で、URL はハッシュ形式なので、サブパスで公開しても追加の設定はいらない
 
 ## ディレクトリ構成
 
