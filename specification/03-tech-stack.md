@@ -92,7 +92,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 
 ## デプロイ
 
-- GitHub Pages で公開する(`https://ur0o.github.io/kanji-kaki-quiz/`)
+- GitHub Pages で公開する(`https://ur0o.github.io/kanji-nazori/`)
 - ワークフローは `.github/workflows/deploy.yml`
   - `main` ブランチへのプッシュとプルリクエストでは、`pnpm lint`・`pnpm test`・`pnpm build` だけを行う
   - デプロイは、Actions の画面から `main` を手動で実行したときだけ行う(リリースまでは自動でデプロイしない)。チェックのどれかが失敗したらデプロイしない

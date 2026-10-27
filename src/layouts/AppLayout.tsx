@@ -6,7 +6,7 @@ import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
 import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
 import classes from "./AppLayout.module.css";
 
-/** ゲーム画面以外のページのタイトル(トップは「漢字書き順クイズ」) */
+/** ゲーム画面以外のページのタイトル(トップは「漢字謎り」) */
 const PAGE_TITLES: Readonly<Record<string, string>> = {
   "/faq": "FAQ",
   "/credits": "クレジット",
@@ -48,9 +48,7 @@ export function AppLayout() {
           </ActionIcon>
         )}
         <Title order={1} className={classes.title}>
-          {mode
-            ? MODE_LABELS[mode]
-            : (PAGE_TITLES[pathname] ?? "漢字書き順クイズ")}
+          {mode ? MODE_LABELS[mode] : (PAGE_TITLES[pathname] ?? "漢字謎り")}
         </Title>
         <Button
           variant="subtle"

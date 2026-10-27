@@ -1,4 +1,4 @@
-# 漢字書き順クイズ
+# 漢字謎り
 
 漢字の各画が「どこで、どのように(とめ・はね・はらい)終わるか」だけを手がかりに、元の漢字を当てるクイズです。仕様は [specification/](specification/) にあります。
 
@@ -36,7 +36,7 @@ pnpm data:build  # public/data/ に出題データを生成
 
 GitHub Actions(`.github/workflows/deploy.yml`)は、`main` へのプッシュとプルリクエストで lint・テスト・ビルドを行います。GitHub Pages へのデプロイは、Actions の画面で「Deploy to GitHub Pages」を開き、`main` を選んで「Run workflow」を押したときだけ行います。
 
-初めて公開するときは、リポジトリを公開にしてから Settings → Pages で Source を「GitHub Actions」にし、上の手順でワークフローを実行してください。公開先は `https://ur0o.github.io/kanji-kaki-quiz/` です。
+初めて公開するときは、リポジトリを公開にしてから Settings → Pages で Source を「GitHub Actions」にし、上の手順でワークフローを実行してください。公開先は `https://ur0o.github.io/kanji-nazori/` です。
 
 ## ライセンス
 
