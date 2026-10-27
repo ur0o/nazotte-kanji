@@ -9,6 +9,7 @@ import type { z } from "zod";
 import { AppLayout } from "./layouts/AppLayout.tsx";
 import { dailyDifficultySchema, difficultySchema } from "./lib/difficulty.ts";
 import { GamePage } from "./pages/Game/index.tsx";
+import { CreditsPage } from "./pages/Credits/index.tsx";
 import { NotFoundPage } from "./pages/NotFound/index.tsx";
 import { TopPage } from "./pages/Top/index.tsx";
 
@@ -55,7 +56,18 @@ const endlessRoute = createRoute({
   },
 });
 
-const routeTree = rootRoute.addChildren([topRoute, dailyRoute, endlessRoute]);
+const creditsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/credits",
+  component: CreditsPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  topRoute,
+  dailyRoute,
+  endlessRoute,
+  creditsRoute,
+]);
 
 export const router = createRouter({ routeTree, history: createHashHistory() });
 

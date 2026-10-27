@@ -42,7 +42,11 @@ export function AppLayout() {
           </ActionIcon>
         )}
         <Title order={1} className={classes.title}>
-          {mode ? MODE_LABELS[mode] : "漢字書き順クイズ"}
+          {mode
+            ? MODE_LABELS[mode]
+            : pathname === "/credits"
+              ? "クレジット"
+              : "漢字書き順クイズ"}
         </Title>
         <Button
           variant="subtle"
