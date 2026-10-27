@@ -74,7 +74,7 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
   const finished = status !== "playing";
   return (
     <>
-      <InfoBar />
+      <InfoBar strokeCount={strokes.data?.strokes.length} />
       <Board
         strokes={strokes.data?.strokes}
         difficulty={round.difficulty}

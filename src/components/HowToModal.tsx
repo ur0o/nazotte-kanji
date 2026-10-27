@@ -31,7 +31,7 @@ function ScreenDiagram() {
     <svg viewBox="0 0 132 178" className={classes.diagram} aria-hidden>
       {/* 1. 情報バー */}
       <text x={16} y={11} className={classes.diagramText}>
-        今日の1字 #2
+        12画
       </text>
       <rect
         x={100}
@@ -176,7 +176,7 @@ const PAGES: readonly Page[] = [
         <ScreenDiagram />
         <List type="ordered" size="sm" spacing={2}>
           <List.Item>
-            情報バー: モード、問題番号(または連続正解数)、難易度
+            情報バー: 答えの漢字の画数と難易度(エンドレスでは連続正解数も)
           </List.Item>
           <List.Item>
             正方形のエリア:

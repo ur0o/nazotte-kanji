@@ -2,14 +2,14 @@ import { ActionIcon, Button, Container, Group, Title } from "@mantine/core";
 import { Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { HowToModal } from "../components/HowToModal.tsx";
-import { SymbolGuideModal } from "../components/SymbolGuideModal.tsx";
 import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
+import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
 import classes from "./AppLayout.module.css";
 
 export function AppLayout() {
   const { pathname } = useLocation();
   const isTop = pathname === "/";
-  const [symbolGuideOpened, setSymbolGuideOpened] = useState(false);
+  const mode = modeOfPath(pathname);
   // 初めて訪れたときは遊び方を自動で開く
   const [howToOpened, setHowToOpened] = useState(() => !hasSeenHowTo());
 
@@ -42,34 +42,18 @@ export function AppLayout() {
           </ActionIcon>
         )}
         <Title order={1} className={classes.title}>
-          漢字書き順クイズ
+          {mode ? MODE_LABELS[mode] : "漢字書き順クイズ"}
         </Title>
-        <Group gap={4} className={classes.actions}>
-          <Button
-            variant="subtle"
-            size="compact-sm"
-            onClick={() => setSymbolGuideOpened(true)}
-            aria-label="記号の見方"
-          >
-            記号
-          </Button>
-          <ActionIcon
-            variant="subtle"
-            size="lg"
-            onClick={() => setHowToOpened(true)}
-            aria-label="遊び方"
-          >
-            <span className={classes.help} aria-hidden>
-              ?
-            </span>
-          </ActionIcon>
-        </Group>
+        <Button
+          variant="subtle"
+          size="compact-sm"
+          className={classes.actions}
+          onClick={() => setHowToOpened(true)}
+        >
+          遊び方
+        </Button>
       </Group>
       <HowToModal opened={howToOpened} onClose={closeHowTo} />
-      <SymbolGuideModal
-        opened={symbolGuideOpened}
-        onClose={() => setSymbolGuideOpened(false)}
-      />
       <main>
         <Outlet />
       </main>

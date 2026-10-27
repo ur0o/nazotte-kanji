@@ -24,17 +24,10 @@ import {
   updateSavedData,
 } from "../../lib/storage.ts";
 
-export type ModeType = "daily" | "endless";
-
 /** 鬼はエンドレスだけで選べる */
 export type GameMode =
   | { type: "daily"; difficulty: DailyDifficulty }
   | { type: "endless"; difficulty: Difficulty };
-
-export const MODE_LABELS: Readonly<Record<ModeType, string>> = {
-  daily: "今日の1字",
-  endless: "エンドレス",
-};
 
 interface GameContextValue {
   mode: GameMode;

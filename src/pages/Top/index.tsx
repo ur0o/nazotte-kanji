@@ -14,7 +14,7 @@ import {
 } from "../../lib/difficulty.ts";
 import { roundStatus, scoreLabel } from "../../lib/game.ts";
 import { loadSavedData } from "../../lib/storage.ts";
-import { MODE_LABELS } from "../Game/GameContext.tsx";
+import { MODE_LABELS } from "../../lib/modes.ts";
 import classes from "./Top.module.css";
 
 /** 難易度ごとの、今日の1字の結果(例: 3/5)。未挑戦や回答中は含めない */
