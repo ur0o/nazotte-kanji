@@ -53,7 +53,7 @@ function DailyButtons({
   results: Partial<Record<DailyDifficulty, string>>;
 }) {
   return (
-    <Group grow gap="xs">
+    <div className={classes.buttons}>
       {DAILY_DIFFICULTIES.map((difficulty) => (
         <Button
           key={difficulty}
@@ -66,13 +66,13 @@ function DailyButtons({
           <ButtonLabel difficulty={difficulty} result={results[difficulty]} />
         </Button>
       ))}
-    </Group>
+    </div>
   );
 }
 
 function EndlessButtons() {
   return (
-    <Group grow gap="xs">
+    <div className={classes.buttons}>
       {DIFFICULTIES.map((difficulty) => (
         <Button
           key={difficulty}
@@ -90,7 +90,7 @@ function EndlessButtons() {
           <ButtonLabel difficulty={difficulty} />
         </Button>
       ))}
-    </Group>
+    </div>
   );
 }
 

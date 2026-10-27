@@ -234,12 +234,18 @@ const PAGES: readonly Page[] = [
 /** モーダルを開くたびに作り直されるので、ページは毎回1ページ目から始まる */
 function HowToCarousel({ onClose }: { onClose: () => void }) {
   const [page, setPage] = useState(0);
+  // スライドの向き。最初の表示ではアニメーションしない
+  const [direction, setDirection] = useState<"next" | "prev" | null>(null);
   const swipeStart = useRef<number | null>(null);
   const isLast = page === PAGES.length - 1;
   const current = PAGES[page] as Page;
 
-  const go = (next: number) =>
-    setPage(Math.min(PAGES.length - 1, Math.max(0, next)));
+  const go = (next: number) => {
+    const target = Math.min(PAGES.length - 1, Math.max(0, next));
+    if (target === page) return;
+    setDirection(target > page ? "next" : "prev");
+    setPage(target);
+  };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== "mouse") swipeStart.current = event.clientX;
@@ -261,13 +267,24 @@ function HowToCarousel({ onClose }: { onClose: () => void }) {
         onPointerCancel={() => (swipeStart.current = null)}
         aria-live="polite"
       >
-        <Title order={3} size="h4" mb="sm">
-          <span className={classes.pageNumber}>
-            {page + 1}/{PAGES.length}
-          </span>
-          {current.title}
-        </Title>
-        {current.body}
+        <div
+          key={page}
+          className={
+            direction === "next"
+              ? classes.fromRight
+              : direction === "prev"
+                ? classes.fromLeft
+                : undefined
+          }
+        >
+          <Title order={3} size="h4" mb="sm">
+            <span className={classes.pageNumber}>
+              {page + 1}/{PAGES.length}
+            </span>
+            {current.title}
+          </Title>
+          {current.body}
+        </div>
       </div>
       <Group justify="center" gap={8} role="group" aria-label="ページ">
         {PAGES.map((item, index) => (

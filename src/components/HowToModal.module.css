@@ -2,6 +2,37 @@
   /* 縦のスクロールはそのままに、横のスワイプでページを送る */
   touch-action: pan-y;
   min-height: 360px;
+  overflow: hidden;
+}
+
+/* 送った方向から新しいページが入ってくる */
+.fromRight {
+  animation: slide-from-right 0.28s ease-out;
+}
+
+.fromLeft {
+  animation: slide-from-left 0.28s ease-out;
+}
+
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fromRight,
+  .fromLeft {
+    animation: none;
+  }
 }
 
 .pageNumber {
