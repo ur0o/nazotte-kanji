@@ -2,8 +2,10 @@
   position: relative;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  /* 狭い画面では少し縮めて、「残り n 回」まで1行に収める */
+  flex: 0 1 44px;
+  min-width: 34px;
+  aspect-ratio: 1;
   border: 1px solid var(--mantine-color-default-border);
   border-radius: var(--mantine-radius-sm);
   font-family: var(--kanji-font-family);

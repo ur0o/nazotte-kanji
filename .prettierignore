@@ -6,3 +6,5 @@ pnpm-lock.yaml
 specification
 .claude
 .coding-rules
+dist-preview
+dist-review

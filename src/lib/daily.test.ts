@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { dailyKanji, dailyNumber, msUntilNextDaily } from "./daily.ts";
-import { DIFFICULTIES } from "./difficulty.ts";
+import { DAILY_DIFFICULTIES } from "./difficulty.ts";
 
 describe("dailyNumber", () => {
   it("第1回の日を 1 とし、日本時間の 0 時に切り替わる", () => {
@@ -34,17 +34,17 @@ describe("dailyKanji", () => {
     );
   });
 
-  it("同じ日の3つの難易度で漢字が重ならない", () => {
-    const today = DIFFICULTIES.map((d) => dailyKanji(3, d, kanjiList));
-    expect(new Set(today).size).toBe(3);
+  it("同じ日の2つの難易度で漢字が重ならない", () => {
+    const today = DAILY_DIFFICULTIES.map((d) => dailyKanji(3, d, kanjiList));
+    expect(new Set(today).size).toBe(2);
   });
 
   it("一覧を使い切るまで同じ漢字を出さず、使い切ったら最初に戻る", () => {
-    const days = kanjiList.length / DIFFICULTIES.length;
+    const days = kanjiList.length / DAILY_DIFFICULTIES.length;
     const all = Array.from({ length: days }, (_, i) =>
-      DIFFICULTIES.map((d) => dailyKanji(i + 1, d, kanjiList)),
+      DAILY_DIFFICULTIES.map((d) => dailyKanji(i + 1, d, kanjiList)),
     ).flat();
     expect(new Set(all).size).toBe(kanjiList.length);
-    expect(dailyKanji(days + 1, "easy", kanjiList)).toBe(all[0]);
+    expect(dailyKanji(days + 1, "normal", kanjiList)).toBe(all[0]);
   });
 });

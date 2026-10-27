@@ -1,12 +1,23 @@
 import { describe, expect, it } from "vitest";
-import { DIFFICULTY_HINTS } from "./difficulty.ts";
+import {
+  DAILY_DIFFICULTIES,
+  DIFFICULTIES,
+  DIFFICULTY_HINTS,
+} from "./difficulty.ts";
 
 describe("DIFFICULTY_HINTS", () => {
-  it("易は番号と向き、普は番号だけ、難はどちらもなし", () => {
+  it("ふつうは番号と向き、難しいは番号だけ、鬼はどちらもなし", () => {
     expect(DIFFICULTY_HINTS).toEqual({
-      easy: { strokeNumbers: true, arrows: true },
-      normal: { strokeNumbers: true, arrows: false },
-      hard: { strokeNumbers: false, arrows: false },
+      normal: { strokeNumbers: true, arrows: true },
+      hard: { strokeNumbers: true, arrows: false },
+      oni: { strokeNumbers: false, arrows: false },
     });
+  });
+});
+
+describe("選べる難易度", () => {
+  it("今日の1字は ふつう・難しい、エンドレスは鬼も選べる", () => {
+    expect(DAILY_DIFFICULTIES).toEqual(["normal", "hard"]);
+    expect(DIFFICULTIES).toEqual(["normal", "hard", "oni"]);
   });
 });

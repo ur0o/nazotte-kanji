@@ -1,17 +1,23 @@
 import { Badge, Group, Text } from "@mantine/core";
 import { DIFFICULTY_LABELS } from "../../lib/difficulty.ts";
-import { MODE_LABELS, useGame } from "./GameContext.tsx";
+import { useGame } from "./GameContext.tsx";
 
-export function InfoBar() {
-  const { mode, round, dailyNumber, streak } = useGame();
+export namespace InfoBar {
+  export interface Props {
+    /** 答えの漢字の画数。読み込み中は undefined */
+    strokeCount: number | undefined;
+  }
+}
+
+export function InfoBar({ strokeCount }: InfoBar.Props) {
+  const { mode, round, streak } = useGame();
   return (
     <Group justify="space-between" mb="xs">
+      <Text fw={700} aria-label="答えの漢字の画数">
+        {strokeCount === undefined ? "\u00a0" : `${strokeCount}画`}
+      </Text>
       <Group gap="xs">
-        <Text fw={700}>{MODE_LABELS[mode.type]}</Text>
-        {dailyNumber !== undefined && <Text c="dimmed">#{dailyNumber}</Text>}
-      </Group>
-      <Group gap="xs">
-        {mode.type !== "daily" && (
+        {mode.type === "endless" && (
           <Text size="sm" c="dimmed">
             連続正解 <strong>{streak}</strong>
           </Text>

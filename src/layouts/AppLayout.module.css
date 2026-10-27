@@ -15,6 +15,11 @@
   left: 0;
 }
 
+.actions {
+  position: absolute;
+  right: 0;
+}
+
 .title {
   font-size: var(--mantine-font-size-lg);
   font-weight: 700;

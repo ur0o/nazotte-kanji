@@ -5,10 +5,10 @@ describe("dailyShareText", () => {
   it("答えを含めずに結果を書く", () => {
     const text = dailyShareText(
       123,
-      { kanji: "森", difficulty: "normal", guesses: ["木", "林", "森"] },
+      { kanji: "森", difficulty: "hard", guesses: ["木", "林", "森"] },
       "https://example.com/",
     );
-    expect(text).toBe("今日の1字 #123 普 3/5\nhttps://example.com/");
+    expect(text).toBe("今日の1字 #123 難しい 3/5\nhttps://example.com/");
     expect(text).not.toContain("森");
   });
 });

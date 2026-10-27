@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { dailyKanji, dailyNumber } from "../../lib/daily.ts";
-import type { Difficulty } from "../../lib/difficulty.ts";
+import type { DailyDifficulty, Difficulty } from "../../lib/difficulty.ts";
 import {
   addGuess,
   roundStatus,
@@ -24,17 +24,10 @@ import {
   updateSavedData,
 } from "../../lib/storage.ts";
 
-export type ModeType = "daily" | "endless";
-
-export interface GameMode {
-  type: ModeType;
-  difficulty: Difficulty;
-}
-
-export const MODE_LABELS: Readonly<Record<ModeType, string>> = {
-  daily: "今日の1字",
-  endless: "エンドレス",
-};
+/** 鬼はエンドレスだけで選べる */
+export type GameMode =
+  | { type: "daily"; difficulty: DailyDifficulty }
+  | { type: "endless"; difficulty: Difficulty };
 
 interface GameContextValue {
   mode: GameMode;
@@ -78,7 +71,7 @@ function newEndlessRound(
 /** 今日の1字。挑戦の途中や結果が保存されていればそれを使う */
 function dailyRound(
   number: number,
-  difficulty: Difficulty,
+  difficulty: DailyDifficulty,
   kanjiList: readonly string[],
 ): Round {
   const kanji = dailyKanji(number, difficulty, kanjiList);
@@ -104,9 +97,10 @@ export function GameProvider({
   const [number] = useState(() =>
     type === "daily" ? dailyNumber(new Date()) : undefined,
   );
+  const dailyDifficulty = mode.type === "daily" ? mode.difficulty : undefined;
   const [round, setRound] = useState<Round>(() =>
-    number !== undefined
-      ? dailyRound(number, difficulty, kanjiList)
+    number !== undefined && dailyDifficulty !== undefined
+      ? dailyRound(number, dailyDifficulty, kanjiList)
       : newEndlessRound(difficulty, kanjiList),
   );
   const [streak, setStreak] = useState(0);
@@ -125,8 +119,10 @@ export function GameProvider({
       const next = addGuess(round, guess);
       if (next === round) return;
       setRound(next);
-      if (number !== undefined) {
-        updateSavedData((data) => saveDailyRound(data, number, next));
+      if (number !== undefined && dailyDifficulty !== undefined) {
+        updateSavedData((data) =>
+          saveDailyRound(data, number, dailyDifficulty, next),
+        );
       } else if (roundStatus(next) === "won") {
         const nextStreak = streak + 1;
         setStreak(nextStreak);
@@ -135,7 +131,7 @@ export function GameProvider({
         );
       }
     },
-    [round, number, streak, difficulty],
+    [round, number, dailyDifficulty, streak, difficulty],
   );
 
   const nextRound = useCallback(() => {

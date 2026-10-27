@@ -1,10 +1,22 @@
-import { ActionIcon, Container, Group, Title } from "@mantine/core";
+import { ActionIcon, Button, Container, Group, Title } from "@mantine/core";
 import { Link, Outlet, useLocation } from "@tanstack/react-router";
+import { useState } from "react";
+import { HowToModal } from "../components/HowToModal.tsx";
+import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
+import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
 import classes from "./AppLayout.module.css";
 
 export function AppLayout() {
   const { pathname } = useLocation();
   const isTop = pathname === "/";
+  const mode = modeOfPath(pathname);
+  // 初めて訪れたときは遊び方を自動で開く
+  const [howToOpened, setHowToOpened] = useState(() => !hasSeenHowTo());
+
+  const closeHowTo = () => {
+    markHowToSeen();
+    setHowToOpened(false);
+  };
 
   return (
     <Container size={480} px="md" className={classes.root}>
@@ -30,9 +42,18 @@ export function AppLayout() {
           </ActionIcon>
         )}
         <Title order={1} className={classes.title}>
-          漢字書き順クイズ
+          {mode ? MODE_LABELS[mode] : "漢字書き順クイズ"}
         </Title>
+        <Button
+          variant="subtle"
+          size="compact-sm"
+          className={classes.actions}
+          onClick={() => setHowToOpened(true)}
+        >
+          遊び方
+        </Button>
       </Group>
+      <HowToModal opened={howToOpened} onClose={closeHowTo} />
       <main>
         <Outlet />
       </main>

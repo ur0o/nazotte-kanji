@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { difficultySchema, type Difficulty } from "./difficulty.ts";
+import {
+  difficultySchema,
+  type DailyDifficulty,
+  type Difficulty,
+} from "./difficulty.ts";
 
 const STORAGE_KEY = "kanji-kaki-quiz";
 /** エンドレスで出題を避ける直近の漢字の数 */
@@ -11,17 +15,19 @@ const roundSchema = z.object({
   guesses: z.array(z.string()),
 });
 
-/** 難易度ごとの値 */
-function byDifficulty<T extends z.ZodType>(schema: T) {
-  return z.object({ easy: schema, normal: schema, hard: schema });
-}
-
 const savedDataSchema = z.object({
-  version: z.literal(2),
+  version: z.literal(3),
   /** 今日の1字の記録。難易度ごとに、問題番号をキーにする */
-  daily: byDifficulty(z.record(z.string(), roundSchema)),
+  daily: z.object({
+    normal: z.record(z.string(), roundSchema),
+    hard: z.record(z.string(), roundSchema),
+  }),
   /** エンドレスの自己ベスト(連続正解数) */
-  endlessBest: byDifficulty(z.number().int().nonnegative()),
+  endlessBest: z.object({
+    normal: z.number().int().nonnegative(),
+    hard: z.number().int().nonnegative(),
+    oni: z.number().int().nonnegative(),
+  }),
   /** エンドレスで最近出した漢字(新しい順) */
   recent: z.array(z.string()),
 });
@@ -30,9 +36,9 @@ export type SavedRound = z.infer<typeof roundSchema>;
 
 export function initialSavedData(): SavedData {
   return {
-    version: 2,
-    daily: { easy: {}, normal: {}, hard: {} },
-    endlessBest: { easy: 0, normal: 0, hard: 0 },
+    version: 3,
+    daily: { normal: {}, hard: {} },
+    endlessBest: { normal: 0, hard: 0, oni: 0 },
     recent: [],
   };
 }
@@ -81,9 +87,9 @@ export function addRecent(data: SavedData, kanji: string): SavedData {
 export function saveDailyRound(
   data: SavedData,
   number: number,
+  difficulty: DailyDifficulty,
   round: SavedRound,
 ): SavedData {
-  const difficulty = round.difficulty;
   return {
     ...data,
     daily: {
