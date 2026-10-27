@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-dimmed);
+  white-space: nowrap;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.symbol {
+  width: 14px;
+  height: 14px;
+  color: var(--mantine-color-text);
+}

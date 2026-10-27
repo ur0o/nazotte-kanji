@@ -10,7 +10,13 @@ export function GuessHistory() {
 
   return (
     <Group justify="space-between" wrap="nowrap" mb="xs">
-      <Group gap={6} wrap="nowrap" role="list" aria-label="回答履歴">
+      <Group
+        gap={6}
+        wrap="nowrap"
+        role="list"
+        aria-label="回答履歴"
+        style={{ flex: 1, minWidth: 0 }}
+      >
         {Array.from({ length: MAX_GUESSES }, (_, index) => {
           const guess = round.guesses[index];
           const correct = guess === round.kanji;

@@ -126,14 +126,9 @@ export function TopPage() {
         各画の終わる位置と、とめ・はね・はらいだけを手がかりに漢字を当てよう
       </Text>
       <Stack gap="xs">
-        <Group justify="space-between" align="baseline">
-          <Title order={2} size="h4">
-            {MODE_LABELS.daily}
-          </Title>
-          <Text c="dimmed" size="sm">
-            #{number}
-          </Text>
-        </Group>
+        <Title order={2} size="h4">
+          {MODE_LABELS.daily}
+        </Title>
         <DailyButtons results={results} />
       </Stack>
       <Stack gap="xs">
