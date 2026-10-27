@@ -65,14 +65,7 @@ export function AppLayout() {
           </ActionIcon>
         </Group>
       </Group>
-      <HowToModal
-        opened={howToOpened}
-        onClose={closeHowTo}
-        onOpenSymbolGuide={() => {
-          closeHowTo();
-          setSymbolGuideOpened(true);
-        }}
-      />
+      <HowToModal opened={howToOpened} onClose={closeHowTo} />
       <SymbolGuideModal
         opened={symbolGuideOpened}
         onClose={() => setSymbolGuideOpened(false)}
