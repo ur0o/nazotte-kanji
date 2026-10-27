@@ -1,0 +1,14 @@
+/* 入力欄を除き、ゲーム画面の文字や図を選択できないようにする */
+.screen {
+  user-select: none;
+  -webkit-user-select: none;
+  /* iOS で長押ししたときのメニュー(画像の保存など)を出さない */
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.screen input {
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
+}

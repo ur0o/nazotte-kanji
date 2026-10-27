@@ -10,6 +10,7 @@ import { DrawingTools } from "./DrawingTools.tsx";
 import { GameProvider, useGame, type GameMode } from "./GameContext.tsx";
 import { GuessHistory } from "./GuessHistory.tsx";
 import { InfoBar } from "./InfoBar.tsx";
+import classes from "./Game.module.css";
 import { ResultModal } from "./ResultModal.tsx";
 
 export namespace GamePage {
@@ -73,7 +74,7 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
 
   const finished = status !== "playing";
   return (
-    <>
+    <div className={classes.screen}>
       <InfoBar strokeCount={strokes.data?.strokes.length} />
       <Board
         strokes={strokes.data?.strokes}
@@ -98,6 +99,6 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
           entry={byKanji.get(round.kanji)}
         />
       )}
-    </>
+    </div>
   );
 }

@@ -116,6 +116,8 @@ export function DrawingCanvas({
       onPointerMove={handlePointerMove}
       onPointerUp={finishLine}
       onPointerCancel={finishLine}
+      // 長押しで出るメニュー(画像の保存など)を出さない
+      onContextMenu={(event) => event.preventDefault()}
       aria-label="メモ用の手書きエリア"
     />
   );
