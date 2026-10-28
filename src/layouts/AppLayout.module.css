@@ -5,6 +5,10 @@
 
 .header {
   position: relative;
+  /* タイトルやボタンの文字を選択できないようにする(手書きエリアからなぞったときも含む) */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   height: 52px;
   border-bottom: 1px solid var(--mantine-color-default-border);
   margin-bottom: var(--mantine-spacing-sm);
