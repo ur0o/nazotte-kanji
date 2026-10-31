@@ -57,9 +57,10 @@ export function AppLayout() {
           </Title>
         )}
         <Button
-          variant="subtle"
+          variant="default"
           size="compact-sm"
-          className={classes.actions}
+          radius="md"
+          className={`${classes.actions} ${classes.howTo}`}
           onClick={() => setHowToOpened(true)}
         >
           遊び方

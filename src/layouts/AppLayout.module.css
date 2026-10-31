@@ -29,10 +29,19 @@
   font-weight: 700;
 }
 
-/* アプリ名は手書き風フォント(Yomogi)。読み込めないときは通常の文字で表示する */
+/*
+ * アプリ名は手書き風フォント(Yomogi)。読み込めないときは通常の文字で表示する。
+ * Yomogi には太字がないので、ブラウザに太字を作らせる
+ */
 .appName {
   font-family: "Yomogi", var(--mantine-font-family);
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 700;
+  font-synthesis: weight;
   letter-spacing: 0.04em;
+}
+
+/* 「遊び方」は太字にせず、細い角丸の枠で囲んでボタンらしく見せる */
+.howTo {
+  font-weight: 400;
 }
