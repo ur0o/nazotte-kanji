@@ -100,6 +100,9 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
   - デプロイは、Actions の画面から `main` を手動で実行したときだけ行う(リリースまでは自動でデプロイしない)。チェックのどれかが失敗したらデプロイしない
 - Node.js 22 と、`package.json` の `packageManager` で指定した pnpm を使う
 - 公開するときは、リポジトリを公開にしてから Settings → Pages で Source を「GitHub Actions」にし、ワークフローを手動で実行する(無料プランでは非公開リポジトリで Pages を使えない)
+- SNS で共有したときの表示のため、`index.html` に OGP と X のカード(`summary_large_image`)のメタタグを置く
+  - タイトルは「漢字謎り」、画像は `public/og-image.png`(1200×630。遊び方の「手」の例とタイトル)
+  - 画像と URL は公開先の絶対 URL(`https://ur0o.github.io/kanji-nazori/`)で書く。公開先が変わったら書き換える
 - ビルドは相対パス(Vite の `base: "./"`)で、URL はハッシュ形式なので、サブパスで公開しても追加の設定はいらない
 
 ## ディレクトリ構成
