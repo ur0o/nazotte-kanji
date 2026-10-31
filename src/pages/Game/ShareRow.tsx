@@ -1,4 +1,5 @@
-import { ActionIcon, Button, CopyButton, Text } from "@mantine/core";
+import { ActionIcon, Button, Text } from "@mantine/core";
+import { useState } from "react";
 import { xShareUrl } from "../../lib/share.ts";
 import classes from "./ShareRow.module.css";
 
@@ -26,24 +27,31 @@ function XLogo() {
  * 結果モーダルの「トップへ」などの大きなボタンと見分けがつくよう、小さくまとめる
  */
 export function ShareRow({ text }: ShareRow.Props) {
+  // 一度コピーしたら、モーダルを閉じるかページを移る(この部品がなくなる)まで「コピーしました」のまま
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+    } catch {
+      // コピーできない環境では表示を変えない
+    }
+  };
+
   return (
     <div className={classes.root}>
       <Text size="xs" c="dimmed" className={classes.label}>
         SNSにシェア
       </Text>
-      <CopyButton value={text}>
-        {({ copied, copy }) => (
-          <Button
-            variant="default"
-            size="compact-sm"
-            radius="xl"
-            onClick={copy}
-            className={classes.copy}
-          >
-            {copied ? "コピーしました" : "コピー"}
-          </Button>
-        )}
-      </CopyButton>
+      <Button
+        variant="default"
+        size="compact-sm"
+        radius="xl"
+        onClick={copy}
+        className={classes.copy}
+      >
+        {copied ? "コピーしました" : "コピー"}
+      </Button>
       <ActionIcon
         component="a"
         href={xShareUrl(text)}

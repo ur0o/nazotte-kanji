@@ -12,6 +12,7 @@ import { GuessHistory } from "./GuessHistory.tsx";
 import { InfoBar } from "./InfoBar.tsx";
 import classes from "./Game.module.css";
 import { ResultModal } from "./ResultModal.tsx";
+import { RetireButton } from "./RetireButton.tsx";
 
 export namespace GamePage {
   export interface Props {
@@ -102,7 +103,10 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
           )}
         </Group>
       ) : (
-        <AnswerForm key={round.kanji} jouyou={jouyou} />
+        <>
+          <AnswerForm key={round.kanji} jouyou={jouyou} />
+          <RetireButton />
+        </>
       )}
       {strokes.data && (
         <ResultModal

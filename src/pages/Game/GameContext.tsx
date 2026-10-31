@@ -11,6 +11,7 @@ import { dailyKanji, dailyNumber } from "../../lib/daily.ts";
 import type { DailyDifficulty, Difficulty } from "../../lib/difficulty.ts";
 import {
   addGuess,
+  retire as retireRound,
   roundStatus,
   type GameStatus,
   type Round,
@@ -38,6 +39,8 @@ interface GameContextValue {
   /** エンドレスの、今回の挑戦を始める前の自己ベスト */
   previousBest: number;
   submitGuess: (guess: string) => void;
+  /** リタイアする(その問題を不正解にする) */
+  retire: () => void;
   /** 次の問題へ(エンドレスで正解したとき) */
   nextRound: () => void;
   /** 最初からやり直す(エンドレスで不正解になったとき) */
@@ -132,6 +135,17 @@ export function GameProvider({
     [round, number, dailyDifficulty, streak, difficulty],
   );
 
+  const retire = useCallback(() => {
+    const next = retireRound(round);
+    if (next === round) return;
+    setRound(next);
+    if (number !== undefined && dailyDifficulty !== undefined) {
+      updateSavedData((data) =>
+        saveDailyRound(data, number, dailyDifficulty, next),
+      );
+    }
+  }, [round, number, dailyDifficulty]);
+
   const nextRound = useCallback(() => {
     if (type !== "endless") return;
     setRound(newEndlessRound(difficulty, kanjiList));
@@ -152,10 +166,20 @@ export function GameProvider({
       streak,
       previousBest,
       submitGuess,
+      retire,
       nextRound,
       restart,
     }),
-    [mode, round, streak, previousBest, submitGuess, nextRound, restart],
+    [
+      mode,
+      round,
+      streak,
+      previousBest,
+      submitGuess,
+      retire,
+      nextRound,
+      restart,
+    ],
   );
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

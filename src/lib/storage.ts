@@ -13,6 +13,7 @@ const roundSchema = z.object({
   kanji: z.string(),
   difficulty: difficultySchema,
   guesses: z.array(z.string()),
+  retired: z.boolean().optional(),
 });
 
 const savedDataSchema = z.object({
