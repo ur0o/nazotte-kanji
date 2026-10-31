@@ -1,25 +1,13 @@
-import {
-  Badge,
-  Button,
-  CopyButton,
-  Group,
-  Modal,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Badge, Button, Group, Modal, Stack, Text, Title } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { StrokeAnimation } from "../../components/StrokeAnimation.tsx";
 import type { KanjiEntry, Stroke } from "../../lib/kanji-data.ts";
 import { displayKunReadings, formatReadings } from "../../lib/readings.ts";
 import { scoreLabel } from "../../lib/game.ts";
-import {
-  dailyShareText,
-  endlessShareText,
-  xShareUrl,
-} from "../../lib/share.ts";
+import { dailyShareText, endlessShareText } from "../../lib/share.ts";
 import { Countdown } from "./Countdown.tsx";
+import { ShareRow } from "./ShareRow.tsx";
 import { useGame } from "./GameContext.tsx";
 import classes from "./ResultModal.module.css";
 
@@ -36,44 +24,11 @@ function shareUrl(): string {
   return `${window.location.origin}${window.location.pathname}`;
 }
 
-/**
- * 結果をクリップボードにコピーするボタンと、X に投稿するボタン。
- * ほかに主な操作がある画面では emphasized を false にして、X のボタンを目立たせない
- */
-function ShareButtons({
-  text,
-  emphasized = true,
-}: {
-  text: string;
-  emphasized?: boolean;
-}) {
-  return (
-    <Group grow>
-      <CopyButton value={text}>
-        {({ copied, copy }) => (
-          <Button variant="default" onClick={copy}>
-            {copied ? "コピーしました" : "結果をコピー"}
-          </Button>
-        )}
-      </CopyButton>
-      <Button
-        component="a"
-        variant={emphasized ? "filled" : "default"}
-        href={xShareUrl(text)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        X に投稿
-      </Button>
-    </Group>
-  );
-}
-
 function DailyActions() {
   const { round } = useGame();
   return (
     <Stack gap="xs">
-      <ShareButtons text={dailyShareText(round, shareUrl())} />
+      <ShareRow text={dailyShareText(round, shareUrl())} />
       <Text size="sm" c="dimmed" ta="center">
         次の問題まで <Countdown />
       </Text>
@@ -113,10 +68,7 @@ function ContinuousActions({ onClose }: { onClose: () => void }) {
         </Text>
         {isNewBest && <Badge color="yellow">新記録</Badge>}
       </Group>
-      <ShareButtons
-        text={endlessShareText(mode.difficulty, streak, shareUrl())}
-        emphasized={false}
-      />
+      <ShareRow text={endlessShareText(mode.difficulty, streak, shareUrl())} />
       <Group grow>
         <Button
           variant="default"
