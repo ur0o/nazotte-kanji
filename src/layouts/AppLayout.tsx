@@ -5,8 +5,9 @@ import { HowToModal } from "../components/HowToModal.tsx";
 import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
 import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
 import classes from "./AppLayout.module.css";
+import { Footer } from "./Footer.tsx";
 
-/** ゲーム画面以外のページのタイトル(トップは「漢字謎り」) */
+/** ゲーム画面以外のページのタイトル(トップは「nazotte漢字」) */
 const PAGE_TITLES: Readonly<Record<string, string>> = {
   "/faq": "FAQ",
   "/credits": "クレジット",
@@ -57,7 +58,7 @@ export function AppLayout() {
           </Title>
         ) : (
           <Title order={1} className={`${classes.title} ${classes.appName}`}>
-            漢字謎り
+            nazotte漢字
           </Title>
         )}
         <Button
@@ -74,6 +75,7 @@ export function AppLayout() {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </Container>
   );
 }

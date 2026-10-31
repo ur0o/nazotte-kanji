@@ -5,7 +5,7 @@ import {
   type Difficulty,
 } from "./difficulty.ts";
 
-const STORAGE_KEY = "kanji-kaki-quiz";
+const STORAGE_KEY = "nazotte-kanji";
 /** エンドレスで出題を避ける直近の漢字の数 */
 export const RECENT_LIMIT = 200;
 

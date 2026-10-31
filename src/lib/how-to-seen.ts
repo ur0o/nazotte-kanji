@@ -1,4 +1,4 @@
-const STORAGE_KEY = "kanji-kaki-quiz:how-to-seen";
+const STORAGE_KEY = "nazotte-kanji:how-to-seen";
 
 /** 遊び方を表示したことがあるか。記録を読めない環境では未表示として扱う */
 export function hasSeenHowTo(): boolean {

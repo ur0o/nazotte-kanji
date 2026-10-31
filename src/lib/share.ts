@@ -2,7 +2,7 @@ import { DIFFICULTY_LABELS, type Difficulty } from "./difficulty.ts";
 import { scoreLabel, type Round } from "./game.ts";
 import { MODE_LABELS } from "./modes.ts";
 
-export const SHARE_HASHTAG = "#漢字謎り";
+export const SHARE_HASHTAG = "#nazotte漢字";
 
 /** 結果の1行の後に、ハッシュタグとページへのリンクを続ける */
 function withFooter(result: string, url: string): string {

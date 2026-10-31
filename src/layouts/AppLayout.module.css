@@ -1,6 +1,10 @@
 .root {
   min-height: 100dvh;
-  padding-bottom: var(--mantine-spacing-xl);
+  /* 固定したフッターに本文が隠れないよう、その分の余白をとる */
+  padding-bottom: calc(
+    var(--mantine-spacing-md) + var(--footer-height) +
+      env(safe-area-inset-bottom, 0px)
+  );
 }
 
 .header {

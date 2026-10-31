@@ -18,7 +18,7 @@ import path from "node:path";
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT_DIR = path.join(ROOT, "dist-preview");
 const DATA_DIR = path.join(OUT_DIR, "data");
-const TITLE = "漢字謎り テスト版";
+const TITLE = "nazotte漢字 テスト版";
 
 // 出題データへのリクエストを data/bundle.json の中身で返す。
 // ビューアーのテーマ(data-theme)が明示されていれば、Mantine の配色にも反映する。
