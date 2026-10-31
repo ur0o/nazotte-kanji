@@ -1,7 +1,12 @@
 .root {
   position: relative;
   /* 画面の高さに収まるよう、ヘッダーや入力フォームの分を除いた高さを上限にする */
-  width: min(100%, calc(100dvh - 330px));
+  width: min(
+    100%,
+    calc(
+      100dvh - 330px - var(--footer-height) - env(safe-area-inset-bottom, 0px)
+    )
+  );
   min-width: 240px;
   aspect-ratio: 1;
   margin-inline: auto;
