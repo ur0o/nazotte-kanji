@@ -21,6 +21,16 @@ describe("parseSavedData", () => {
     );
   });
 
+  it("リタイアした問題も読み込む", () => {
+    const data = saveDailyRound(initialSavedData(), 1, "normal", {
+      kanji: "森",
+      difficulty: "normal",
+      guesses: [],
+      retired: true,
+    });
+    expect(parseSavedData(JSON.stringify(data))).toEqual(data);
+  });
+
   it("正しい形式なら読み込む", () => {
     const data = recordEndlessBest(initialSavedData(), "hard", 7);
     expect(parseSavedData(JSON.stringify(data))).toEqual(data);

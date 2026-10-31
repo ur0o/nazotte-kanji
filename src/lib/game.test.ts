@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { addGuess, roundStatus, scoreLabel, type Round } from "./game.ts";
+import {
+  addGuess,
+  retire,
+  roundStatus,
+  scoreLabel,
+  type Round,
+} from "./game.ts";
 
 const round = (guesses: string[]): Round => ({
   kanji: "森",
@@ -33,5 +39,19 @@ describe("addGuess", () => {
   it("回答が終わった後は加えない", () => {
     const won = round(["森"]);
     expect(addGuess(won, "木")).toBe(won);
+  });
+});
+
+describe("retire", () => {
+  it("リタイアすると不正解になり、それ以上回答できない", () => {
+    const retired = retire(round(["木"]));
+    expect(roundStatus(retired)).toBe("lost");
+    expect(scoreLabel(retired)).toBe("×/5");
+    expect(addGuess(retired, "森")).toBe(retired);
+  });
+
+  it("回答が終わった後はリタイアできない", () => {
+    const won = round(["森"]);
+    expect(retire(won)).toBe(won);
   });
 });

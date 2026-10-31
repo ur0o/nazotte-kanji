@@ -1,4 +1,4 @@
-import { Alert, Button, Center, Loader } from "@mantine/core";
+import { Alert, Button, Center, Group, Loader } from "@mantine/core";
 import { useMemo, useState } from "react";
 import { useKanjiIndex, useKanjiStrokes } from "../../lib/data-queries.ts";
 import type { KanjiEntry } from "../../lib/kanji-data.ts";
@@ -10,7 +10,9 @@ import { DrawingTools } from "./DrawingTools.tsx";
 import { GameProvider, useGame, type GameMode } from "./GameContext.tsx";
 import { GuessHistory } from "./GuessHistory.tsx";
 import { InfoBar } from "./InfoBar.tsx";
+import classes from "./Game.module.css";
 import { ResultModal } from "./ResultModal.tsx";
+import { RetireButton } from "./RetireButton.tsx";
 
 export namespace GamePage {
   export interface Props {
@@ -45,7 +47,7 @@ export function GamePage({ mode }: GamePage.Props) {
 }
 
 function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
-  const { round, status } = useGame();
+  const { mode, round, status, nextRound } = useGame();
   const strokes = useKanjiStrokes(round.kanji);
   const jouyou = useMemo(() => new Set(byKanji.keys()), [byKanji]);
   // 手書きと結果モーダルを閉じた状態は、問題が変わったらリセットする
@@ -73,7 +75,7 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
 
   const finished = status !== "playing";
   return (
-    <>
+    <div className={classes.screen}>
       <InfoBar strokeCount={strokes.data?.strokes.length} />
       <Board
         strokes={strokes.data?.strokes}
@@ -84,11 +86,27 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
       <DrawingTools lines={lines} onLinesChange={setLines} />
       <GuessHistory />
       {finished ? (
-        <Button fullWidth size="md" onClick={() => setDismissedRound(null)}>
-          結果を見る
-        </Button>
+        <Group grow>
+          <Button
+            size="md"
+            variant={
+              mode.type === "endless" && status === "won" ? "default" : "filled"
+            }
+            onClick={() => setDismissedRound(null)}
+          >
+            結果を見る
+          </Button>
+          {mode.type === "endless" && status === "won" && (
+            <Button size="md" onClick={nextRound}>
+              次へ
+            </Button>
+          )}
+        </Group>
       ) : (
-        <AnswerForm key={round.kanji} jouyou={jouyou} />
+        <>
+          <AnswerForm key={round.kanji} jouyou={jouyou} />
+          <RetireButton />
+        </>
       )}
       {strokes.data && (
         <ResultModal
@@ -98,6 +116,6 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
           entry={byKanji.get(round.kanji)}
         />
       )}
-    </>
+    </div>
   );
 }

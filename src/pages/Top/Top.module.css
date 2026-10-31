@@ -32,3 +32,10 @@
   dominant-baseline: central;
   fill: var(--mantine-color-blue-filled);
 }
+
+.credits {
+  margin-top: var(--mantine-spacing-xl);
+  padding-top: var(--mantine-spacing-sm);
+  border-top: 1px solid var(--mantine-color-default-border);
+  line-height: 1.6;
+}

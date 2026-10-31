@@ -6,15 +6,25 @@ import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
 import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
 import classes from "./AppLayout.module.css";
 
+/** ゲーム画面以外のページのタイトル(トップは「漢字謎り」) */
+const PAGE_TITLES: Readonly<Record<string, string>> = {
+  "/faq": "FAQ",
+  "/credits": "クレジット",
+};
+
 export function AppLayout() {
   const { pathname } = useLocation();
   const isTop = pathname === "/";
   const mode = modeOfPath(pathname);
-  // 初めて訪れたときは遊び方を自動で開く
-  const [howToOpened, setHowToOpened] = useState(() => !hasSeenHowTo());
+  const [howToOpened, setHowToOpened] = useState(false);
+  // 遊び方を一度でも閉じたことがあるか(トップ画面のボタンから開いた場合も含む)
+  const [howToSeen, setHowToSeen] = useState(hasSeenHowTo);
+  // まだ遊び方を見ていなければ、初めてゲーム画面を開いたときに自動で開く
+  const howToVisible = howToOpened || (mode !== undefined && !howToSeen);
 
   const closeHowTo = () => {
     markHowToSeen();
+    setHowToSeen(true);
     setHowToOpened(false);
   };
 
@@ -41,19 +51,26 @@ export function AppLayout() {
             </svg>
           </ActionIcon>
         )}
-        <Title order={1} className={classes.title}>
-          {mode ? MODE_LABELS[mode] : "漢字書き順クイズ"}
-        </Title>
+        {mode || PAGE_TITLES[pathname] ? (
+          <Title order={1} className={classes.title}>
+            {mode ? MODE_LABELS[mode] : PAGE_TITLES[pathname]}
+          </Title>
+        ) : (
+          <Title order={1} className={`${classes.title} ${classes.appName}`}>
+            漢字謎り
+          </Title>
+        )}
         <Button
-          variant="subtle"
+          variant="default"
           size="compact-sm"
-          className={classes.actions}
+          radius="md"
+          className={`${classes.actions} ${classes.howTo}`}
           onClick={() => setHowToOpened(true)}
         >
           遊び方
         </Button>
       </Group>
-      <HowToModal opened={howToOpened} onClose={closeHowTo} />
+      <HowToModal opened={howToVisible} onClose={closeHowTo} />
       <main>
         <Outlet />
       </main>

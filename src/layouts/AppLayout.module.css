@@ -5,6 +5,10 @@
 
 .header {
   position: relative;
+  /* タイトルやボタンの文字を選択できないようにする(手書きエリアからなぞったときも含む) */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   height: 52px;
   border-bottom: 1px solid var(--mantine-color-default-border);
   margin-bottom: var(--mantine-spacing-sm);
@@ -23,4 +27,21 @@
 .title {
   font-size: var(--mantine-font-size-lg);
   font-weight: 700;
+}
+
+/*
+ * アプリ名は手書き風フォント(Yomogi)。読み込めないときは通常の文字で表示する。
+ * Yomogi には太字がないので、ブラウザに太字を作らせる
+ */
+.appName {
+  font-family: "Yomogi", var(--mantine-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  font-synthesis: weight;
+  letter-spacing: 0.04em;
+}
+
+/* 「遊び方」は太字にせず、細い角丸の枠で囲んでボタンらしく見せる */
+.howTo {
+  font-weight: 400;
 }

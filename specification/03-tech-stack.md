@@ -21,6 +21,8 @@
 | ダークモード | Mantine の配色切り替え(OS の設定に合わせる) |
 | 状態管理 | Context API |
 | データの検証 | Zod(出題 JSON と localStorage の読み込み時) |
+| フォント | アプリ名のタイトルだけ Google Fonts の Yomogi(SIL Open Font License)。使う4文字だけを読み込み(`text=` で指定)、読み込めないときは通常のフォントで表示する |
+| データの読み込み | TanStack Query。端末がオフラインと判断されていても、まず読み込みを試す(`networkMode: "offlineFirst"`) |
 
 ### ルート
 
@@ -29,8 +31,10 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 | URL | 画面 |
 |---|---|
 | `#/` | トップ |
-| `#/daily/$difficulty` | ゲーム(今日の1字。`normal`(ふつう) / `hard`(難しい)) |
+| `#/daily/$difficulty` | ゲーム(今日の1文字。`normal`(ふつう) / `hard`(難しい)) |
 | `#/endless/$difficulty` | ゲーム(エンドレス。`normal` / `hard` / `oni`(鬼)) |
+| `#/faq` | FAQ |
+| `#/credits` | クレジット |
 
 モーダル(結果・成績・遊び方・難易度説明)には URL を割り当てない。
 
@@ -40,7 +44,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 - ヒントと書き順アニメーション: Canvas の上に SVG を重ねる。座標系は KanjiVG と同じ 109×109 の viewBox を使う
 - 書き順アニメーション: KanjiVG の各画の path を `stroke-dasharray` / `stroke-dashoffset` で順に描く
 
-### 今日の1字の選び方
+### 今日の1文字の選び方
 
 - 常用漢字の一覧を、固定のシードで決まった順番に並べ替えておく
 - サービス開始日からの経過日数(日本時間で数える)を問題番号とする
@@ -78,7 +82,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
   - 保存された修正は Claude が読み取り、`pnpm review:apply <JSON>` で `data/overrides.json` に取り込んでから出題データを生成し直す。自動推定と同じ値は修正として残さない
 - 出題データの形式は Zod のスキーマ(`src/lib/kanji-data.ts`)で定義し、生成時とアプリでの読み込み時の両方で検証する
 - 生成した JSON はリポジトリにコミットする。ダウンロードした元データはコミットしない
-- 元データ2つは CC BY-SA なので、アプリ内(遊び方モーダル)と README に出典とライセンスを書く。生成した出題データも CC BY-SA で配布する
+- 元データ2つは CC BY-SA なので、アプリ内(クレジットページ。トップ画面のフッターからリンク)と README に出典とライセンスを書く。生成した出題データも CC BY-SA で配布する
 
 ## 品質チェック
 
@@ -90,8 +94,18 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 
 ## デプロイ
 
-- GitHub Pages で公開する
-- `main` ブランチへのプッシュで GitHub Actions がビルドしてデプロイする
+- GitHub Pages で公開する(`https://ur0o.github.io/kanji-nazori/`)
+- ワークフローは `.github/workflows/deploy.yml`
+  - `main` ブランチへのプッシュとプルリクエストでは、`pnpm lint`・`pnpm test`・`pnpm build` だけを行う
+  - デプロイは、Actions の画面から `main` を手動で実行したときだけ行う(リリースまでは自動でデプロイしない)。チェックのどれかが失敗したらデプロイしない
+- Node.js 22 と、`package.json` の `packageManager` で指定した pnpm を使う
+- 公開するときは、リポジトリを公開にしてから Settings → Pages で Source を「GitHub Actions」にし、ワークフローを手動で実行する(無料プランでは非公開リポジトリで Pages を使えない)
+- SNS で共有したときの表示のため、`index.html` に OGP と X のカード(`summary`)のメタタグを置く
+  - タイトルは「漢字謎り」
+  - OGP の画像は `public/og-image.png`(1200×630。遊び方の「手」の例とタイトル)
+  - X のカードは小さな正方形の画像になるので、`public/og-image-square.png`(600×600。「手」の例だけ)を使う
+  - 画像と URL は公開先の絶対 URL(`https://ur0o.github.io/kanji-nazori/`)で書く。公開先が変わったら書き換える
+- ビルドは相対パス(Vite の `base: "./"`)で、URL はハッシュ形式なので、サブパスで公開しても追加の設定はいらない
 
 ## ディレクトリ構成
 

@@ -24,6 +24,9 @@ const queryClient = new QueryClient({
       staleTime: Infinity,
       gcTime: Infinity,
       refetchOnWindowFocus: false,
+      // 端末がオフラインと判断されていても、まず読み込みを試す。
+      // テスト用ページは全データを読み込み済みなので、そのまま続けられる
+      networkMode: "offlineFirst",
     },
   },
 });

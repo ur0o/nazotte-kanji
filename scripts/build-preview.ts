@@ -18,7 +18,7 @@ import path from "node:path";
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT_DIR = path.join(ROOT, "dist-preview");
 const DATA_DIR = path.join(OUT_DIR, "data");
-const TITLE = "漢字書き順クイズ テスト版";
+const TITLE = "漢字謎り テスト版";
 
 // 出題データへのリクエストを data/bundle.json の中身で返す。
 // ビューアーのテーマ(data-theme)が明示されていれば、Mantine の配色にも反映する。
@@ -84,6 +84,12 @@ function rewriteHtml(): void {
       /<(?:script|link)\b[^>]*(?:src|href)="\.\/assets\/[^"]+"[^>]*>(?:<\/script>)?/g,
     ),
   ].map((match) => match[0]);
+  // Google Fonts はプレビューでも読み込める(外部のスタイルシートとして許可されている)
+  const fonts = [
+    ...html.matchAll(
+      /<link\b[^>]*href="https:\/\/fonts\.(?:googleapis|gstatic)\.com[^"]*"[^>]*>/g,
+    ),
+  ].map((match) => match[0].replace(/\s+/g, " "));
   if (assets.length === 0)
     throw new Error("index.html にビルド済みのファイルが見つかりません");
   writeFileSync(
@@ -92,6 +98,7 @@ function rewriteHtml(): void {
       `<title>${TITLE}</title>`,
       '<meta name="description" content="漢字の各画の終わり方(とめ・はね・はらい)だけを手がかりに、元の漢字を当てるクイズのテスト版" />',
       '<script src="./preview-shim.js"></script>',
+      ...fonts,
       ...assets,
       '<div id="root"></div>',
       "",

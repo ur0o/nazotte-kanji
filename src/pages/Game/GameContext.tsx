@@ -11,6 +11,7 @@ import { dailyKanji, dailyNumber } from "../../lib/daily.ts";
 import type { DailyDifficulty, Difficulty } from "../../lib/difficulty.ts";
 import {
   addGuess,
+  retire as retireRound,
   roundStatus,
   type GameStatus,
   type Round,
@@ -33,13 +34,13 @@ interface GameContextValue {
   mode: GameMode;
   round: Round;
   status: GameStatus;
-  /** 今日の1字の問題番号 */
-  dailyNumber: number | undefined;
   /** エンドレスの連続正解数 */
   streak: number;
   /** エンドレスの、今回の挑戦を始める前の自己ベスト */
   previousBest: number;
   submitGuess: (guess: string) => void;
+  /** リタイアする(その問題を不正解にする) */
+  retire: () => void;
   /** 次の問題へ(エンドレスで正解したとき) */
   nextRound: () => void;
   /** 最初からやり直す(エンドレスで不正解になったとき) */
@@ -68,7 +69,7 @@ function newEndlessRound(
   return { kanji, difficulty, guesses: [] };
 }
 
-/** 今日の1字。挑戦の途中や結果が保存されていればそれを使う */
+/** 今日の1文字。挑戦の途中や結果が保存されていればそれを使う */
 function dailyRound(
   number: number,
   difficulty: DailyDifficulty,
@@ -134,6 +135,17 @@ export function GameProvider({
     [round, number, dailyDifficulty, streak, difficulty],
   );
 
+  const retire = useCallback(() => {
+    const next = retireRound(round);
+    if (next === round) return;
+    setRound(next);
+    if (number !== undefined && dailyDifficulty !== undefined) {
+      updateSavedData((data) =>
+        saveDailyRound(data, number, dailyDifficulty, next),
+      );
+    }
+  }, [round, number, dailyDifficulty]);
+
   const nextRound = useCallback(() => {
     if (type !== "endless") return;
     setRound(newEndlessRound(difficulty, kanjiList));
@@ -151,20 +163,20 @@ export function GameProvider({
       mode,
       round,
       status: roundStatus(round),
-      dailyNumber: number,
       streak,
       previousBest,
       submitGuess,
+      retire,
       nextRound,
       restart,
     }),
     [
       mode,
       round,
-      number,
       streak,
       previousBest,
       submitGuess,
+      retire,
       nextRound,
       restart,
     ],

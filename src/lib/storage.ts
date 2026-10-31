@@ -13,11 +13,12 @@ const roundSchema = z.object({
   kanji: z.string(),
   difficulty: difficultySchema,
   guesses: z.array(z.string()),
+  retired: z.boolean().optional(),
 });
 
 const savedDataSchema = z.object({
   version: z.literal(3),
-  /** 今日の1字の記録。難易度ごとに、問題番号をキーにする */
+  /** 今日の1文字の記録。難易度ごとに、問題番号をキーにする */
   daily: z.object({
     normal: z.record(z.string(), roundSchema),
     hard: z.record(z.string(), roundSchema),

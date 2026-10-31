@@ -1,0 +1,41 @@
+.item {
+  border: 1px solid var(--mantine-color-default-border);
+  background: var(--mantine-color-body);
+}
+
+.item[data-active] {
+  border-color: var(--mantine-color-text);
+}
+
+.control {
+  padding-inline: var(--mantine-spacing-md);
+}
+
+.question {
+  font-weight: 700;
+  line-height: 1.5;
+  /* 折り返した行を「Q.」の後ろにそろえる */
+  padding-left: 1.6em;
+  text-indent: -1.6em;
+  /* 質問の頭に Q を添える */
+  &::before {
+    content: "Q.";
+    display: inline-block;
+    width: 1.6em;
+    text-indent: 0;
+    color: var(--mantine-color-dimmed);
+  }
+}
+
+.answer {
+  padding-inline: var(--mantine-spacing-md);
+  font-size: var(--mantine-font-size-sm);
+  line-height: 1.7;
+  /* 文字列の回答の改行をそのまま表示する */
+  white-space: pre-line;
+
+  & a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}

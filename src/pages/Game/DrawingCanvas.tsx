@@ -90,6 +90,8 @@ export function DrawingCanvas({
 
   const handlePointerDown = (event: PointerEvent<HTMLCanvasElement>): void => {
     if (disabled || !event.isPrimary || event.button !== 0) return;
+    // なぞる操作で、周りの文字の選択が始まらないようにする
+    event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
     currentLine.current = [toPoint(event)];
     redraw();
@@ -116,6 +118,8 @@ export function DrawingCanvas({
       onPointerMove={handlePointerMove}
       onPointerUp={finishLine}
       onPointerCancel={finishLine}
+      // 長押しで出るメニュー(画像の保存など)を出さない
+      onContextMenu={(event) => event.preventDefault()}
       aria-label="メモ用の手書きエリア"
     />
   );
