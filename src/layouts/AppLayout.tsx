@@ -16,11 +16,15 @@ export function AppLayout() {
   const { pathname } = useLocation();
   const isTop = pathname === "/";
   const mode = modeOfPath(pathname);
-  // 初めて訪れたときは遊び方を自動で開く
-  const [howToOpened, setHowToOpened] = useState(() => !hasSeenHowTo());
+  const [howToOpened, setHowToOpened] = useState(false);
+  // 遊び方を一度でも閉じたことがあるか(トップ画面のボタンから開いた場合も含む)
+  const [howToSeen, setHowToSeen] = useState(hasSeenHowTo);
+  // まだ遊び方を見ていなければ、初めてゲーム画面を開いたときに自動で開く
+  const howToVisible = howToOpened || (mode !== undefined && !howToSeen);
 
   const closeHowTo = () => {
     markHowToSeen();
+    setHowToSeen(true);
     setHowToOpened(false);
   };
 
@@ -66,7 +70,7 @@ export function AppLayout() {
           遊び方
         </Button>
       </Group>
-      <HowToModal opened={howToOpened} onClose={closeHowTo} />
+      <HowToModal opened={howToVisible} onClose={closeHowTo} />
       <main>
         <Outlet />
       </main>
