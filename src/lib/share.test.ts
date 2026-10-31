@@ -8,7 +8,7 @@ describe("dailyShareText", () => {
       "https://example.com/",
     );
     expect(text).toBe(
-      "今日の1文字 難しい 3/5\n#漢字謎り\nhttps://example.com/",
+      "今日の1文字 難しい 3/5\n#nazotte漢字\nhttps://example.com/",
     );
     expect(text).not.toContain("森");
   });
@@ -17,7 +17,7 @@ describe("dailyShareText", () => {
 describe("endlessShareText", () => {
   it("難易度と連続正解数を書く", () => {
     expect(endlessShareText("oni", 12, "https://example.com/")).toBe(
-      "エンドレス 鬼 連続正解 12\n#漢字謎り\nhttps://example.com/",
+      "エンドレス 鬼 連続正解 12\n#nazotte漢字\nhttps://example.com/",
     );
   });
 });

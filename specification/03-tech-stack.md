@@ -21,7 +21,7 @@
 | ダークモード | Mantine の配色切り替え(OS の設定に合わせる) |
 | 状態管理 | Context API |
 | データの検証 | Zod(出題 JSON と localStorage の読み込み時) |
-| フォント | アプリ名のタイトルだけ Google Fonts の Yomogi(SIL Open Font License)。使う4文字だけを読み込み(`text=` で指定)、読み込めないときは通常のフォントで表示する |
+| フォント | アプリ名のタイトルだけ Google Fonts の Yomogi(SIL Open Font License)。タイトルに使う文字だけを読み込み(`text=` で指定)、読み込めないときは通常のフォントで表示する |
 | データの読み込み | TanStack Query。端末がオフラインと判断されていても、まず読み込みを試す(`networkMode: "offlineFirst"`) |
 
 ### ルート
@@ -101,7 +101,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 - Node.js 22 と、`package.json` の `packageManager` で指定した pnpm を使う
 - 公開するときは、リポジトリを公開にしてから Settings → Pages で Source を「GitHub Actions」にし、ワークフローを手動で実行する(無料プランでは非公開リポジトリで Pages を使えない)
 - SNS で共有したときの表示のため、`index.html` に OGP と X のカード(`summary`)のメタタグを置く
-  - タイトルは「漢字謎り」
+  - タイトルは「nazotte漢字」
   - OGP の画像は `public/og-image.png`(1200×630。遊び方の「手」の例とタイトル)
   - X のカードは小さな正方形の画像になるので、`public/og-image-square.png`(600×600。「手」の例だけ)を使う
   - 画像と URL は公開先の絶対 URL(`https://ur0o.github.io/kanji-nazori/`)で書く。公開先が変わったら書き換える
