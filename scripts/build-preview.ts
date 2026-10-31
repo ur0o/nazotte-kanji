@@ -84,6 +84,12 @@ function rewriteHtml(): void {
       /<(?:script|link)\b[^>]*(?:src|href)="\.\/assets\/[^"]+"[^>]*>(?:<\/script>)?/g,
     ),
   ].map((match) => match[0]);
+  // Google Fonts はプレビューでも読み込める(外部のスタイルシートとして許可されている)
+  const fonts = [
+    ...html.matchAll(
+      /<link\b[^>]*href="https:\/\/fonts\.(?:googleapis|gstatic)\.com[^"]*"[^>]*>/g,
+    ),
+  ].map((match) => match[0].replace(/\s+/g, " "));
   if (assets.length === 0)
     throw new Error("index.html にビルド済みのファイルが見つかりません");
   writeFileSync(
@@ -92,6 +98,7 @@ function rewriteHtml(): void {
       `<title>${TITLE}</title>`,
       '<meta name="description" content="漢字の各画の終わり方(とめ・はね・はらい)だけを手がかりに、元の漢字を当てるクイズのテスト版" />',
       '<script src="./preview-shim.js"></script>',
+      ...fonts,
       ...assets,
       '<div id="root"></div>',
       "",

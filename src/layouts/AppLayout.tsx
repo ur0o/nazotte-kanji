@@ -47,9 +47,15 @@ export function AppLayout() {
             </svg>
           </ActionIcon>
         )}
-        <Title order={1} className={classes.title}>
-          {mode ? MODE_LABELS[mode] : (PAGE_TITLES[pathname] ?? "漢字謎り")}
-        </Title>
+        {mode || PAGE_TITLES[pathname] ? (
+          <Title order={1} className={classes.title}>
+            {mode ? MODE_LABELS[mode] : PAGE_TITLES[pathname]}
+          </Title>
+        ) : (
+          <Title order={1} className={`${classes.title} ${classes.appName}`}>
+            漢字謎り
+          </Title>
+        )}
         <Button
           variant="subtle"
           size="compact-sm"

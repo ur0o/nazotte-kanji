@@ -28,3 +28,11 @@
   font-size: var(--mantine-font-size-lg);
   font-weight: 700;
 }
+
+/* アプリ名は手書き風フォント(Yomogi)。読み込めないときは通常の文字で表示する */
+.appName {
+  font-family: "Yomogi", var(--mantine-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}

@@ -21,6 +21,7 @@
 | ダークモード | Mantine の配色切り替え(OS の設定に合わせる) |
 | 状態管理 | Context API |
 | データの検証 | Zod(出題 JSON と localStorage の読み込み時) |
+| フォント | アプリ名のタイトルだけ Google Fonts の Yomogi(SIL Open Font License)。使う4文字だけを読み込み(`text=` で指定)、読み込めないときは通常のフォントで表示する |
 | データの読み込み | TanStack Query。端末がオフラインと判断されていても、まず読み込みを試す(`networkMode: "offlineFirst"`) |
 
 ### ルート
