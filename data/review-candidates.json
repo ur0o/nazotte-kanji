@@ -1211,25 +1211,11 @@
     "reason": "画の種類の候補が複数: ㇀/㇐"
   },
   {
-    "kanji": "控",
-    "stroke": 8,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
     "kanji": "搬",
     "stroke": 9,
     "type": "㇀/㇐",
     "estimated": "harai",
     "reason": "画の種類の候補が複数: ㇀/㇐"
-  },
-  {
-    "kanji": "搾",
-    "stroke": 8,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
   },
   {
     "kanji": "擁",
@@ -2546,69 +2532,6 @@
     "type": "㇔/㇏",
     "estimated": "tome",
     "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "究",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "空",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "突",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "窃",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "窒",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "窓",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "窟",
-    "stroke": 5,
-    "type": "㇟/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟/㇏"
-  },
-  {
-    "kanji": "窮",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
-  },
-  {
-    "kanji": "窯",
-    "stroke": 5,
-    "type": "㇟a/㇏",
-    "estimated": "hane",
-    "reason": "画の種類の候補が複数: ㇟a/㇏"
   },
   {
     "kanji": "端",
