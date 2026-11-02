@@ -2,12 +2,12 @@ import { DAILY_DIFFICULTIES, type DailyDifficulty } from "./difficulty.ts";
 import { createRandom, shuffle } from "./random.ts";
 
 /** 第1回の日付(日本時間)。この日を問題番号 1 とする */
-export const LAUNCH_DATE = "2026-10-26";
+export const LAUNCH_DATE = "2026-11-03";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
 /** 出題順を決めるシード。変えると全員の出題順が変わるので、公開後は変えない */
-const ORDER_SEED = 20261026;
+const ORDER_SEED = 20261103;
 
 /** 日本時間で数えた、1970-01-01 からの日数 */
 function jstEpochDay(date: Date): number {
