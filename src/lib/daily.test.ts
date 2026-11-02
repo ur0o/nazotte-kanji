@@ -5,10 +5,10 @@ import { DAILY_DIFFICULTIES } from "./difficulty.ts";
 describe("dailyNumber", () => {
   it("第1回の日を 1 とし、日本時間の 0 時に切り替わる", () => {
     // 日本時間 2026-10-26 00:00 = UTC 2026-10-25 15:00
-    expect(dailyNumber(new Date("2026-10-25T15:00:00Z"))).toBe(1);
-    expect(dailyNumber(new Date("2026-10-26T14:59:59Z"))).toBe(1);
-    expect(dailyNumber(new Date("2026-10-26T15:00:00Z"))).toBe(2);
-    expect(dailyNumber(new Date("2027-10-26T00:00:00Z"))).toBe(366);
+    expect(dailyNumber(new Date("2026-11-02T15:00:00Z"))).toBe(1);
+    expect(dailyNumber(new Date("2026-11-03T14:59:59Z"))).toBe(1);
+    expect(dailyNumber(new Date("2026-11-03T15:00:00Z"))).toBe(2);
+    expect(dailyNumber(new Date("2027-11-03T00:00:00Z"))).toBe(366);
   });
 
   it("第1回より前は 1 にする", () => {
@@ -18,8 +18,8 @@ describe("dailyNumber", () => {
 
 describe("msUntilNextDaily", () => {
   it("次の日本時間 0 時までの時間を返す", () => {
-    expect(msUntilNextDaily(new Date("2026-10-26T14:59:59Z"))).toBe(1000);
-    expect(msUntilNextDaily(new Date("2026-10-26T15:00:00Z"))).toBe(
+    expect(msUntilNextDaily(new Date("2026-11-03T14:59:59Z"))).toBe(1000);
+    expect(msUntilNextDaily(new Date("2026-11-03T15:00:00Z"))).toBe(
       24 * 60 * 60 * 1000,
     );
   });
