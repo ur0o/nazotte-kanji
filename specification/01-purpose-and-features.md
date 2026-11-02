@@ -1,7 +1,7 @@
 # プロダクトの目的・機能
 
 - アプリ名: nazotte漢字(なぞってかんじ)
-- リポジトリ: `ur0o/kanji-nazori`
+- リポジトリ: `ur0o/nazotte-kanji`
 
 ## 目的
 
