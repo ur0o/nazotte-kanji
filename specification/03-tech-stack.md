@@ -94,7 +94,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
 
 ## デプロイ
 
-- GitHub Pages で公開する(`https://ur0o.github.io/kanji-nazori/`)
+- GitHub Pages で公開する(`https://ur0o.github.io/nazotte-kanji/`)
 - ワークフローは `.github/workflows/deploy.yml`
   - `main` ブランチへのプッシュとプルリクエストでは、`pnpm lint`・`pnpm test`・`pnpm build` だけを行う
   - デプロイは、Actions の画面から `main` を手動で実行したときだけ行う(リリースまでは自動でデプロイしない)。チェックのどれかが失敗したらデプロイしない
@@ -104,7 +104,7 @@ GitHub Pages ではページを再読み込みするとパスが見つからな�
   - タイトルは「nazotte漢字」
   - OGP の画像は `public/og-image.png`(1200×630。遊び方の「手」の例とタイトル)
   - X のカードは小さな正方形の画像になるので、`public/og-image-square.png`(600×600。「手」の例だけ)を使う
-  - 画像と URL は公開先の絶対 URL(`https://ur0o.github.io/kanji-nazori/`)で書く。公開先が変わったら書き換える
+  - 画像と URL は公開先の絶対 URL(`https://ur0o.github.io/nazotte-kanji/`)で書く。公開先が変わったら書き換える
 - ビルドは相対パス(Vite の `base: "./"`)で、URL はハッシュ形式なので、サブパスで公開しても追加の設定はいらない
 
 ## ディレクトリ構成
