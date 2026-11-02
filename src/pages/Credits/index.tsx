@@ -40,6 +40,7 @@ export function CreditsPage() {
   return (
     <Stack gap="xl" py="md">
       <Section title="利用データ">
+        以下のデータを利用して出題データを作成しています。
         <List size="sm" spacing="xs">
           <List.Item>
             <Text size="sm" fw={700} span>
@@ -61,18 +62,16 @@ export function CreditsPage() {
             <br />© Electronic Dictionary Research and Development Group、
             <ExternalLink href={CC_BY_SA_4}>CC BY-SA 4.0</ExternalLink>
             <br />
-            JSON に変換した
+            （取得元）
             <ExternalLink href="https://github.com/davidluzgouveia/kanji-data">
               davidluzgouveia/kanji-data
             </ExternalLink>
-            を経由して取得しています。
           </List.Item>
         </List>
       </Section>
-      </Section>
       <Section title="ライセンス">
         <Text size="sm">
-          出題データ(上記の元データを加工したもの)は、
+          出題データは、
           <ExternalLink href={CC_BY_SA_4}>CC BY-SA 4.0</ExternalLink>
           のもとで利用できます。
         </Text>

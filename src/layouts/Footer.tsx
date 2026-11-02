@@ -31,6 +31,7 @@ export function Footer() {
         >
           クレジット
         </Anchor>
+        <Text>© 2026 uro </Text>
       </nav>
     </footer>
   );
