@@ -1,4 +1,4 @@
-import { Anchor, Text } from "@mantine/core";
+import { Anchor } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
 import classes from "./Footer.module.css";
 
@@ -10,20 +10,7 @@ const X_ACCOUNT_LABEL = "uro";
 export function Footer() {
   return (
     <footer className={classes.root}>
-      <nav className={classes.links} aria-label="サイトの情報">
-        {X_ACCOUNT_URL && X_ACCOUNT_LABEL && (
-          <>
-            作者:
-            <Anchor
-              href={X_ACCOUNT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              inherit
-            >
-              {X_ACCOUNT_LABEL}
-            </Anchor>
-          </>
-        )}
+      <nav className={classes.row} aria-label="サイトの情報">
         <Anchor renderRoot={(props) => <Link to="/faq" {...props} />} inherit>
           FAQ
         </Anchor>
@@ -33,8 +20,23 @@ export function Footer() {
         >
           クレジット
         </Anchor>
-        <Text>© 2026 uro </Text>
       </nav>
+      <div className={classes.row}>
+        {X_ACCOUNT_URL && X_ACCOUNT_LABEL && (
+          <span>
+            作者:
+            <Anchor
+              href={X_ACCOUNT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              inherit
+            >
+              {X_ACCOUNT_LABEL}
+            </Anchor>
+          </span>
+        )}
+        <span>© 2026 uro</span>
+      </div>
     </footer>
   );
 }

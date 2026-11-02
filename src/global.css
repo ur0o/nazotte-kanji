@@ -1,6 +1,6 @@
 :root {
   /* 画面下端に固定するフッターの高さ(端末の安全領域の分は別に足す) */
-  --footer-height: 36px;
+  --footer-height: 48px;
   --kanji-font-family:
     "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
     "Noto Serif CJK JP", serif;
