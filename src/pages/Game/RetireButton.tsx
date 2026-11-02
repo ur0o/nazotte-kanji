@@ -14,7 +14,7 @@ export function RetireButton() {
         <Button
           variant="subtle"
           color="gray"
-          size="compact-sm"
+          size="compact-xs"
           onClick={() => setConfirming(true)}
         >
           リタイア

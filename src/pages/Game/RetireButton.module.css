@@ -1,5 +1,6 @@
+/* 回答フォームから少し離して中央に置く */
 .root {
   display: flex;
-  justify-content: flex-end;
-  margin-top: var(--mantine-spacing-xs);
+  justify-content: center;
+  margin-top: var(--mantine-spacing-lg);
 }
