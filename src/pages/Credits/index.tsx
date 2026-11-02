@@ -39,10 +39,7 @@ const CC_BY_SA_4 = "https://creativecommons.org/licenses/by-sa/4.0/deed.ja";
 export function CreditsPage() {
   return (
     <Stack gap="xl" py="md">
-      <Section title="出題データの元データ">
-        <Text size="sm">
-          このクイズの出題データは、次のデータを元に作成しています。
-        </Text>
+      <Section title="利用データ">
         <List size="sm" spacing="xs">
           <List.Item>
             <Text size="sm" fw={700} span>
@@ -72,34 +69,12 @@ export function CreditsPage() {
           </List.Item>
         </List>
       </Section>
-      <Section title="加工の内容">
-        <List size="sm" spacing="xs">
-          <List.Item>
-            KanjiVG
-            の各画の線から、画の終わる位置と、終わるときの向き(8方向)を求めました
-          </List.Item>
-          <List.Item>
-            KanjiVG
-            の画の種類から各画の終わり方(とめ・はね・はらい)を推定しました。推定の誤りは手で修正することがあります
-          </List.Item>
-          <List.Item>
-            KANJIDIC2
-            の読みのうち、音読みをカタカナに直し、常用漢字の分だけを取り出しました
-          </List.Item>
-        </List>
       </Section>
       <Section title="ライセンス">
         <Text size="sm">
           出題データ(上記の元データを加工したもの)は、
           <ExternalLink href={CC_BY_SA_4}>CC BY-SA 4.0</ExternalLink>
           のもとで利用できます。
-        </Text>
-        <Text size="sm">
-          プログラムは
-          <ExternalLink href="https://opensource.org/license/mit">
-            MIT License
-          </ExternalLink>
-          です。© 2026 ur0o
         </Text>
       </Section>
     </Stack>

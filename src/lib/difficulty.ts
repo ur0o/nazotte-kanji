@@ -33,7 +33,7 @@ export const DIFFICULTY_HINTS: Readonly<Record<Difficulty, DifficultyHints>> = {
 };
 
 export const DIFFICULTY_DESCRIPTIONS: Readonly<Record<Difficulty, string>> = {
-  normal: "書き順の番号と、終わるときの向き(矢印)が表示されます",
+  normal: "書き順の番号と、終わるときの方向(矢印)が表示されます",
   hard: "書き順の番号だけが表示されます",
   oni: "書き順の番号も向きも表示されません。エンドレスだけで選べます",
 };

@@ -110,11 +110,10 @@ const PAGES: readonly Page[] = [
       <Stack gap="sm">
         <OverviewDiagram />
         <Text size="sm">
-          正方形には、漢字の各画が終わる位置にヒントの記号が表示されます。指やマウスでメモも書けます。
+          漢字の各画が終わる位置にヒントの記号が表示されます。また、タップやマウスでメモを書けます。
         </Text>
         <Text size="sm">
-          下の入力欄に漢字を1文字入れて回答します。回答は{MAX_GUESSES}
-          回までできます。
+          答えがわかったら、下の入力欄で回答してください。{MAX_GUESSES}回まで回答可能です。
         </Text>
       </Stack>
     ),

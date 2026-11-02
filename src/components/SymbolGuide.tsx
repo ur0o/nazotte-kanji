@@ -62,7 +62,7 @@ export function SymbolGuide() {
   return (
     <Stack gap="md">
       <Text size="sm">
-        正方形の中の記号は、それぞれの画が終わる位置と、どのように終わるかを表します。
+        記号はそれぞれの画が終わる位置と、終わり方を表します。
       </Text>
       <Stack gap="sm">
         {ENDING_GUIDES.map((guide) => (

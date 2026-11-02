@@ -123,7 +123,7 @@ export function TopPage() {
   return (
     <Stack gap="xl" py="lg">
       <Text ta="center" c="dimmed">
-        各画の終わる位置と、とめ・はね・はらいだけを手がかりに漢字を当てよう
+        各画の終わる位置と、終わり方（とめ・はね・はらい）を手がかりに漢字を当てよう
       </Text>
       <Stack gap="xs">
         <Title order={2} size="h4">
@@ -152,7 +152,7 @@ export function TopPage() {
       >
         <Stack gap="sm">
           <Text size="sm">
-            どの難易度でも、各画の終わる位置と、とめ・はね・はらいは表示されます。出題される漢字の範囲(常用漢字)も同じです。
+            各画の終わる位置と、とめ・はね・はらいはすべての難易度で表示されます。
           </Text>
           {DIFFICULTIES.map((difficulty) => (
             <Group key={difficulty} gap="sm" wrap="nowrap">
