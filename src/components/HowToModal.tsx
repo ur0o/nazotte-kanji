@@ -195,7 +195,7 @@ function HowToCarousel({ onClose }: { onClose: () => void }) {
           前へ
         </Button>
         {isLast ? (
-          <Button onClick={onClose}>はじめる</Button>
+          <Button onClick={onClose}>閉じる</Button>
         ) : (
           <Button onClick={() => go(page + 1)}>次へ</Button>
         )}

@@ -22,7 +22,7 @@ export function DrawingTools({ lines, onLinesChange }: DrawingTools.Props) {
           disabled={empty}
           onClick={() => onLinesChange(lines.slice(0, -1))}
         >
-          元に戻す
+          1回戻す
         </Button>
         <Button
           variant="default"
