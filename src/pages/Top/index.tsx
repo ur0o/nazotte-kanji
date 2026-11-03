@@ -42,7 +42,15 @@ function ButtonLabel({
   return (
     <span className={classes.difficulty}>
       {DIFFICULTY_LABELS[difficulty]}
-      {result && <span className={classes.result}>{result}</span>}
+      {result && (
+        <>
+          <span className={classes.result}>{result}</span>
+          {/* 横幅が狭いときは結果の代わりに印だけを付ける */}
+          <span className={classes.resultMark} aria-hidden>
+            *
+          </span>
+        </>
+      )}
     </span>
   );
 }
@@ -58,6 +66,7 @@ function DailyButtons({
         <Button
           key={difficulty}
           size="lg"
+          px="xs"
           aria-label={`${MODE_LABELS.daily} ${DIFFICULTY_LABELS[difficulty]}`}
           renderRoot={(props) => (
             <Link to="/daily/$difficulty" params={{ difficulty }} {...props} />
@@ -77,6 +86,7 @@ function EndlessButtons() {
         <Button
           key={difficulty}
           size="lg"
+          px="xs"
           variant="default"
           aria-label={`${MODE_LABELS.endless} ${DIFFICULTY_LABELS[difficulty]}`}
           renderRoot={(props) => (

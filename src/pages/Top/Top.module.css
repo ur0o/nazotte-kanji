@@ -1,4 +1,5 @@
-/* どちらのモードもボタンを3等分の幅にそろえ、左から詰める */
+/* どちらのモードもボタンを3等分の幅にそろえ、左から詰める。
+   幅が狭くても文字が切れないよう、ボタンの左右の余白は小さくする(px="xs") */
 .buttons {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -15,6 +16,22 @@
   font-size: var(--mantine-font-size-xs);
   font-weight: 400;
   opacity: 0.8;
+}
+
+.resultMark {
+  display: none;
+  margin-left: -4px;
+}
+
+/* 横幅が狭いとき(スマートフォンなど)は、結果(例: 3/5)の代わりに「*」だけを付ける */
+@media (max-width: $mantine-breakpoint-xs) {
+  .result {
+    display: none;
+  }
+
+  .resultMark {
+    display: inline;
+  }
 }
 
 .sample {
