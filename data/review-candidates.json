@@ -588,13 +588,6 @@
     "reason": "画の種類の候補が複数: ㇔/㇏"
   },
   {
-    "kanji": "料",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
     "kanji": "斜",
     "stroke": 2,
     "type": "㇔/㇏",
@@ -1155,132 +1148,6 @@
     "reason": "画の種類の候補が複数: ㇔/㇏"
   },
   {
-    "kanji": "笑",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "笛",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "符",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "第",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "筆",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "等",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "筋",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "筒",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "答",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "策",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "箇",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "箋",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "算",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "管",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "箱",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "箸",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "節",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "範",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
     "kanji": "範",
     "stroke": 15,
     "type": "㇟/㇑",
@@ -1288,46 +1155,11 @@
     "reason": "画の種類の候補が複数: ㇟/㇑"
   },
   {
-    "kanji": "築",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "篤",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "簡",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "簿",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
     "kanji": "簿",
     "stroke": 12,
     "type": "㇕a/㇆",
     "estimated": "tome",
     "reason": "画の種類の候補が複数: ㇕a/㇆"
-  },
-  {
-    "kanji": "籍",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
   },
   {
     "kanji": "籍",
@@ -1344,78 +1176,8 @@
     "reason": "画の種類の候補が複数: ㇔/㇏"
   },
   {
-    "kanji": "籠",
-    "stroke": 6,
-    "type": "㇒/㇚",
-    "estimated": "harai",
-    "reason": "画の種類の候補が複数: ㇒/㇚"
-  },
-  {
-    "kanji": "粉",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "粋",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "粒",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "粗",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "粘",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
     "kanji": "粛",
     "stroke": 9,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "粧",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "精",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "糖",
-    "stroke": 6,
-    "type": "㇔/㇏",
-    "estimated": "tome",
-    "reason": "画の種類の候補が複数: ㇔/㇏"
-  },
-  {
-    "kanji": "糧",
-    "stroke": 6,
     "type": "㇔/㇏",
     "estimated": "tome",
     "reason": "画の種類の候補が複数: ㇔/㇏"

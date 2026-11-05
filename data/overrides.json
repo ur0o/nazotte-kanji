@@ -33,6 +33,12 @@
       "ending": "tome"
     }
   },
+  "料": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "暦": {
     "6": {
       "ending": "tome",
@@ -612,8 +618,204 @@
       "ending": "tome"
     }
   },
+  "笑": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "笛": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "符": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "第": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "筆": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "等": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "筋": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "筒": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "答": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "策": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "箇": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "箋": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "算": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "管": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
   "箱": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    },
     "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "箸": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "節": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "範": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "築": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "篤": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "簡": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "簿": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "籍": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "籠": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "粉": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "粋": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "粒": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "粗": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "粘": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "粧": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "精": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "糖": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "糧": {
+    "6": {
       "ending": "tome",
       "direction": "SE"
     }
