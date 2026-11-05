@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   endDirection,
   estimateEnding,
+  isRisingStroke,
   pointBeforeEnd,
   toDirection,
 } from "./stroke.ts";
@@ -91,8 +92,24 @@ describe("estimateEnding", () => {
     expect(estimateEnding("㇆/㇚")).toEqual({ ending: "hane" });
   });
 
+  it("右上に跳ね上げる画(提)は、候補が複数でもはねにして確認対象にしない", () => {
+    expect(estimateEnding("㇀")).toEqual({ ending: "hane" });
+    expect(estimateEnding("㇀/㇐")).toEqual({ ending: "hane" });
+    expect(estimateEnding("㇀/㇏")).toEqual({ ending: "hane" });
+  });
+
   it("画の種類が未設定・未知のときは確認対象にする", () => {
     expect(estimateEnding(undefined).reviewReason).toBeDefined();
     expect(estimateEnding("X").reviewReason).toBeDefined();
+  });
+});
+
+describe("isRisingStroke", () => {
+  it("最初の候補が提(㇀)なら右上に跳ね上げる画とみなす", () => {
+    expect(isRisingStroke("㇀")).toBe(true);
+    expect(isRisingStroke("㇀/㇐")).toBe(true);
+    expect(isRisingStroke("㇐/㇀")).toBe(false);
+    expect(isRisingStroke("㇐")).toBe(false);
+    expect(isRisingStroke(undefined)).toBe(false);
   });
 });

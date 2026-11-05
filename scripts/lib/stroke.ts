@@ -78,7 +78,7 @@ export function endDirection(
  * 日本の学校で教える字形を基準にしている。
  */
 const ENDING_BY_STROKE_TYPE: Readonly<Record<string, Ending>> = {
-  "㇀": "harai", // 提
+  "㇀": "hane", // 提(土へんの3画目、金へんの8画目など、右上に跳ね上げる画)
   "㇁": "hane", // 彎鉤
   "㇂": "hane", // 斜鉤
   "㇃": "hane", // 臥鉤
@@ -88,7 +88,7 @@ const ENDING_BY_STROKE_TYPE: Readonly<Record<string, Ending>> = {
   "㇇": "harai", // 横撇
   "㇈": "hane", // 横折彎鉤
   "㇉": "hane", // 竪折彎鉤
-  "㇊": "harai", // 横折提
+  "㇊": "hane", // 横折提(最後に右上へ跳ね上げる)
   "㇋": "harai", // 横折折撇
   "㇌": "hane", // 横撇彎鉤
   "㇍": "tome", // 横折彎
@@ -114,6 +114,17 @@ const ENDING_BY_STROKE_TYPE: Readonly<Record<string, Ending>> = {
   "㇡": "hane", // 竪折折鉤
 };
 
+/** 右上に跳ね上げる画(提)の種類 */
+const RISING_STROKE_TYPE = "㇀";
+
+/** 右上に跳ね上げる画の、終わるときの向き。線の形によらず右上にそろえる */
+export const RISING_STROKE_DIRECTION: Direction = "NE";
+
+/** KanjiVG の画の種類が、右上に跳ね上げる画(提)かどうか */
+export function isRisingStroke(strokeType: string | undefined): boolean {
+  return [...(strokeType?.split("/")[0] ?? "")][0] === RISING_STROKE_TYPE;
+}
+
 export interface EndingEstimate {
   ending: Ending;
   /** 自動推定に自信がなく、人の目で確認すべきときの理由 */
@@ -131,6 +142,8 @@ export function estimateEnding(strokeType: string | undefined): EndingEstimate {
   }
   const candidates = strokeType.split("/");
   const base = [...(candidates[0] ?? "")][0] ?? "";
+  // 右上に跳ね上げる画は、横画(㇐)などとの候補があっても、確認のうえはねと決めている
+  if (base === RISING_STROKE_TYPE) return { ending: "hane" };
   const ending = ENDING_BY_STROKE_TYPE[base];
   if (!ending) {
     return { ending: "tome", reviewReason: `未知の画の種類: ${strokeType}` };
