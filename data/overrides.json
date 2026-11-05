@@ -23,6 +23,12 @@
       "direction": "NW"
     }
   },
+  "廊": {
+    "11": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
   "想": {
     "4": {
       "ending": "tome",
@@ -838,6 +844,78 @@
       "direction": "SE"
     }
   },
+  "那": {
+    "6": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "邦": {
+    "6": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "邪": {
+    "7": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "邸": {
+    "7": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "郊": {
+    "8": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "郎": {
+    "8": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "郡": {
+    "9": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "部": {
+    "10": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "郭": {
+    "10": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "郵": {
+    "10": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "郷": {
+    "10": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "都": {
+    "10": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
   "針": {
     "2": {
       "ending": "tome",
@@ -1208,6 +1286,12 @@
     "12": {
       "ending": "tome",
       "direction": "SE"
+    }
+  },
+  "響": {
+    "10": {
+      "ending": "hane",
+      "direction": "NW"
     }
   },
   "麓": {
