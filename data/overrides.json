@@ -1,4 +1,10 @@
 {
+  "想": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "控": {
     "8": {
       "ending": "tome"
@@ -7,6 +13,402 @@
   "搾": {
     "8": {
       "ending": "tome"
+    }
+  },
+  "暦": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "札": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "朴": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "机": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "朽": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "杉": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "材": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "村": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "杯": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "松": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "板": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "析": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "枕": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "林": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "枚": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "枝": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "枠": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "枢": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "枯": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "柄": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "柱": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "柳": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "柵": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "柿": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "栃": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "栓": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "校": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "株": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "核": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "根": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "格": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "桁": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "桃": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "桜": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "桟": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "梅": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "梗": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "械": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "棋": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "棒": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "棚": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "棟": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "棺": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "椅": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "植": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "椎": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "検": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "極": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "楷": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "楼": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "概": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "構": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "様": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "槽": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "標": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "模": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "権": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "横": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "樹": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "橋": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "機": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "欄": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "歴": {
+    "6": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "相": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "礎": {
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "禁": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
     }
   },
   "究": {
@@ -52,6 +454,30 @@
   "窯": {
     "5": {
       "ending": "tome"
+    }
+  },
+  "箱": {
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "襟": {
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "霜": {
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "麓": {
+    "4": {
+      "ending": "tome",
+      "direction": "SE"
     }
   }
 }
