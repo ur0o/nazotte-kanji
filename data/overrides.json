@@ -11,6 +11,18 @@
       "direction": "SE"
     }
   },
+  "堕": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "墜": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
   "想": {
     "4": {
       "ending": "tome",
@@ -1010,6 +1022,186 @@
     "2": {
       "ending": "tome",
       "direction": "SE"
+    }
+  },
+  "阪": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "防": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "阻": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "附": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "降": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "限": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陛": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "院": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陣": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "除": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陥": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陪": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陰": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陳": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陵": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陶": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陸": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "険": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "陽": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隅": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隆": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隊": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "階": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "随": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隔": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隙": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "際": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "障": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隠": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
+    }
+  },
+  "隣": {
+    "2": {
+      "ending": "hane",
+      "direction": "NW"
     }
   },
   "霜": {
