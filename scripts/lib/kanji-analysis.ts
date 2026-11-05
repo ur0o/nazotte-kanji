@@ -10,7 +10,13 @@ import {
 } from "../../src/lib/kanji-data.ts";
 import { KANJI_DATA, KANJIVG, SOURCES } from "../sources.ts";
 import { parseKanjiVg } from "./kanjivg.ts";
-import { endDirection, endPoint, estimateEnding } from "./stroke.ts";
+import {
+  endDirection,
+  endPoint,
+  estimateEnding,
+  isRisingStroke,
+  RISING_STROKE_DIRECTION,
+} from "./stroke.ts";
 import { flattenPath } from "./svg-path.ts";
 
 export const ROOT = path.resolve(import.meta.dirname, "../..");
@@ -128,7 +134,12 @@ export function analyzeKanji(kanji: string): StrokeAnalysis[] {
       ending: estimate.ending,
       reviewReason: estimate.reviewReason,
       directions: Object.fromEntries(
-        ENDINGS.map((ending) => [ending, endDirection(points, ending)]),
+        ENDINGS.map((ending) => [
+          ending,
+          ending === "hane" && isRisingStroke(source.type)
+            ? RISING_STROKE_DIRECTION
+            : endDirection(points, ending),
+        ]),
       ) as Record<Ending, Direction>,
     };
   });
