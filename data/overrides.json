@@ -1,6 +1,24 @@
 {
+  "利": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "和": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "想": {
     "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "愁": {
+    "5": {
       "ending": "tome",
       "direction": "SE"
     }
@@ -237,6 +255,12 @@
       "direction": "SE"
     }
   },
+  "梨": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "械": {
     "4": {
       "ending": "tome",
@@ -393,6 +417,12 @@
       "direction": "SE"
     }
   },
+  "痢": {
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "相": {
     "4": {
       "ending": "tome",
@@ -407,6 +437,132 @@
   },
   "禁": {
     "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "私": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "秋": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "科": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "秒": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "秘": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "租": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "秩": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "称": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "移": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "程": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "税": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "稚": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "種": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "稲": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "稼": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "稽": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "稿": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "穂": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "積": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "穏": {
+    "5": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "穫": {
+    "5": {
       "ending": "tome",
       "direction": "SE"
     }
