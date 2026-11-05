@@ -1,8 +1,108 @@
 {
+  "令": {
+    "4": {
+      "ending": "tome",
+      "direction": "SW"
+    }
+  },
+  "例": {
+    "5": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "修": {
+    "8": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "偽": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "傑": {
+    "4": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "冷": {
+    "6": {
+      "ending": "tome",
+      "direction": "SW"
+    }
+  },
+  "列": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
   "利": {
     "5": {
       "ending": "tome",
       "direction": "SE"
+    }
+  },
+  "勲": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "参": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "7": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "名": {
+    "2": {
+      "ending": "harai",
+      "direction": "SW"
     }
   },
   "和": {
@@ -23,10 +123,176 @@
       "direction": "NW"
     }
   },
+  "墨": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "夕": {
+    "2": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "外": {
+    "2": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "多": {
+    "2": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "5": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "夜": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "夢": {
+    "12": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "宛": {
+    "5": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "庶": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "廊": {
     "11": {
       "ending": "hane",
       "direction": "NW"
+    }
+  },
+  "形": {
+    "5": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "7": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "彩": {
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "彫": {
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "彰": {
+    "12": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "14": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "影": {
+    "13": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "14": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "15": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "怨": {
+    "2": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "惨": {
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "harai",
+      "direction": "SW"
     }
   },
   "想": {
@@ -39,6 +305,12 @@
     "5": {
       "ending": "tome",
       "direction": "SE"
+    }
+  },
+  "拶": {
+    "8": {
+      "ending": "harai",
+      "direction": "SW"
     }
   },
   "控": {
@@ -91,6 +363,18 @@
     "4": {
       "ending": "tome",
       "direction": "SE"
+    },
+    "5": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "7": {
+      "ending": "harai",
+      "direction": "SW"
     }
   },
   "材": {
@@ -441,6 +725,330 @@
       "direction": "SE"
     }
   },
+  "死": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "殉": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "殊": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "残": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "殖": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "液": {
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "漁": {
+    "11": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "潟": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "点": {
+    "6": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "7": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "為": {
+    "6": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "7": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "烈": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "無": {
+    "9": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "焦": {
+    "9": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "然": {
+    "9": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "煎": {
+    "10": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "照": {
+    "10": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "煮": {
+    "9": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "熊": {
+    "11": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "熟": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "熱": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "燃": {
+    "13": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "16": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "珍": {
+    "7": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
   "痢": {
     "10": {
       "ending": "tome",
@@ -449,6 +1057,30 @@
   },
   "相": {
     "4": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "瞬": {
+    "13": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "礁": {
+    "14": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "16": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "17": {
       "ending": "tome",
       "direction": "SE"
     }
@@ -517,6 +1149,14 @@
     "5": {
       "ending": "tome",
       "direction": "SE"
+    },
+    "7": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
     }
   },
   "程": {
@@ -634,6 +1274,22 @@
   "窯": {
     "5": {
       "ending": "tome"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
     }
   },
   "笑": {
@@ -758,6 +1414,22 @@
     "6": {
       "ending": "harai",
       "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "16": {
+      "ending": "tome",
+      "direction": "SE"
     }
   },
   "簡": {
@@ -838,8 +1510,150 @@
       "direction": "SE"
     }
   },
+  "罵": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "腕": {
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "膨": {
+    "14": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "15": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "16": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "舞": {
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "葬": {
+    "6": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "蒸": {
+    "10": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "薦": {
+    "13": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "16": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "薫": {
+    "13": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "16": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "裂": {
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
   "襟": {
     "9": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "診": {
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "11": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "12": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "遮": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
       "ending": "tome",
       "direction": "SE"
     }
@@ -938,6 +1752,10 @@
     "2": {
       "ending": "tome",
       "direction": "SE"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
     }
   },
   "鉄": {
@@ -986,6 +1804,10 @@
     "2": {
       "ending": "tome",
       "direction": "SE"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
     }
   },
   "銭": {
@@ -1280,6 +2102,16 @@
     "2": {
       "ending": "hane",
       "direction": "NW"
+    },
+    "11": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "零": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
     }
   },
   "霜": {
@@ -1294,10 +2126,438 @@
       "direction": "NW"
     }
   },
+  "須": {
+    "1": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "2": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "3": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "領": {
+    "4": {
+      "ending": "tome",
+      "direction": "SW"
+    }
+  },
+  "顔": {
+    "7": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "馬": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "駄": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "駅": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "駆": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "駐": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "駒": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "騎": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "騒": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "験": {
+    "7": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "8": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "騰": {
+    "17": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "18": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "19": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "20": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "驚": {
+    "19": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "20": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "21": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "22": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "髪": {
+    "8": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "10": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "鬱": {
+    "27": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "28": {
+      "ending": "harai",
+      "direction": "SW"
+    },
+    "29": {
+      "ending": "harai",
+      "direction": "SW"
+    }
+  },
+  "魚": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "鮮": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "鯨": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "鳥": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "鳴": {
+    "11": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "12": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "鶏": {
+    "16": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "17": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "18": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "19": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "鶴": {
+    "18": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "19": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "20": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "21": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
   "麓": {
     "4": {
       "ending": "tome",
       "direction": "SE"
+    }
+  },
+  "黒": {
+    "8": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "9": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "10": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "11": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "黙": {
+    "12": {
+      "ending": "tome",
+      "direction": "SW"
+    },
+    "13": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "14": {
+      "ending": "tome",
+      "direction": "SE"
+    },
+    "15": {
+      "ending": "tome",
+      "direction": "SE"
+    }
+  },
+  "齢": {
+    "16": {
+      "ending": "tome",
+      "direction": "SW"
     }
   }
 }
