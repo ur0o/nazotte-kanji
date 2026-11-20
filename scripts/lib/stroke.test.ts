@@ -3,6 +3,8 @@ import {
   endDirection,
   estimateEnding,
   isRisingStroke,
+  MIN_END_SEPARATION,
+  separatedEndPoints,
   pointBeforeEnd,
   toDirection,
 } from "./stroke.ts";
@@ -111,5 +113,55 @@ describe("isRisingStroke", () => {
     expect(isRisingStroke("㇐/㇀")).toBe(false);
     expect(isRisingStroke("㇐")).toBe(false);
     expect(isRisingStroke(undefined)).toBe(false);
+  });
+});
+
+describe("separatedEndPoints", () => {
+  const vertical = [
+    { x: 50, y: 10 },
+    { x: 50, y: 50 },
+  ];
+  const horizontal = [
+    { x: 10, y: 50 },
+    { x: 50.5, y: 50 },
+  ];
+
+  it("ほぼ同じ位置で終わるとき、後の画のとめを線に沿って手前に戻す", () => {
+    const [first, second] = separatedEndPoints([
+      { points: vertical, ending: "tome" },
+      { points: horizontal, ending: "tome" },
+    ]);
+    expect(first).toEqual({ x: 50, y: 50 });
+    expect(second?.y).toBe(50);
+    expect(second?.x).toBeLessThan(50);
+    expect(Math.hypot(50 - (second?.x ?? 0), 0)).toBeGreaterThanOrEqual(
+      MIN_END_SEPARATION,
+    );
+  });
+
+  it("後の画がはね・はらいなら、先の画のとめを動かす", () => {
+    const [first, second] = separatedEndPoints([
+      { points: vertical, ending: "tome" },
+      { points: horizontal, ending: "harai" },
+    ]);
+    expect(second).toEqual({ x: 50.5, y: 50 });
+    expect(first?.x).toBe(50);
+    expect(first?.y).toBeLessThan(50);
+  });
+
+  it("離れている終点は動かさない", () => {
+    const far = [
+      { x: 10, y: 90 },
+      { x: 40, y: 90 },
+    ];
+    expect(
+      separatedEndPoints([
+        { points: vertical, ending: "tome" },
+        { points: far, ending: "tome" },
+      ]),
+    ).toEqual([
+      { x: 50, y: 50 },
+      { x: 40, y: 90 },
+    ]);
   });
 });
