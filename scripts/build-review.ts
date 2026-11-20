@@ -30,7 +30,7 @@ const kanji = sortKanji(Object.keys(jouyou)).map((character) => ({
   file: kanjiFileName(character),
   on: (jouyou[character]?.readings_on ?? []).map(hiraganaToKatakana),
   kun: jouyou[character]?.readings_kun ?? [],
-  strokes: analyzeKanji(character).map((stroke) => ({
+  strokes: analyzeKanji(character, overrides).map((stroke) => ({
     path: stroke.path,
     end: stroke.end,
     type: stroke.type ?? null,

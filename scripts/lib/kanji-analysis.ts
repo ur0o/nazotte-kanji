@@ -16,6 +16,7 @@ import {
   estimateEnding,
   isRisingStroke,
   RISING_STROKE_DIRECTION,
+  separatedEndPoints,
 } from "./stroke.ts";
 import { flattenPath } from "./svg-path.ts";
 
@@ -117,15 +118,32 @@ export interface StrokeAnalysis {
   directions: Record<Ending, Direction>;
 }
 
-export function analyzeKanji(kanji: string): StrokeAnalysis[] {
+/**
+ * 1字分の各画を解析する。終点の位置は、手での修正を当てた後の終わり方で決める
+ * (とめの画だけ、ほかの画の終点と重ならないようずらす)ので、修正を渡す
+ */
+export function analyzeKanji(
+  kanji: string,
+  overrides: Overrides = {},
+): StrokeAnalysis[] {
   const svg = readFileSync(
     path.join(KANJIVG.dir, "kanji", `${kanjiFileName(kanji)}.svg`),
     "utf8",
   );
-  return parseKanjiVg(svg).map((source) => {
+  const sources = parseKanjiVg(svg);
+  const strokePoints = sources.map((source) => flattenPath(source.d));
+  const ends = separatedEndPoints(
+    sources.map((source, index) => ({
+      points: strokePoints[index] ?? [],
+      ending:
+        overrides[kanji]?.[String(source.number)]?.ending ??
+        estimateEnding(source.type).ending,
+    })),
+  );
+  return sources.map((source, index) => {
     const estimate = estimateEnding(source.type);
-    const points = flattenPath(source.d);
-    const end = endPoint(points);
+    const points = strokePoints[index] ?? [];
+    const end = ends[index] ?? endPoint(points);
     return {
       number: source.number,
       path: source.d,

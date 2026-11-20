@@ -63,6 +63,56 @@ export function endPoint(points: readonly Point[]): Point {
   return last;
 }
 
+/**
+ * 終点の記号どうしの中心の最小距離(109×109 の座標系)。とめの点(半径2)が、半径の半分ほど
+ * 重なる距離。完全には離さず、ほぼ同じ場所で止まることが分かるようにする
+ */
+export const MIN_END_SEPARATION = 3;
+/** 終点をずらすときに、画をさかのぼる最大の長さ */
+const MAX_END_SHIFT = 10;
+const END_SHIFT_STEP = 0.25;
+
+/**
+ * 各画の終点を求める。2つの画がほぼ同じ位置で終わるときは、記号が1つに見えないよう、
+ * とめの画の線を少しさかのぼった位置を終点にする(記号が少し重なる程度にとどめる)。後から書く画を優先して動かす
+ * (後の画が、先に書いた画の手前で止まる形)。はね・はらいは筆先の位置が意味を持つので動かさない。
+ * さかのぼっても離せないときは元の終点のままにする。
+ */
+export function separatedEndPoints(
+  strokes: readonly { points: readonly Point[]; ending: Ending }[],
+): Point[] {
+  const ends = strokes.map(({ points }) => endPoint(points));
+  const tooClose = (a: number, b: number) =>
+    distance(ends[a] as Point, ends[b] as Point) < MIN_END_SEPARATION;
+  const isClearAt = (index: number, point: Point) =>
+    ends.every(
+      (other, i) => i === index || distance(point, other) >= MIN_END_SEPARATION,
+    );
+  /** 画をさかのぼって、ほかの全ての終点から離れる位置に動かせたら動かす */
+  const pullBack = (index: number): boolean => {
+    const stroke = strokes[index];
+    if (!stroke || stroke.ending !== "tome") return false;
+    for (
+      let shift = END_SHIFT_STEP;
+      shift <= MAX_END_SHIFT;
+      shift += END_SHIFT_STEP
+    ) {
+      const candidate = pointBeforeEnd(stroke.points, shift);
+      if (isClearAt(index, candidate)) {
+        ends[index] = candidate;
+        return true;
+      }
+    }
+    return false;
+  };
+  for (let later = 1; later < strokes.length; later += 1) {
+    for (let earlier = 0; earlier < later; earlier += 1) {
+      if (tooClose(earlier, later) && !pullBack(later)) pullBack(earlier);
+    }
+  }
+  return ends;
+}
+
 export function endDirection(
   points: readonly Point[],
   ending: Ending,

@@ -36,7 +36,7 @@ function buildStrokes(
   reviewCandidates: ReviewCandidate[],
 ): KanjiStrokes {
   const kanjiOverrides = overrides[kanji] ?? {};
-  const strokes = analyzeKanji(kanji).map((analysis): Stroke => {
+  const strokes = analyzeKanji(kanji, overrides).map((analysis): Stroke => {
     const override = kanjiOverrides[String(analysis.number)];
     if (analysis.reviewReason && override?.ending === undefined) {
       reviewCandidates.push({
