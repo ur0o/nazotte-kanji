@@ -33,19 +33,3 @@
     display: inline;
   }
 }
-
-.sample {
-  flex: none;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--mantine-color-default-border);
-  border-radius: var(--mantine-radius-sm);
-}
-
-.sampleNumber {
-  font-size: 5px;
-  font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  fill: var(--mantine-color-blue-filled);
-}

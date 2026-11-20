@@ -2,6 +2,7 @@ import { Button, Group, Modal, Stack, Text } from "@mantine/core";
 import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { MAX_GUESSES } from "../lib/answer.ts";
 import type { Stroke } from "../lib/kanji-data.ts";
+import { HintGuide } from "./HintGuide.tsx";
 import classes from "./HowToModal.module.css";
 import { StrokeHints } from "./StrokeHints.tsx";
 import { SymbolGuide } from "./SymbolGuide.tsx";
@@ -123,6 +124,10 @@ const PAGES: readonly Page[] = [
     label: "記号の意味",
     body: <SymbolGuide />,
   },
+  {
+    label: "難易度ごとのヒント",
+    body: <HintGuide />,
+  },
 ];
 
 /** モーダルを開くたびに作り直されるので、ページは毎回1ページ目から始まる */
@@ -204,7 +209,7 @@ function HowToCarousel({ onClose }: { onClose: () => void }) {
   );
 }
 
-/** 遊び方の説明。2ページのカルーセル */
+/** 遊び方の説明。3ページのカルーセル */
 export function HowToModal({ opened, onClose }: HowToModal.Props) {
   return (
     <Modal opened={opened} onClose={onClose} title="遊び方" centered>

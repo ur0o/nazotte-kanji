@@ -1,0 +1,34 @@
+.sample {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-sm);
+  color: var(--mantine-color-text);
+}
+
+.sampleStroke {
+  fill: none;
+  stroke: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 問題の正方形での書き順の番号と同じ見た目 */
+.number {
+  font-size: 4.6px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--mantine-color-blue-filled);
+}
+
+.text {
+  min-width: 0;
+}
+
+.notes {
+  padding-top: var(--mantine-spacing-sm);
+  border-top: 1px solid var(--mantine-color-default-border);
+}
