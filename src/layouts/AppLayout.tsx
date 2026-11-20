@@ -20,8 +20,8 @@ export function AppLayout() {
   const [howToOpened, setHowToOpened] = useState(false);
   // 遊び方を一度でも閉じたことがあるか(トップ画面のボタンから開いた場合も含む)
   const [howToSeen, setHowToSeen] = useState(hasSeenHowTo);
-  // まだ遊び方を見ていなければ、初めてゲーム画面を開いたときに自動で開く
-  const howToVisible = howToOpened || (mode !== undefined && !howToSeen);
+  // まだ遊び方を見ていなければ、初めてトップ画面を開いたときに自動で開く
+  const howToVisible = howToOpened || (isTop && !howToSeen);
 
   const closeHowTo = () => {
     markHowToSeen();

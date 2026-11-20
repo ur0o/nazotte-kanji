@@ -1,13 +1,10 @@
-import { Button, Group, Modal, Stack, Text, Title } from "@mantine/core";
+import { Button, Stack, Text, Title } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { HintMarker } from "../../components/HintMarker.tsx";
 import { dailyNumber } from "../../lib/daily.ts";
 import {
   DAILY_DIFFICULTIES,
   DIFFICULTIES,
-  DIFFICULTY_DESCRIPTIONS,
-  DIFFICULTY_HINTS,
   DIFFICULTY_LABELS,
   type DailyDifficulty,
   type Difficulty,
@@ -104,31 +101,9 @@ function EndlessButtons() {
   );
 }
 
-/** 難易度ごとのヒントの見本(はねの記号1つ) */
-function DifficultySample({ difficulty }: { difficulty: Difficulty }) {
-  const hints = DIFFICULTY_HINTS[difficulty];
-  return (
-    <svg viewBox="0 0 24 24" className={classes.sample} aria-hidden>
-      <HintMarker
-        x={10}
-        y={14}
-        ending="hane"
-        direction="NE"
-        showArrow={hints.arrows}
-      />
-      {hints.strokeNumbers && (
-        <text x={4} y={9} className={classes.sampleNumber}>
-          3
-        </text>
-      )}
-    </svg>
-  );
-}
-
 export function TopPage() {
   const [number] = useState(() => dailyNumber(new Date()));
   const [results] = useState(() => todayResults(number));
-  const [helpOpened, setHelpOpened] = useState(false);
 
   return (
     <Stack gap="xl" py="lg">
@@ -147,34 +122,6 @@ export function TopPage() {
         </Title>
         <EndlessButtons />
       </Stack>
-      <Button
-        variant="subtle"
-        onClick={() => setHelpOpened(true)}
-        style={{ alignSelf: "center" }}
-      >
-        難易度について
-      </Button>
-      <Modal
-        opened={helpOpened}
-        onClose={() => setHelpOpened(false)}
-        title="難易度について"
-        centered
-      >
-        <Stack gap="sm">
-          <Text size="sm">
-            各画の終わる位置と、とめ・はね・はらいはすべての難易度で表示されます。
-          </Text>
-          {DIFFICULTIES.map((difficulty) => (
-            <Group key={difficulty} gap="sm" wrap="nowrap">
-              <Text fw={700} w={56} ta="center" style={{ flex: "none" }}>
-                {DIFFICULTY_LABELS[difficulty]}
-              </Text>
-              <DifficultySample difficulty={difficulty} />
-              <Text size="sm">{DIFFICULTY_DESCRIPTIONS[difficulty]}</Text>
-            </Group>
-          ))}
-        </Stack>
-      </Modal>
     </Stack>
   );
 }

@@ -57,7 +57,7 @@ function StrokeSample({ guide }: { guide: EndingGuide }) {
   );
 }
 
-/** とめ・はね・はらいの記号と、矢印・番号の見方(記号の説明モーダルと遊び方で共通) */
+/** とめ・はね・はらいの記号の見方(遊び方の2ページ目) */
 export function SymbolGuide() {
   return (
     <Stack gap="md">
@@ -78,17 +78,9 @@ export function SymbolGuide() {
           </Group>
         ))}
       </Stack>
-      <Stack gap={4} className={classes.notes}>
-        <Text size="sm">
-          <strong>矢印</strong>: 画が終わるときに進んでいた向き
-        </Text>
-        <Text size="sm">
-          <strong>数字</strong>: その画が何画目か
-        </Text>
-        <Text size="xs" c="dimmed">
-          見本の灰色の線は説明用です。問題では画の線は表示されません。
-        </Text>
-      </Stack>
+      <Text size="xs" c="dimmed" className={classes.notes}>
+        見本の灰色の線は説明用です。問題では画の線は表示されません。
+      </Text>
     </Stack>
   );
 }
