@@ -61,16 +61,14 @@ function HintSample({ hint }: { hint: keyof DifficultyHints }) {
 export function HintGuide() {
   return (
     <Stack gap="md">
-      <Text size="sm">
-        画が終わる位置と終わり方は、すべての難易度で表示されます。難易度によって、次のヒントが加わります。
-      </Text>
+      <Text size="sm">難易度によって、次のヒントが加わります。</Text>
       <Stack gap="sm">
         {HINT_GUIDES.map((guide) => (
           <Group key={guide.key} gap="md" wrap="nowrap" align="center">
             <HintSample hint={guide.key} />
             <Stack gap={4} className={classes.text}>
-              <Text fw={700}>{guide.name}</Text>
-              <Group gap={4}>
+              <Group gap={6} align="center">
+                <Text fw={700}>{guide.name}</Text>
                 {DIFFICULTIES.filter(
                   (difficulty) => DIFFICULTY_HINTS[difficulty][guide.key],
                 ).map((difficulty) => (
@@ -90,7 +88,7 @@ export function HintGuide() {
         ))}
       </Stack>
       <Text size="xs" c="dimmed" className={classes.notes}>
-        鬼(エンドレスだけで選べます)では、どちらも表示されません。
+        鬼(エンドレスのみ)では、どちらも表示されません。
       </Text>
     </Stack>
   );
