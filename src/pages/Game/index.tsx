@@ -9,7 +9,7 @@ import { DrawingTools } from "./DrawingTools.tsx";
 import { GameProvider, useGame, type GameMode } from "./GameContext.tsx";
 import { GuessHistory } from "./GuessHistory.tsx";
 import { InfoBar } from "./InfoBar.tsx";
-import classes from "./Game.module.css";
+import classes from "./GamePage.module.scss";
 import { ResultModal } from "./ResultModal.tsx";
 import { RetireButton } from "./RetireButton.tsx";
 
@@ -74,7 +74,7 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
 
   const finished = status !== "playing";
   return (
-    <div className={classes.screen}>
+    <div className={classes.GamePage}>
       <InfoBar strokeCount={strokes.data?.strokes.length} />
       <Board
         strokes={strokes.data?.strokes}

@@ -3,7 +3,7 @@ import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { MAX_GUESSES } from "../lib/answer.ts";
 import type { Stroke } from "../lib/kanji-data.ts";
 import { HintGuide } from "./HowToModal/HintGuide.tsx";
-import classes from "./HowToModal.module.css";
+import classes from "./HowToModal.module.scss";
 import { StrokeHints } from "./StrokeHints.tsx";
 import { SymbolGuide } from "./HowToModal/SymbolGuide.tsx";
 
@@ -158,7 +158,7 @@ function HowToCarousel({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <Stack gap="md">
+    <Stack gap="md" className={classes.HowToModal}>
       <div
         className={classes.page}
         onPointerDown={handlePointerDown}

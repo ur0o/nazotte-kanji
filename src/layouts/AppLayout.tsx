@@ -4,7 +4,7 @@ import { useState } from "react";
 import { HowToModal } from "../shared/HowToModal.tsx";
 import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
 import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
-import classes from "./AppLayout.module.css";
+import classes from "./AppLayout.module.scss";
 import { Footer } from "./Footer.tsx";
 
 /** ゲーム画面以外のページのタイトル(トップは「nazotte漢字」) */
@@ -30,7 +30,7 @@ export function AppLayout() {
   };
 
   return (
-    <Container size={480} px="md" className={classes.root}>
+    <Container size={480} px="md" className={classes.AppLayout}>
       <Group component="header" className={classes.header} justify="center">
         {!isTop && (
           <ActionIcon

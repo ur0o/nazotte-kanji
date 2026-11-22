@@ -1,6 +1,6 @@
 import { HintMarker } from "../../../shared/HintMarker.tsx";
 import type { Ending } from "../../../lib/kanji-data.ts";
-import classes from "./SymbolLegend.module.css";
+import classes from "./SymbolLegend.module.scss";
 
 const LEGEND: readonly { ending: Ending; label: string }[] = [
   { ending: "tome", label: "とめ" },
@@ -11,7 +11,7 @@ const LEGEND: readonly { ending: Ending; label: string }[] = [
 /** 記号と終わり方の対応(とめ・はね・はらい) */
 export function SymbolLegend() {
   return (
-    <ul className={classes.root} aria-label="記号の意味">
+    <ul className={classes.SymbolLegend} aria-label="記号の意味">
       {LEGEND.map(({ ending, label }) => (
         <li key={ending} className={classes.item}>
           <svg viewBox="-4 -4 8 8" className={classes.symbol} aria-hidden>

@@ -12,7 +12,7 @@ import {
 import { roundStatus, scoreLabel } from "../../lib/game.ts";
 import { loadSavedData } from "../../lib/storage.ts";
 import { MODE_LABELS } from "../../lib/modes.ts";
-import classes from "./Top.module.css";
+import classes from "./TopPage.module.scss";
 
 /** 難易度ごとの、今日の1文字の結果(例: 3/5)。未挑戦や回答中は含めない */
 function todayResults(
@@ -106,7 +106,7 @@ export function TopPage() {
   const [results] = useState(() => todayResults(number));
 
   return (
-    <Stack gap="xl" py="lg">
+    <Stack gap="xl" py="lg" className={classes.TopPage}>
       <Text ta="center" c="dimmed">
         各画の終わる位置と、終わり方（とめ・はね・はらい）を手がかりに漢字を当てよう
       </Text>

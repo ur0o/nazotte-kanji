@@ -1,5 +1,5 @@
 import { Accordion, Text } from "@mantine/core";
-import classes from "./Faq.module.css";
+import classes from "./FaqPage.module.scss";
 import { FAQ_ITEMS } from "./questions.tsx";
 
 /** よくある質問。質問を押すと回答が開く */
@@ -17,6 +17,7 @@ export function FaqPage() {
       multiple
       py="md"
       classNames={{
+        root: classes.FaqPage,
         item: classes.item,
         control: classes.control,
         label: classes.question,

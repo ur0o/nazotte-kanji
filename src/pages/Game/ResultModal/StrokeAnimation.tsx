@@ -1,5 +1,5 @@
 import type { Stroke } from "../../../lib/kanji-data.ts";
-import classes from "./StrokeAnimation.module.css";
+import classes from "./StrokeAnimation.module.scss";
 
 export namespace StrokeAnimation {
   export interface Props {
@@ -18,7 +18,7 @@ export function StrokeAnimation({
     <svg
       key={playKey}
       viewBox="0 0 109 109"
-      className={classes.root}
+      className={classes.StrokeAnimation}
       role="img"
     >
       {strokes.map((stroke, index) => (

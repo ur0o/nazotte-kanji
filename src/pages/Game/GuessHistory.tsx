@@ -1,7 +1,7 @@
 import { Group, Text } from "@mantine/core";
 import { MAX_GUESSES } from "../../lib/answer.ts";
 import { useGame } from "./GameContext.tsx";
-import classes from "./GuessHistory.module.css";
+import classes from "./GuessHistory.module.scss";
 
 /** 回答した漢字を5つのマスに並べる */
 export function GuessHistory() {
@@ -9,7 +9,12 @@ export function GuessHistory() {
   const remaining = MAX_GUESSES - round.guesses.length;
 
   return (
-    <Group justify="space-between" wrap="nowrap" mb="xs">
+    <Group
+      justify="space-between"
+      wrap="nowrap"
+      mb="xs"
+      className={classes.GuessHistory}
+    >
       <Group
         gap={6}
         wrap="nowrap"

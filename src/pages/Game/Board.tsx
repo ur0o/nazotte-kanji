@@ -2,7 +2,7 @@ import { Loader } from "@mantine/core";
 import { StrokeHints } from "../../shared/StrokeHints.tsx";
 import type { Difficulty } from "../../lib/difficulty.ts";
 import type { Stroke } from "../../lib/kanji-data.ts";
-import classes from "./Board.module.css";
+import classes from "./Board.module.scss";
 import { DrawingCanvas, type DrawingLine } from "./Board/DrawingCanvas.tsx";
 
 export namespace Board {
@@ -25,7 +25,7 @@ export function Board({
   onLinesChange,
 }: Board.Props) {
   return (
-    <div className={classes.root}>
+    <div className={classes.Board}>
       <svg viewBox="0 0 109 109" className={classes.layer} aria-hidden>
         <line x1={54.5} y1={0} x2={54.5} y2={109} className={classes.guide} />
         <line x1={0} y1={54.5} x2={109} y2={54.5} className={classes.guide} />

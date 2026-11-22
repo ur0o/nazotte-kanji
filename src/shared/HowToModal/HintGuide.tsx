@@ -6,7 +6,7 @@ import {
   type DifficultyHints,
 } from "../../lib/difficulty.ts";
 import { HintMarker } from "../HintMarker.tsx";
-import classes from "./HintGuide.module.css";
+import classes from "./HintGuide.module.scss";
 
 /** 見本の画(44×44 の座標系)。「手」の最後の画のような、下に引いて左上にはねる画 */
 const SAMPLE_STROKE = "M26,4 V32 L20,26";
@@ -60,7 +60,7 @@ function HintSample({ hint }: { hint: keyof DifficultyHints }) {
 /** 難易度によって増えるヒント(書き順の番号と、画の終わりの向き)の説明 */
 export function HintGuide() {
   return (
-    <Stack gap="md">
+    <Stack gap="md" className={classes.HintGuide}>
       <Text size="sm">難易度によって、次のヒントが加わります。</Text>
       <Stack gap="sm">
         {HINT_GUIDES.map((guide) => (

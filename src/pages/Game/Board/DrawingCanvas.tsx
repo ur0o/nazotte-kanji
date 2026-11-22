@@ -1,5 +1,5 @@
 import { useEffect, useRef, type PointerEvent } from "react";
-import classes from "./DrawingCanvas.module.css";
+import classes from "./DrawingCanvas.module.scss";
 
 export interface DrawingPoint {
   x: number;
@@ -113,7 +113,7 @@ export function DrawingCanvas({
   return (
     <canvas
       ref={canvasRef}
-      className={classes.root}
+      className={classes.DrawingCanvas}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={finishLine}

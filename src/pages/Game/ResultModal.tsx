@@ -9,7 +9,7 @@ import { dailyShareText, endlessShareText } from "../../lib/share.ts";
 import { Countdown } from "./ResultModal/Countdown.tsx";
 import { ShareRow } from "./ResultModal/ShareRow.tsx";
 import { useGame } from "./GameContext.tsx";
-import classes from "./ResultModal.module.css";
+import classes from "./ResultModal.module.scss";
 
 export namespace ResultModal {
   export interface Props {
@@ -113,7 +113,7 @@ export function ResultModal({
         </Group>
       }
     >
-      <Stack gap="md">
+      <Stack gap="md" className={classes.ResultModal}>
         <Group align="center" gap="md" wrap="nowrap">
           <div className={classes.animation}>
             <StrokeAnimation strokes={strokes} playKey={playKey} />

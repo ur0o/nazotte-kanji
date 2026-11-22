@@ -3,7 +3,7 @@ import { DIFFICULTY_HINTS, type Difficulty } from "../lib/difficulty.ts";
 import { layoutStrokeLabels } from "../lib/hint-layout.ts";
 import type { Stroke } from "../lib/kanji-data.ts";
 import { HintMarker } from "./HintMarker.tsx";
-import classes from "./StrokeHints.module.css";
+import classes from "./StrokeHints.module.scss";
 
 export namespace StrokeHints {
   export interface Props {
@@ -28,7 +28,7 @@ export function StrokeHints({
   return (
     <svg
       viewBox="0 0 109 109"
-      className={`${classes.root} ${className ?? ""}`}
+      className={`${classes.StrokeHints} ${className ?? ""}`}
       aria-hidden
     >
       {strokes.map((stroke, index) => (
