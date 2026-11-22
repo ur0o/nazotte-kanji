@@ -1,7 +1,7 @@
 import { Button, Group, Modal, Stack, Text } from "@mantine/core";
 import { useState } from "react";
 import { useGame } from "./GameContext.tsx";
-import classes from "./RetireButton.module.css";
+import classes from "./RetireButton.module.scss";
 
 /** リタイアのボタンと、その確認モーダル */
 export function RetireButton() {
@@ -10,7 +10,7 @@ export function RetireButton() {
 
   return (
     <>
-      <div className={classes.root}>
+      <div className={classes.RetireButton}>
         <Button
           variant="subtle"
           color="gray"

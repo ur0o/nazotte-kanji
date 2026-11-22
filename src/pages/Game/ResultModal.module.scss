@@ -1,0 +1,16 @@
+/* モーダルの本文(モーダル自体は body 直下に描かれるので、本文の要素を起点にする) */
+.ResultModal {
+  .animation {
+    flex: none;
+    width: 140px;
+    height: 140px;
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-sm);
+  }
+
+  .kanji {
+    font-family: var(--kanji-font-family);
+    font-size: 40px;
+    line-height: 1.2;
+  }
+}

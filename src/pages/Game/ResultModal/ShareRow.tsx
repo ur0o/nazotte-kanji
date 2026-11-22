@@ -1,7 +1,7 @@
 import { ActionIcon, Button, Text } from "@mantine/core";
 import { useState } from "react";
-import { xShareUrl } from "../../lib/share.ts";
-import classes from "./ShareRow.module.css";
+import { xShareUrl } from "../../../lib/share.ts";
+import classes from "./ShareRow.module.scss";
 
 export namespace ShareRow {
   export interface Props {
@@ -39,7 +39,7 @@ export function ShareRow({ text }: ShareRow.Props) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.ShareRow}>
       <Text size="xs" c="dimmed" className={classes.label}>
         SNSにシェア
       </Text>

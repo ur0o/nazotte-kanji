@@ -1,0 +1,99 @@
+/* モーダルの本文(モーダル自体は body 直下に描かれるので、本文の要素を起点にする) */
+.HowToModal {
+  .page {
+    /* 縦のスクロールはそのままに、横のスワイプでページを送る */
+    touch-action: pan-y;
+    min-height: 320px;
+    overflow: hidden;
+
+    /* 送った方向から新しいページが入ってくる */
+    .fromRight {
+      animation: slide-from-right 0.28s ease-out;
+    }
+
+    .fromLeft {
+      animation: slide-from-left 0.28s ease-out;
+    }
+
+    .fromRight,
+    .fromLeft {
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+
+    /* 1ページ目の、正方形と入力欄の図 */
+    .diagram {
+      display: block;
+      width: min(100%, 240px);
+      margin-inline: auto;
+      color: var(--mantine-color-text);
+
+      .frame {
+        fill: none;
+        stroke: var(--mantine-color-default-border);
+        stroke-width: 0.8;
+      }
+
+      .memo {
+        fill: none;
+        stroke: light-dark(
+          var(--mantine-color-gray-4),
+          var(--mantine-color-dark-3)
+        );
+        stroke-width: 3;
+        stroke-linecap: round;
+      }
+
+      .placeholder {
+        font-size: 6px;
+        fill: var(--mantine-color-placeholder);
+      }
+
+      .answerButton {
+        fill: var(--mantine-primary-color-filled);
+      }
+
+      .buttonText {
+        font-size: 6px;
+        font-weight: 700;
+        fill: var(--mantine-primary-color-contrast);
+      }
+    }
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--mantine-color-default-border);
+    cursor: pointer;
+
+    &[aria-current="step"] {
+      width: 20px;
+      border-radius: 4px;
+      background: var(--mantine-color-text);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--mantine-color-blue-filled);
+      outline-offset: 2px;
+    }
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}

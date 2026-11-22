@@ -1,4 +1,4 @@
-.root {
+.Footer {
   position: fixed;
   left: 0;
   right: 0;
@@ -19,14 +19,14 @@
   user-select: none;
   -webkit-user-select: none;
 
-  & a {
-    color: inherit;
-  }
-}
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mantine-spacing-lg);
 
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--mantine-spacing-lg);
+    a {
+      color: inherit;
+    }
+  }
 }

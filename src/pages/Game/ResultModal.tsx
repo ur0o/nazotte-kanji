@@ -1,15 +1,15 @@
 import { Badge, Button, Group, Modal, Stack, Text, Title } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { StrokeAnimation } from "../../components/StrokeAnimation.tsx";
+import { StrokeAnimation } from "./ResultModal/StrokeAnimation.tsx";
 import type { KanjiEntry, Stroke } from "../../lib/kanji-data.ts";
 import { displayKunReadings, formatReadings } from "../../lib/readings.ts";
 import { scoreLabel } from "../../lib/game.ts";
 import { dailyShareText, endlessShareText } from "../../lib/share.ts";
-import { Countdown } from "./Countdown.tsx";
-import { ShareRow } from "./ShareRow.tsx";
+import { Countdown } from "./ResultModal/Countdown.tsx";
+import { ShareRow } from "./ResultModal/ShareRow.tsx";
 import { useGame } from "./GameContext.tsx";
-import classes from "./ResultModal.module.css";
+import classes from "./ResultModal.module.scss";
 
 export namespace ResultModal {
   export interface Props {
@@ -113,7 +113,7 @@ export function ResultModal({
         </Group>
       }
     >
-      <Stack gap="md">
+      <Stack gap="md" className={classes.ResultModal}>
         <Group align="center" gap="md" wrap="nowrap">
           <div className={classes.animation}>
             <StrokeAnimation strokes={strokes} playKey={playKey} />

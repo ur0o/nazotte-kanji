@@ -1,7 +1,7 @@
 import { Group, Stack, Text } from "@mantine/core";
-import type { Direction, Ending } from "../lib/kanji-data.ts";
-import { HintMarker } from "./HintMarker.tsx";
-import classes from "./SymbolGuide.module.css";
+import type { Direction, Ending } from "../../lib/kanji-data.ts";
+import { HintMarker } from "../HintMarker.tsx";
+import classes from "./SymbolGuide.module.scss";
 
 interface EndingGuide {
   ending: Ending;
@@ -60,7 +60,7 @@ function StrokeSample({ guide }: { guide: EndingGuide }) {
 /** とめ・はね・はらいの記号の見方(遊び方の2ページ目) */
 export function SymbolGuide() {
   return (
-    <Stack gap="md">
+    <Stack gap="md" className={classes.SymbolGuide}>
       <Text size="sm">
         記号はそれぞれの画が終わる位置と、終わり方を表します。
       </Text>

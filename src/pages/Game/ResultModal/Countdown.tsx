@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { msUntilNextDaily } from "../../lib/daily.ts";
+import { msUntilNextDaily } from "../../../lib/daily.ts";
 
 function format(ms: number): string {
   const totalSeconds = Math.max(0, Math.floor(ms / 1000));

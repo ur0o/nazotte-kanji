@@ -5,12 +5,11 @@ import type { KanjiEntry } from "../../lib/kanji-data.ts";
 import type { Round } from "../../lib/game.ts";
 import { AnswerForm } from "./AnswerForm.tsx";
 import { Board } from "./Board.tsx";
-import type { DrawingLine } from "./DrawingCanvas.tsx";
 import { DrawingTools } from "./DrawingTools.tsx";
 import { GameProvider, useGame, type GameMode } from "./GameContext.tsx";
 import { GuessHistory } from "./GuessHistory.tsx";
 import { InfoBar } from "./InfoBar.tsx";
-import classes from "./Game.module.css";
+import classes from "./GamePage.module.scss";
 import { ResultModal } from "./ResultModal.tsx";
 import { RetireButton } from "./RetireButton.tsx";
 
@@ -53,14 +52,14 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
   // 手書きと結果モーダルを閉じた状態は、問題が変わったらリセットする
   const [drawing, setDrawing] = useState<{
     kanji: string;
-    lines: DrawingLine[];
+    lines: Board.Line[];
   }>({
     kanji: round.kanji,
     lines: [],
   });
   const [dismissedRound, setDismissedRound] = useState<Round | null>(null);
   const lines = drawing.kanji === round.kanji ? drawing.lines : [];
-  const setLines = (next: DrawingLine[]) =>
+  const setLines = (next: Board.Line[]) =>
     setDrawing({ kanji: round.kanji, lines: next });
 
   if (strokes.isError) {
@@ -75,7 +74,7 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
 
   const finished = status !== "playing";
   return (
-    <div className={classes.screen}>
+    <div className={classes.GamePage}>
       <InfoBar strokeCount={strokes.data?.strokes.length} />
       <Board
         strokes={strokes.data?.strokes}
