@@ -1,5 +1,5 @@
-import { HintMarker } from "../../components/HintMarker.tsx";
-import type { Ending } from "../../lib/kanji-data.ts";
+import { HintMarker } from "../../../shared/HintMarker.tsx";
+import type { Ending } from "../../../lib/kanji-data.ts";
 import classes from "./SymbolLegend.module.css";
 
 const LEGEND: readonly { ending: Ending; label: string }[] = [

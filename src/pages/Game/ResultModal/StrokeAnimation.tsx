@@ -1,4 +1,4 @@
-import type { Stroke } from "../lib/kanji-data.ts";
+import type { Stroke } from "../../../lib/kanji-data.ts";
 import classes from "./StrokeAnimation.module.css";
 
 export namespace StrokeAnimation {

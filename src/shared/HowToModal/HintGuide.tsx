@@ -4,8 +4,8 @@ import {
   DIFFICULTY_HINTS,
   DIFFICULTY_LABELS,
   type DifficultyHints,
-} from "../lib/difficulty.ts";
-import { HintMarker } from "./HintMarker.tsx";
+} from "../../lib/difficulty.ts";
+import { HintMarker } from "../HintMarker.tsx";
 import classes from "./HintGuide.module.css";
 
 /** 見本の画(44×44 の座標系)。「手」の最後の画のような、下に引いて左上にはねる画 */

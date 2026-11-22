@@ -1,7 +1,7 @@
 import { ActionIcon, Button, Container, Group, Title } from "@mantine/core";
 import { Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
-import { HowToModal } from "../components/HowToModal.tsx";
+import { HowToModal } from "../shared/HowToModal.tsx";
 import { hasSeenHowTo, markHowToSeen } from "../lib/how-to-seen.ts";
 import { MODE_LABELS, modeOfPath } from "../lib/modes.ts";
 import classes from "./AppLayout.module.css";

@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Text } from "@mantine/core";
 import { useState } from "react";
-import { xShareUrl } from "../../lib/share.ts";
+import { xShareUrl } from "../../../lib/share.ts";
 import classes from "./ShareRow.module.css";
 
 export namespace ShareRow {

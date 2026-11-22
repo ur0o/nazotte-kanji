@@ -2,10 +2,10 @@ import { Button, Group, Modal, Stack, Text } from "@mantine/core";
 import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { MAX_GUESSES } from "../lib/answer.ts";
 import type { Stroke } from "../lib/kanji-data.ts";
-import { HintGuide } from "./HintGuide.tsx";
+import { HintGuide } from "./HowToModal/HintGuide.tsx";
 import classes from "./HowToModal.module.css";
 import { StrokeHints } from "./StrokeHints.tsx";
-import { SymbolGuide } from "./SymbolGuide.tsx";
+import { SymbolGuide } from "./HowToModal/SymbolGuide.tsx";
 
 export namespace HowToModal {
   export interface Props {

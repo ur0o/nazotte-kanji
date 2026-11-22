@@ -1,11 +1,11 @@
 import { Button, Group } from "@mantine/core";
-import type { DrawingLine } from "./DrawingCanvas.tsx";
-import { SymbolLegend } from "./SymbolLegend.tsx";
+import type { Board } from "./Board.tsx";
+import { SymbolLegend } from "./DrawingTools/SymbolLegend.tsx";
 
 export namespace DrawingTools {
   export interface Props {
-    lines: readonly DrawingLine[];
-    onLinesChange: (lines: DrawingLine[]) => void;
+    lines: readonly Board.Line[];
+    onLinesChange: (lines: Board.Line[]) => void;
   }
 }
 

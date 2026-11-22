@@ -5,7 +5,6 @@ import type { KanjiEntry } from "../../lib/kanji-data.ts";
 import type { Round } from "../../lib/game.ts";
 import { AnswerForm } from "./AnswerForm.tsx";
 import { Board } from "./Board.tsx";
-import type { DrawingLine } from "./DrawingCanvas.tsx";
 import { DrawingTools } from "./DrawingTools.tsx";
 import { GameProvider, useGame, type GameMode } from "./GameContext.tsx";
 import { GuessHistory } from "./GuessHistory.tsx";
@@ -53,14 +52,14 @@ function GameScreen({ byKanji }: { byKanji: ReadonlyMap<string, KanjiEntry> }) {
   // 手書きと結果モーダルを閉じた状態は、問題が変わったらリセットする
   const [drawing, setDrawing] = useState<{
     kanji: string;
-    lines: DrawingLine[];
+    lines: Board.Line[];
   }>({
     kanji: round.kanji,
     lines: [],
   });
   const [dismissedRound, setDismissedRound] = useState<Round | null>(null);
   const lines = drawing.kanji === round.kanji ? drawing.lines : [];
-  const setLines = (next: DrawingLine[]) =>
+  const setLines = (next: Board.Line[]) =>
     setDrawing({ kanji: round.kanji, lines: next });
 
   if (strokes.isError) {

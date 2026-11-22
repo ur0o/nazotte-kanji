@@ -1,11 +1,14 @@
 import { Loader } from "@mantine/core";
-import { StrokeHints } from "../../components/StrokeHints.tsx";
+import { StrokeHints } from "../../shared/StrokeHints.tsx";
 import type { Difficulty } from "../../lib/difficulty.ts";
 import type { Stroke } from "../../lib/kanji-data.ts";
 import classes from "./Board.module.css";
-import { DrawingCanvas, type DrawingLine } from "./DrawingCanvas.tsx";
+import { DrawingCanvas, type DrawingLine } from "./Board/DrawingCanvas.tsx";
 
 export namespace Board {
+  /** 手書きのメモの1本の線(孫コンポーネントの型を、ここから使えるようにする) */
+  export type Line = DrawingLine;
+
   export interface Props {
     strokes: readonly Stroke[] | undefined;
     difficulty: Difficulty;

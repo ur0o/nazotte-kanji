@@ -1,6 +1,6 @@
 import { Group, Stack, Text } from "@mantine/core";
-import type { Direction, Ending } from "../lib/kanji-data.ts";
-import { HintMarker } from "./HintMarker.tsx";
+import type { Direction, Ending } from "../../lib/kanji-data.ts";
+import { HintMarker } from "../HintMarker.tsx";
 import classes from "./SymbolGuide.module.css";
 
 interface EndingGuide {
